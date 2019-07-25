@@ -1,5 +1,5 @@
 ---
-title: feiyue大佬的js总结
+title: imooc双越大佬的js总结
 date: 2019-07-24
 categories: JavaScript
 tags:
@@ -8,7 +8,7 @@ comments: true
 cover_picture: /images/banner.jpg
 ---
 
-以下内容是feiyue大佬辛苦整理的内容，供我们学习分享。感谢大佬的付出。
+以下内容是双越老师辛苦整理的内容，供我们学习分享。感谢大佬的付出。课程详见https://coding.imooc.com/class/115.html.
 
 - 面试工程师（年薪20-30万） —— 以基础知识为主
 - 面试技术专家（年薪30-50万） —— 以工作经验为主
