@@ -1,3 +1,15 @@
+---
+title: LinValidator源码学习
+date: 2019-07-25
+categories: 源码
+author: yangpei
+tags:
+  - 源码
+comments: true
+cover_picture: /images/banner.jpg
+---
+
+
 在闲暇时间，学习了一下林间有风团队开发的 LinValidator 插件源码，具体的调用方式如下：
 [官方网站](http://doc.cms.7yue.pro/lin/server/koa/validator.html#%E4%BD%BF%E7%94%A8)
 
@@ -76,10 +88,6 @@ const v = await new PositiveIdValidator().validate(ctx, {
   id: "uid"
 });
 ```
-
----
-
-代码组织的逻辑图如下：
 
 ---
 
