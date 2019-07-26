@@ -1,7 +1,7 @@
 ---
 title: 前端技术
 date: 2019-07-24
-categories: 前端技术
+categories: 知识点
 author: yangpei
 tags:
   - typescript
