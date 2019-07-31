@@ -9,8 +9,10 @@ comments: true
 cover_picture: /images/banner.jpg
 ---
 
-
 在闲暇时间，学习了一下林间有风团队开发的 LinValidator 插件源码，具体的调用方式如下：
+
+<!-- more -->
+
 [官方网站](http://doc.cms.7yue.pro/lin/server/koa/validator.html#%E4%BD%BF%E7%94%A8)
 
 ```javascript
@@ -88,6 +90,11 @@ const v = await new PositiveIdValidator().validate(ctx, {
   id: "uid"
 });
 ```
+
+---
+
+代码组织结构图如下：
+<img src="http://i2.tiimg.com/695012/b68f75f7cdecf40f.png" width="100%"/>
 
 ---
 

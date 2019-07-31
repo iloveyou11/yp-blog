@@ -1,6 +1,6 @@
 ---
 title: linux node项目环境部署
-date: 2019-07-25
+date: 2019-01-03
 categories: linux
 author: yangpei
 tags:
