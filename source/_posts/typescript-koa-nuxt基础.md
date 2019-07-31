@@ -17,8 +17,9 @@ cover_picture: /images/banner.jpg
 
 **vscode 配置自动编译 ts 代码**
 1、运行 tsc --init，生成配置文件，改 outDir
-1、运行 tsc --init，生成配置文件，改 outDir
 2、运行任务，选择监视 tsconfig
+
+<!-- more -->
 
 ##### 一、typescript 的数据类型(存在类型校验)
 
