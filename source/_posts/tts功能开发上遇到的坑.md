@@ -1,6 +1,6 @@
 ---
 title: tts功能开发上遇到的坑
-date: 2019-02-01
+date: 2019-08-12
 categories: JavaScript
 author: yangpei
 tags:
@@ -18,7 +18,9 @@ cover_picture: /images/banner.jpg
 ```JavaScript
  request(item.src, { encoding: null },function (error, response, body) {}
 ```
+
 2. 文件type问题解决（后端音频返回的格式有很多，因此需要提前与后端确定，使用动态的方式添加文件名后缀）
+
 ```JavaScript
     let suffix = response.headers['content-type'];
     let suffixMap = {
@@ -30,13 +32,16 @@ cover_picture: /images/banner.jpg
                 }
     let fileName = `${item.id}.${suffixMap[suffix]}`;
 ```
+
 3. 下载的文件出现502请求
+
 ```JavaScript
 502就是后台服务异常,是外部依赖的异常,直接给相应的后端反馈
 后端服务负载, 异常率：
 并发高, 对方负载就高, 异常率就高
 浏览器单个访问, 负载低, 不异常, 就很正常
 ```
+
 4. excel交互解决（采用的是elementui库，但是上传的文件无法覆盖上次上传的文件，因此需要手动删除再进行上传），解决方案如下：
 
 ```
@@ -52,8 +57,7 @@ cover_picture: /images/banner.jpg
         :limit="1"  //规定文件上传的个数
       >
     </el-upload>
-    
-    
+
     data(){
         return{
             fileList: [],
