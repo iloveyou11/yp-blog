@@ -63,20 +63,16 @@ cover_picture: /images/banner.jpg
   }
   window.addEventListener("message", receiveMessageFromIframePage, false);
 
-目前在项目开发中，为了修改老旧的项目（html 页面和 jquery 操作 dom 的形式），融入新 cms 的表单（vue 组件式开发），暂且使用了 iframe 嵌入。同时也遇到了许多问题：
+<!-- 目前在项目开发中，为了修改老旧的项目（html 页面和 jquery 操作 dom 的形式），融入新 cms 的表单（vue 组件式开发），暂且使用了 iframe 嵌入。同时也遇到了许多问题：
 
 1. iframe 的嵌入存在跨域的问题，如果子域与主域不是同域，则会产生跨域的问题。因此会产生调试不方便的问题。可以采用 fiddler 代理的方案进行本地调试，将在线的 js 代理到本地的 js，本地 localhost 调试的 iframe 静态页面映射到线上域名，实现预期的效果之后，可替换线上的文件。
-2. 开始在调整 iframe 时，会存在 iframe 的位置摆放问题。起初是采用 table 形式嵌入 iframe，动态调整参数可以解决，代码如下：
-   <img src="http://i1.fuimg.com/695012/0d91e1a12b3ee9ac.png" width="100%">
+2. 开始在调整 iframe 时，会存在 iframe 的位置摆放问题。起初是采用 table 形式嵌入 iframe，动态调整参数可以解决
    虽然能解决 iframe 摆放位置的问题，但是也存在新的问题：
    表单数据时而可以点击，时而不能点击，后来去掉了 table 布局，删除了 iframe 中多余的部分，改为纯净的页面，直接通过 iframe 标签嵌入可以解决此问题。
 3. iframe 的高度动态调整方案：
-   <img src="http://i1.fuimg.com/695012/6d9c2c8f97f0b03d.png" width="100%">
-   这种方法其实也存在问题：
-
 - 创建了 setInterval 定时器，在页面内容没有变化时，还是在不断地执行定时器，此处会消耗页面的性能；
 - 高度变化不连贯，存在延迟的现象；
-- 高度逐渐减小时，会出现卡顿变化的现象，一点点地在减小，不知道具体的原因；
+- 高度逐渐减小时，会出现卡顿变化的现象，一点点地在减小，不知道具体的原因； -->
 
 #### 定时器性能
 

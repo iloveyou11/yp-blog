@@ -94,8 +94,7 @@ const v = await new PositiveIdValidator().validate(ctx, {
 ---
 
 代码组织结构图如下：
-<img src="http://i2.tiimg.com/695012/b68f75f7cdecf40f.png" width="100%"/>
-
+<img style="width:100%" src="https://i.loli.net/2019/09/02/83DoHCrNsM4fBTJ.jpg" />
 ---
 
 具体的源码如下：
