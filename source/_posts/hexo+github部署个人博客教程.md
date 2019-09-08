@@ -196,3 +196,9 @@ cond(no)->op
 字体大小: <font size="1">size为1</font><br />
 背景色:   <table><tr><td bgcolor=#FF00FF>背景色的设置是按照十六进制颜色值：#7FFFD4</td></tr></table>
 ```
+
+**瞄点设置**
+```
+- [测试](#测试)
+### <a id="测试">测试</a>
+```
