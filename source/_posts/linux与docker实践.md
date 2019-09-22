@@ -169,7 +169,7 @@ docker logs -f [name] 查看容器详细运行信息
 
 使用docker-compose可以同时管理多个容器，同时启动、停止，当容器数量很多时，能有效减少大量的人工操作。
 
-安装docker-compose，注意提示权限不够时应提升权限，如使用速冻执行命令
+安装docker-compose，注意提示权限不够时应提升权限，如使用sudo执行命令
 
 ```
 curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
