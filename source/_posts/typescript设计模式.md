@@ -1,7 +1,7 @@
 ---
 title: ts设计模式详解
 date: 2019-08-10
-categories: typescript
+categories: JavaScript
 tags:
   - typescript
 comments: true

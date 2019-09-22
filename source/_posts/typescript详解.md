@@ -1,7 +1,7 @@
 ---
 title: typescript详解
 date: 2019-07-29
-categories: 知识点
+categories: JavaScript
 author: yangpei
 tags:
   - typescript

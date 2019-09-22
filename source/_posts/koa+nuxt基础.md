@@ -1,7 +1,7 @@
 ---
 title: koa+nuxt基础
 date: 2019-06-10
-categories: 知识点
+categories: 技能
 author: yangpei
 tags:
   - koa

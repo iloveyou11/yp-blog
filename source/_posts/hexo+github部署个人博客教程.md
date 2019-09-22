@@ -1,10 +1,10 @@
 ---
 title: hexo+github部署个人博客教程
 date: 2019-01-01
-categories: 其他技能
+categories: 技能
 author: yangpei
 tags:
-  - 其他技能
+  - hexo
 comments: true
 cover_picture: /images/banner.jpg
 ---
