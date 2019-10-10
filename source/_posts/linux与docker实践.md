@@ -10,6 +10,18 @@ comments: true
 cover_picture: /images/banner.jpg
 ---
 
+**devOps流程有哪些？**
+DevOps要求开发、测试、运维一体化，实现敏捷开发、敏捷部署和敏捷生产的目标。包括plan（计划）、code（编码）、build（构建）、test（测试）、release（发布）、deploy（部署）、operate（运营）、monitor（监控）这几大流程。DevOps就是把敏捷开发部门和运维部门之间的围墙打通，形成闭环。
+
+<!-- more -->
+
+计划——编码——构建——测试——发布——部署——运营——监控
+<img src="https://i.loli.net/2019/09/18/DFfQdUReJAcuTHK.jpg" width="50%" alt="devOps流程" />
+[图片参考https://blog.csdn.net/gcttong00/article/details/82892676]
+**自己之前没有了解的流程有哪些？举一个自己开发的项目的例子，来描述devOps流程，思考怎样才能效率开发？**
+
+在腾讯实习过程中，了解了部门项目开发流程：需求-视觉设计-需求评审-开发排期-开发与接口联调-测试-上线。每个新功能（feature）的提出必须排期，跟进团队日历，再依次根据这个流程进行。
+<img src="https://i.loli.net/2019/09/18/yrbklW7Emf8V1Rj.jpg" width="80%" alt="项目流程" />
 
 **linux测试环境搭建：**
 1. 虚拟机自建环境（vmware等）
