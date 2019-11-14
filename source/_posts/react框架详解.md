@@ -1,5 +1,5 @@
 ---
-title: react框架详解
+title: 深入理解react
 date: 2019-09-25
 categories: react
 author: yangpei

@@ -1,5 +1,5 @@
 ---
-title: vue框架详解
+title: 深入理解vue
 date: 2019-09-24
 categories: vue
 author: yangpei

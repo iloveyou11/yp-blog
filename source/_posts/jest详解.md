@@ -1,5 +1,5 @@
 ---
-title: 前端自动化测试——jest详解
+title: 前端自动化测试——jest必会
 date: 2019-09-16
 categories: JavaScript
 author: yangpei
