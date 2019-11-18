@@ -4,7 +4,7 @@ date: 2019-07-25
 categories: JavaScript
 author: yangpei
 tags:
-  - JavaScript
+  - js
 comments: true
 cover_picture: /images/banner.jpg
 ---
