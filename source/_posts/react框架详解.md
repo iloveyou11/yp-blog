@@ -47,7 +47,7 @@ JSX 是一种用于描述UI的JavaScript扩展语法，JSX可以使用JavaScript
 
 ##### this指向问题
 [React事件this指向问题](https://segmentfault.com/a/1190000013609997)
-```
+```js
 1、<span onClick={this.del.bind(this)}></span>
 2、constructor(props) {
         super(props);
@@ -133,7 +133,7 @@ React 16之后有三个生命周期被废弃(但并未删除)
 
 **相关操作：**
 1. connect() 示例：
-```
+```jsx
 import {connect} from 'react-redux';
 const Container = connect(
     mapStateToProps,
@@ -141,7 +141,7 @@ const Container = connect(
 )(Component);
 ```
 2. mapStateToProps() 示例：
-```
+```jsx
 const mapStateToProps = (state, ownProps) => {
     return props;
 };
@@ -149,7 +149,7 @@ const mapStateToProps = (state, ownProps) => {
 mapStateToProps 会订阅 Store，每当 state 更新，就会自动执行，重新计算 UI 组件的 props，从而触发 UI 组件的重新渲染
 
 3. mapDispatchToProps 示例：
-```
+```jsx
 mapDispatchToProps 函数：
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -168,7 +168,7 @@ mapDispatchToProps 用来建立 UI 组件的 props 到 Store.dispatch 方法的�
 React-Redux 提供 Provider 组件，可以让容器组件拿到 state。
 
 4、provider
-```
+```jsx
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import todoApp from './reducers';
@@ -309,7 +309,7 @@ render里面尽量减少新建变量和bind函数，传递参数是尽量减少�
 ##### react hooks
 
 使用react hooks可以极大地简化代码写法，使用function代替原始的class写法，以下是class和function的对比：
-```
+```jsx
 import React, { useState, useEffect } from 'react'
 
 // 原始class组件
@@ -356,7 +356,7 @@ export default MyCountFunction
 
 **状态管理的hook：useState & useReducer**
 1. 使用useState
-```
+```jsx
 import React, { useState, useEffect } from 'react'
 
 function MyCountFunction() {
@@ -376,7 +376,7 @@ export default MyCountFunction
 ```
 2. 使用useReducer
 
-```
+```jsx
 import React, { useReducer, useEffect } from 'react'
 
 function countReducer(state, action) {
@@ -421,7 +421,7 @@ useLayoutEffect是在没有更新到真正的dom内容生成html之前执行
 useEffect是在真正的dom内容生成html之后执行
 如果useLayoutEffect时间执行过长，会影响页面渲染，如果没有特殊需要，不要使用useLayoutEffect
 
-```
+```jsx
 import React, { useReducer, useEffect, useLayoutEffect } from 'react'
 
 function countReducer(state, action) {
@@ -462,7 +462,7 @@ export default MyCountFunction
 
 **useContext**
 
-```
+```jsx
 import React, { useContext } from 'react'
 import { UserContext } from './UserContext'
 import { MessageContext } from './MessageContext'
@@ -494,7 +494,7 @@ export default MessageList
 **Ref hook**
 
 获取dom元素，应用很简单，`const inputRef = useRef(), <input ref={inputRef}/>`即可
-```
+```jsx
 import React, { useState, useEffect, useRef } from 'react'
 
 function MyCountFunction() {
@@ -539,7 +539,7 @@ useCallback使得函数内容相同时，不必重新生成新的函数
 
 针对方法，使用useMemo同样有效，只是useCallback是个更加简化的版本。
 
-```
+```jsx
 import React, { useState, useEffect, memo, useMemo, useCallback } from 'react'
 
 function MyCountFunction() {
@@ -581,7 +581,7 @@ export default MyCountFunction
 
 存在闭包陷阱
 
-```
+```jsx
   const handleClickAlert = () => {
     setTimeout(() => {
       alert(count)
@@ -605,7 +605,7 @@ export default MyCountFunction
 **解决办法：**
 使用useRef来规避闭包陷阱
 
-```
+```jsx
   const countRef = useRef()
   countRef.current = count
   const handleClickAlert = () => {
