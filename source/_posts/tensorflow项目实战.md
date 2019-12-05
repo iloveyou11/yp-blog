@@ -1,25 +1,25 @@
 ---
 title: tensorflow项目实战
-date: 2019-12-04
-categories: AI
-author: yangpei
-tags:
+date:  2019-12-04
+categories:  AI
+author:  yangpei
+tags: 
   - 深度学习
   - 计算机视觉
-comments: true
-cover_picture: /images/banner.jpg
+comments:  true
+cover_picture:  /images/banner.jpg
 ---
 
-利用tensorflow框架写一些小项目,多多熟悉一下吧~
+利用tensorflow框架写一些小项目，多多熟悉一下吧~
 
 <!-- more -->
 
-[github项目地址](https://github.com/iloveyou11/tensorflow-projects)
+[github项目地址](https://github.com/iloveyou11/tensorflow-exercise)
 
 #### 任务：房价预测线性回归
-**第1步:进行数据处理**
+**第1步：进行数据处理**
 
-首先读取csv数据,再对x1 x2 ... xn y数据进行归一化处理,接下来添加单独的一列x0(值均为1,常数项)
+首先读取csv数据，再对x1 x2 ... xn y数据进行归一化处理，接下来添加单独的一列x0(值均为1，常数项)
 <img alt="回归模型1" src="https://i.loli.net/2019/12/04/pS4qj1zguRPa7lY.jpg" width="50%" />
 
 ```python
@@ -30,11 +30,11 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
 # 加载数据
-sns.set(context="notebook", style="whitegrid", palette="dark")
-df0 = pd.read_csv('房价预测线性回归/data0.csv', names=['square', 'price'])
-sns.lmplot('square', 'price', df0, height=6, fit_reg=True)
+sns.set(context="notebook"， style="whitegrid"， palette="dark")
+df0 = pd.read_csv('房价预测线性回归/data0.csv'， names=['square'， 'price'])
+sns.lmplot('square'， 'price'， df0， height=6， fit_reg=True)
 
-df1 = pd.read_csv('房价预测线性回归/data1.csv', names=['square', 'bedrooms', 'price'])
+df1 = pd.read_csv('房价预测线性回归/data1.csv'， names=['square'， 'bedrooms'， 'price'])
 print(df1.head())
 
 # 绘制3d散点图
@@ -43,8 +43,8 @@ ax = plt.axes(projection='3d')
 ax.set_xlabel('square')
 ax.set_ylabel('bedrooms')
 ax.set_zlabel('price')
-ax.scatter3D(df1['square'], df1['bedrooms'],
-             df1['price'], c=df1['price'], cmap='Greens')
+ax.scatter3D(df1['square']， df1['bedrooms']，
+             df1['price']， c=df1['price']， cmap='Greens')
 
 # 数据规范化
 def normalize(df):
@@ -60,13 +60,13 @@ ax = plt.axes(projection='3d')
 ax.set_xlabel('square')
 ax.set_ylabel('bedrooms')
 ax.set_zlabel('price')
-ax.scatter3D(df['square'], df['bedrooms'],
-             df['price'], c=df['price'], cmap='Reds')
+ax.scatter3D(df['square']， df['bedrooms']，
+             df['price']， c=df['price']， cmap='Reds')
 plt.show()
 
 # 添加列
 ones = pd.DataFrame({'ones': np.ones(len(df))})
-df = pd.concat([ones, df], axis=1)
+df = pd.concat([ones， df]， axis=1)
 print(df.head())
 ```
 <img alt="回归模型2" src="https://i.loli.net/2019/12/04/TSDOhWt62yqJG79.jpg" width="50%" />
@@ -81,9 +81,9 @@ print(df.head())
 3   1.0 -0.735723 -1.537767 -0.867025
 4   1.0  1.257476  1.090417  1.595389
 ```
-**第2步:训练模型**
+**第2步：训练模型**
 
-在第1步得到的数据基础上进行处理. 首先,需要拿到x y的数据,定义学习率`learning_rate`和训练次数`epoch`,分别输入x y,计算损失loss值,使用梯度下降优化器进行优化操作.`GradientDescentOptimizer`
+在第1步得到的数据基础上进行处理. 首先，需要拿到x y的数据，定义学习率`learning_rate`和训练次数`epoch`，分别输入x y，计算损失loss值，使用梯度下降优化器进行优化操作.`GradientDescentOptimizer`
 ```python
 import tensorflow as tf
 import numpy as np
@@ -92,31 +92,31 @@ import pandas as pd
 def normalize(df):
     return df.apply(lambda col: (col-col.mean())/col.std())
 
-df = pd.read_csv('房价预测线性回归/data1.csv', names=['square', 'bedrooms', 'price'])
+df = pd.read_csv('房价预测线性回归/data1.csv'， names=['square'， 'bedrooms'， 'price'])
 df = normalize(df)
 ones = pd.DataFrame({'ones': np.ones(len(df))})
-df = pd.concat([ones, df], axis=1)
+df = pd.concat([ones， df]， axis=1)
 # print(df.head())
 
 
 # 数据处理
 X_data = np.array(df[df.columns[0:3]])
-y_data = np.array(df[df.columns[-1]]).reshape(len(df), 1)
-print(X_data.shape, type(X_data))
-print(y_data.shape, type(y_data))
+y_data = np.array(df[df.columns[-1]]).reshape(len(df)， 1)
+print(X_data.shape， type(X_data))
+print(y_data.shape， type(y_data))
 
 
 # 创建显性回归模型
 learning_rate = 0.01
 epoch = 500
 # 输入x y
-X = tf.compat.v1.placeholder(tf.float32, X_data.shape)
-y = tf.compat.v1.placeholder(tf.float32, y_data.shape)
+X = tf.compat.v1.placeholder(tf.float32， X_data.shape)
+y = tf.compat.v1.placeholder(tf.float32， y_data.shape)
 W = tf.compat.v1.get_variable(
-    "weights", (X_data.shape[1], 1), initializer=tf.constant_initializer())
-y_pred = tf.matmul(X, W)
-loss_op = 1 / (2 * len(X_data)) * tf.matmul((y_pred - y),
-                                            (y_pred - y), transpose_a=True)
+    "weights"， (X_data.shape[1]， 1)， initializer=tf.constant_initializer())
+y_pred = tf.matmul(X， W)
+loss_op = 1 / (2 * len(X_data)) * tf.matmul((y_pred - y)，
+                                            (y_pred - y)， transpose_a=True)
 opt = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
 train_op = opt.minimize(loss_op)
 
@@ -124,12 +124,12 @@ train_op = opt.minimize(loss_op)
 # 创建会话
 with tf.compat.v1.Session() as sess:
     sess.run(tf.compat.v1.global_variables_initializer())
-    for e in range(1, epoch+1):
-        sess.run(train_op, feed_dict={X: X_data, y: y_data})
+    for e in range(1， epoch+1):
+        sess.run(train_op， feed_dict={X: X_data， y: y_data})
         if e % 10 == 0:
-            loss, w = sess.run([loss_op, W], feed_dict={X: X_data, y: y_data})
+            loss， w = sess.run([loss_op， W]， feed_dict={X: X_data， y: y_data})
             print("Epoch %d \t Loss=%.4g \t Model: y = %.4gx1 + %.4gx2 + %.4g" %
-                  (e, loss, w[1], w[2], w[0]))
+                  (e， loss， w[1]， w[2]， w[0]))
 
 ```
 模型训练好后的数据如下:
@@ -155,9 +155,9 @@ Epoch 480        Loss=0.1322     Model: y = 0.8254x1 + 0.005641x2 + 3.663e-09
 Epoch 490        Loss=0.1321     Model: y = 0.828x1 + 0.003183x2 + 4.2e-09
 Epoch 500        Loss=0.132      Model: y = 0.8304x1 + 0.0008239x2 + 4.138e-09
 ```
-**第3步:可视化流图**
+**第3步：可视化流图**
 
-使用tensorboard可以可视化数据流图,可以方便我们查看训练的过程
+使用tensorboard可以可视化数据流图，可以方便我们查看训练的过程
 ```python
 import tensorflow as tf
 import numpy as np
@@ -166,32 +166,32 @@ import pandas as pd
 def normalize(df):
     return df.apply(lambda col: (col-col.mean())/col.std())
 
-df = pd.read_csv('房价预测线性回归/data1.csv', names=['square', 'bedrooms', 'price'])
+df = pd.read_csv('房价预测线性回归/data1.csv'， names=['square'， 'bedrooms'， 'price'])
 df = normalize(df)
 ones = pd.DataFrame({'ones': np.ones(len(df))})
-df = pd.concat([ones, df], axis=1)
+df = pd.concat([ones， df]， axis=1)
 # print(df.head())
 
 # 数据处理
 X_data = np.array(df[df.columns[0:3]])
-y_data = np.array(df[df.columns[-1]]).reshape(len(df), 1)
-print(X_data.shape, type(X_data))
-print(y_data.shape, type(y_data))
+y_data = np.array(df[df.columns[-1]]).reshape(len(df)， 1)
+print(X_data.shape， type(X_data))
+print(y_data.shape， type(y_data))
 
 # 创建显性回归模型
 learning_rate = 0.01
 epoch = 500
 # 输入x y
 with tf.name_scope('input'):
-    X = tf.compat.v1.placeholder(tf.float32, X_data.shape)
-    y = tf.compat.v1.placeholder(tf.float32, y_data.shape)
+    X = tf.compat.v1.placeholder(tf.float32， X_data.shape)
+    y = tf.compat.v1.placeholder(tf.float32， y_data.shape)
 with tf.name_scope('hypothesis'):
     W = tf.compat.v1.get_variable(
-        "weights", (X_data.shape[1], 1), initializer=tf.constant_initializer())
-    y_pred = tf.matmul(X, W)
+        "weights"， (X_data.shape[1]， 1)， initializer=tf.constant_initializer())
+    y_pred = tf.matmul(X， W)
 with tf.name_scope('loss'):
-    loss_op = 1 / (2 * len(X_data)) * tf.matmul((y_pred - y),
-                                                (y_pred - y), transpose_a=True)
+    loss_op = 1 / (2 * len(X_data)) * tf.matmul((y_pred - y)，
+                                                (y_pred - y)， transpose_a=True)
 with tf.name_scope('train'):
     train_op = tf.train.GradientDescentOptimizer(
         learning_rate=learning_rate).minimize(loss_op)
@@ -199,18 +199,18 @@ with tf.name_scope('train'):
 # 创建会话
 with tf.compat.v1.Session() as sess:
     sess.run(tf.compat.v1.global_variables_initializer())
-    writer = tf.compat.v1.summary.FileWriter('./summary', sess.graph)
-    for e in range(1, epoch+1):
-        sess.run(train_op, feed_dict={X: X_data, y: y_data})
+    writer = tf.compat.v1.summary.FileWriter('./summary'， sess.graph)
+    for e in range(1， epoch+1):
+        sess.run(train_op， feed_dict={X: X_data， y: y_data})
         if e % 10 == 0:
-            loss, w = sess.run([loss_op, W], feed_dict={X: X_data, y: y_data})
+            loss， w = sess.run([loss_op， W]， feed_dict={X: X_data， y: y_data})
             print("Epoch %d \t Loss=%.4g \t Model: y = %.4gx1 + %.4gx2 + %.4g" %
-                  (e, loss, w[1], w[2], w[0]))
+                  (e， loss， w[1]， w[2]， w[0]))
 writer.close()
 ```
-其中,定义的`with tf.name_scope('xxx'):`是为了将相关的部分视为整体展示在tensorboard中,可以更加方便地展开和隐藏,能够更有效地展示模型的结构.
+其中，定义的`with tf.name_scope('xxx'):`是为了将相关的部分视为整体展示在tensorboard中，可以更加方便地展开和隐藏，能够更有效地展示模型的结构.
 
-**第4步:可视化损失loss**
+**第4步：可视化损失loss**
 
 ```python
 import seaborn as sns
@@ -222,33 +222,33 @@ import pandas as pd
 def normalize(df):
     return df.apply(lambda col: (col-col.mean())/col.std())
 
-df = pd.read_csv('房价预测线性回归/data1.csv', names=['square', 'bedrooms', 'price'])
+df = pd.read_csv('房价预测线性回归/data1.csv'， names=['square'， 'bedrooms'， 'price'])
 df = normalize(df)
 ones = pd.DataFrame({'ones': np.ones(len(df))})
-df = pd.concat([ones, df], axis=1)
+df = pd.concat([ones， df]， axis=1)
 # print(df.head())
 
 
 # 数据处理
 X_data = np.array(df[df.columns[0:3]])
-y_data = np.array(df[df.columns[-1]]).reshape(len(df), 1)
-print(X_data.shape, type(X_data))
-print(y_data.shape, type(y_data))
+y_data = np.array(df[df.columns[-1]]).reshape(len(df)， 1)
+print(X_data.shape， type(X_data))
+print(y_data.shape， type(y_data))
 
 # 创建显性回归模型
 learning_rate = 0.01
 epoch = 500
 # 输入x y
 with tf.name_scope('input'):
-    X = tf.compat.v1.placeholder(tf.float32, X_data.shape)
-    y = tf.compat.v1.placeholder(tf.float32, y_data.shape)
+    X = tf.compat.v1.placeholder(tf.float32， X_data.shape)
+    y = tf.compat.v1.placeholder(tf.float32， y_data.shape)
 with tf.name_scope('hypothesis'):
     W = tf.compat.v1.get_variable(
-        "weights", (X_data.shape[1], 1), initializer=tf.constant_initializer())
-    y_pred = tf.matmul(X, W)
+        "weights"， (X_data.shape[1]， 1)， initializer=tf.constant_initializer())
+    y_pred = tf.matmul(X， W)
 with tf.name_scope('loss'):
-    loss_op = 1 / (2 * len(X_data)) * tf.matmul((y_pred - y),
-                                                (y_pred - y), transpose_a=True)
+    loss_op = 1 / (2 * len(X_data)) * tf.matmul((y_pred - y)，
+                                                (y_pred - y)， transpose_a=True)
 with tf.name_scope('train'):
     train_op = tf.train.GradientDescentOptimizer(
         learning_rate=learning_rate).minimize(loss_op)
@@ -256,50 +256,50 @@ with tf.name_scope('train'):
 # 创建会话
 with tf.compat.v1.Session() as sess:
     sess.run(tf.compat.v1.global_variables_initializer())
-    writer = tf.compat.v1.summary.FileWriter('./summary', sess.graph)
+    writer = tf.compat.v1.summary.FileWriter('./summary'， sess.graph)
     # 记录所有损失值
     loss_data = []
-    for e in range(1, epoch+1):
-        _, loss, w = sess.run([train_op, loss_op, W],
-                              feed_dict={X: X_data, y: y_data})
+    for e in range(1， epoch+1):
+        _， loss， w = sess.run([train_op， loss_op， W]，
+                              feed_dict={X: X_data， y: y_data})
         loss_data.append(float(loss))
         if e % 100 == 0:
             log_str = "Epoch %d \t Loss=%.4g \t Model: y = %.4gx1 + %.4gx2 + %.4g"
-            print(log_str % (e, loss, w[1], w[2], w[0]))
+            print(log_str % (e， loss， w[1]， w[2]， w[0]))
 writer.close()
 # print(len(loss_data))
 
 # 可视化损失值
-sns.set(context="notebook", style="whitegrid", palette="dark")
-ax = sns.lineplot(x='epoch', y='loss', data=pd.DataFrame(
-    {'loss': loss_data, 'epoch': np.arange(epoch)}))
+sns.set(context="notebook"， style="whitegrid"， palette="dark")
+ax = sns.lineplot(x='epoch'， y='loss'， data=pd.DataFrame(
+    {'loss': loss_data， 'epoch': np.arange(epoch)}))
 ax.set_xlabel('epoch')
 ax.set_ylabel('loss')
 plt.show()
 ```
-每次迭代过程中,损失值的变化趋势如下:
+每次迭代过程中，损失值的变化趋势如下:
 <img alt="回归模型4" src="https://i.loli.net/2019/12/04/Kf2Wnlhwq1uXaQd.jpg" width="50%" />
-由此可见,随着迭代次数的增多,损失值越来越小,最后趋于平稳,模型越来越优.
+由此可见，随着迭代次数的增多，损失值越来越小，最后趋于平稳，模型越来越优.
 
 
 #### 任务：手写数字识别
 
-**第1步:加载数据集mnist**
+**第1步：加载数据集mnist**
 ```python
 # 获取mnist数据集
 import matplotlib.pyplot as plt
 from keras.datasets import mnist
 
-(train_x, train_y), (test_x, test_y) = mnist.load_data()
-print(train_x.shape, train_y.shape)
-print(test_x.shape, test_y.shape)
+(train_x， train_y)， (test_x， test_y) = mnist.load_data()
+print(train_x.shape， train_y.shape)
+print(test_x.shape， test_y.shape)
 
 # 可视化数据集
 fig = plt.figure()
 for i in range(15):
-    plt.subplot(3, 5, i+1)
+    plt.subplot(3， 5， i+1)
     plt.tight_layout()
-    plt.imshow(train_x[i], cmap='Greys')
+    plt.imshow(train_x[i]， cmap='Greys')
     plt.title('label:{}'.format(train_y[i]))
     plt.xticks([])
     plt.yticks([])
@@ -308,29 +308,29 @@ plt.show()
 最后得到的数据集如下:
 <img alt="手写数字1" src="https://i.loli.net/2019/12/04/9WyiPqcbEkVTmrl.jpg" width="50%" />
 
-**第2步:利用softmax进行手写数字识别**
+**第2步：利用softmax进行手写数字识别**
 
 具体流程: 
-1. 统计训练数据中各标签数量,并可视化标签数量,保证各类数字数量差不多,这样可以保证接下来训练模型的可靠性
-2. 数据处理：one-hot 编码
-3. 使用 Keras sequential model 定义神经网络(在这里,简单地使用了`Dense-Activation(relu)-Dense-Activation(relu)-Dense-Activation(softmax)`的结构),通过softmax计算的概率值大小判断是哪个数字的可能性最大
+1. 统计训练数据中各标签数量，并可视化标签数量，保证各类数字数量差不多，这样可以保证接下来训练模型的可靠性
+2. 数据处理:one-hot 编码
+3. 使用 Keras sequential model 定义神经网络(在这里，简单地使用了`Dense-Activation(relu)-Dense-Activation(relu)-Dense-Activation(softmax)`的结构)，通过softmax计算的概率值大小判断是哪个数字的可能性最大
 4. 编译模型(利用`model.compile()`进行模型的编译)
 5. 训练模型，并将指标保存到 history 中
-6. 保存模型(利用`model.save()`将模型保存到本地,下次可以直接使用此模型),官方解释如下:
+6. 保存模型(利用`model.save()`将模型保存到本地，下次可以直接使用此模型)，官方解释如下:
 ```
 You can use model.save(filepath) to save a Keras model into a single HDF5 file which will contain:
 
-the architecture of the model, allowing to re-create the model
+the architecture of the model， allowing to re-create the model
 the weights of the model
-the training configuration (loss, optimizer)
-the state of the optimizer, allowing to resume training exactly where you left off.
+the training configuration (loss， optimizer)
+the state of the optimizer， allowing to resume training exactly where you left off.
 You can then use keras.models.load_model(filepath) to reinstantiate your model. load_model will also take care of compiling the model using the saved training configuration (unless the model was never compiled in the first place).
 ```
 
 ```python
 import tensorflow as tf
 import os
-from keras.layers.core import Dense, Activation
+from keras.layers.core import Dense， Activation
 from keras.models import Sequential
 from keras.utils import np_utils
 import matplotlib.pyplot as plt
@@ -338,43 +338,43 @@ import numpy as np
 from keras.datasets import mnist
 
 # 获取数据集
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+(x_train， y_train)， (x_test， y_test) = mnist.load_data()
 
 # 规范化
-X_train = x_train.reshape(60000, 784)
-X_test = x_test.reshape(10000, 784)
+X_train = x_train.reshape(60000， 784)
+X_test = x_test.reshape(10000， 784)
 X_train = X_train.astype('float32')
 X_test = X_test.astype('float32')
 X_train /= 255
 X_test /= 255
 
 # 统计各标签数量
-label, count = np.unique(y_train, return_counts=True)
-# print(label, count)
+label， count = np.unique(y_train， return_counts=True)
+# print(label， count)
 
 # 可视化标签数量
 fig = plt.figure()
-plt.bar(label, count, width=0.7, align='center')
+plt.bar(label， count， width=0.7， align='center')
 plt.title("Label Distribution")
 plt.xlabel("Label")
 plt.ylabel("Count")
 plt.xticks(label)
-plt.ylim(0, 7500)
-for label, count in zip(label, count):
-    plt.text(label, count, '%d' % count, ha='center', va='bottom', fontsize=10)
+plt.ylim(0， 7500)
+for label， count in zip(label， count):
+    plt.text(label， count， '%d' % count， ha='center'， va='bottom'， fontsize=10)
 # plt.show()
 
 # one-hot编码
 n_classes = 10
-# print('before one-hot:', y_train.shape)
-Y_train = np_utils.to_categorical(y_train, n_classes)
-# print('after one-hot:', Y_train.shape)
-Y_test = np_utils.to_categorical(y_test, n_classes)
+# print('before one-hot:'， y_train.shape)
+Y_train = np_utils.to_categorical(y_train， n_classes)
+# print('after one-hot:'， Y_train.shape)
+Y_test = np_utils.to_categorical(y_test， n_classes)
 
 # 定义神经网络
 model = Sequential()
 
-model.add(Dense(512, input_shape=(784,)))
+model.add(Dense(512， input_shape=(784，)))
 model.add(Activation('relu'))
 
 model.add(Dense(512))
@@ -384,37 +384,37 @@ model.add(Dense(10))
 model.add(Activation('softmax'))
 
 # 编译模型
-model.compile(loss='categorical_crossentropy',
-              metrics=['accuracy'], optimizer='adam')
+model.compile(loss='categorical_crossentropy'，
+              metrics=['accuracy']， optimizer='adam')
 # 开始训练
 history = model.fit(
-    X_train,
-    Y_train,
-    batch_size=128,
-    epochs=5,
-    verbose=2,
-    validation_data=(X_test, Y_test)
+    X_train，
+    Y_train，
+    batch_size=128，
+    epochs=5，
+    verbose=2，
+    validation_data=(X_test， Y_test)
 )
 
 # 可视化指标
 # print(history.history)
 fig = plt.figure()
 
-plt.subplot(2, 1, 1)
+plt.subplot(2， 1， 1)
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
 plt.title('Model Accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='lower right')
+plt.legend(['train'， 'test']， loc='lower right')
 
-plt.subplot(2, 1, 2)
+plt.subplot(2， 1， 2)
 plt.plot(history.history['loss'])  # 损失
 plt.plot(history.history['val_loss'])  # 测试集上的损失
 plt.title('Model Loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper right')
+plt.legend(['train'， 'test']， loc='upper right')
 plt.tight_layout()
 # plt.show()
 
@@ -425,14 +425,14 @@ if tf.io.gfile.exists(save_dir):
 tf.io.gfile.makedirs(save_dir)
 
 model_name = 'keras_mnist.h5'
-model_path = os.path.join(save_dir, model_name)
+model_path = os.path.join(save_dir， model_name)
 model.save(model_path)
 print('Saved trained model at %s ' % model_path)
 ```
 
 训练的结果为:
 ```
-Train on 60000 samples, validate on 10000 samples
+Train on 60000 samples， validate on 10000 samples
 Epoch 1/5
  - 10s - loss: 0.2186 - acc: 0.9353 - val_loss: 0.0935 - val_acc: 0.9709
 Epoch 2/5
@@ -447,7 +447,7 @@ Epoch 5/5
 可视化指标效果如下:
 <img alt="手写数字2" src="https://i.loli.net/2019/12/04/2eY6HaTyqbkKZOr.jpg" width="50%" />
 
-保存模型后,如果要实现模型的加载,则可以使用`load_model`函数,其中`model_path`是模型的路径.使用训练好的此模型统计测试集上的分类结果,具体代码如下:
+保存模型后，如果要实现模型的加载，则可以使用`load_model`函数，其中`model_path`是模型的路径.使用训练好的此模型统计测试集上的分类结果，具体代码如下:
 ```python
 from keras.models import load_model
 import os
@@ -455,21 +455,21 @@ import numpy as np
 from keras.utils import np_utils
 from keras.datasets import mnist
 
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+(x_train， y_train)， (x_test， y_test) = mnist.load_data()
 # 规范化
-X_test = x_test.reshape(10000, 784)
+X_test = x_test.reshape(10000， 784)
 X_test = X_test.astype('float32')
 X_test /= 255
 
 n_classes = 10
-Y_test = np_utils.to_categorical(y_test, n_classes)
+Y_test = np_utils.to_categorical(y_test， n_classes)
 
 save_dir = "./mnist/model/"
 model_name = 'keras_mnist.h5'
-model_path = os.path.join(save_dir, model_name)
+model_path = os.path.join(save_dir， model_name)
 mnist_model = load_model(model_path)
 
-loss_and_metrics = mnist_model.evaluate(X_test, Y_test, verbose=2)
+loss_and_metrics = mnist_model.evaluate(X_test， Y_test， verbose=2)
 print("Test Loss: {}".format(loss_and_metrics[0]))
 print("Test Accuracy: {}%".format(loss_and_metrics[1]*100))
 
@@ -487,13 +487,13 @@ Test Accuracy: 97.86%
 Classified correctly count: 9786
 Classified incorrectly count: 214
 ```
-由此可见,训练结果还是相当不错的,准确率达到了97.86%.
+由此可见，训练结果还是相当不错的，准确率达到了97.86%.
 
-**第3步:利用cnn进行手写数字识别**
+**第3步：利用CNN进行手写数字识别**
 
-整体的流程和第2步是非常类似的,只是在模型训练的过程中,采用的是cnn卷积神经网络,加入了更多的隐藏层,增加了模型的复杂度,也提高了模型的准确性.
+整体的流程和第2步是非常类似的，只是在模型训练的过程中，采用的是CNN卷积神经网络，加入了更多的隐藏层，增加了模型的复杂度，也提高了模型的准确性.
 
-具体的神经网络设计如下,分别为`卷积层-卷积层-池化层-dropout层-flatten层-全连接层-dropout层-softmax全连接层`,具体参数如下:
+具体的神经网络设计如下，分别为`卷积层-卷积层-池化层-dropout层-flatten层-全连接层-dropout层-softmax全连接层`，具体参数如下:
 1. 第1层卷积，32个3x3的卷积核 ，激活函数使用 relu
 2. 第2层卷积，64个3x3的卷积核，激活函数使用 relu
 3. 最大池化层，池化窗口 2x2
@@ -505,33 +505,32 @@ Classified incorrectly count: 214
 
 查看 MNIST CNN 模型网络结构:
 ```
-________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-conv2d_1 (Conv2D)            (None, 26, 26, 32)        320       
+conv2d_1 (Conv2D)            (None， 26， 26， 32)        320       
 _________________________________________________________________
-conv2d_2 (Conv2D)            (None, 24, 24, 64)        18496     
+conv2d_2 (Conv2D)            (None， 24， 24， 64)        18496     
 _________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 12, 12, 64)        0         
+max_pooling2d_1 (MaxPooling2 (None， 12， 12， 64)        0         
 _________________________________________________________________
-dropout_1 (Dropout)          (None, 12, 12, 64)        0         
+dropout_1 (Dropout)          (None， 12， 12， 64)        0         
 _________________________________________________________________
-flatten_1 (Flatten)          (None, 9216)              0         
+flatten_1 (Flatten)          (None， 9216)              0         
 _________________________________________________________________
-dense_1 (Dense)              (None, 128)               1179776   
+dense_1 (Dense)              (None， 128)               1179776   
 _________________________________________________________________
-dropout_2 (Dropout)          (None, 128)               0         
+dropout_2 (Dropout)          (None， 128)               0         
 _________________________________________________________________
-dense_2 (Dense)              (None, 10)                1290      
+dense_2 (Dense)              (None， 10)                1290      
 =================================================================
-Total params: 1,199,882
-Trainable params: 1,199,882
+Total params: 1，199，882
+Trainable params: 1，199，882
 Non-trainable params: 0
 ```
 
+具体代码如下:
 ```python
-
-from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
+from keras.layers import Dense， Dropout， Flatten， Conv2D， MaxPooling2D
 from keras import backend as K
 import tensorflow as tf
 import os
@@ -542,18 +541,18 @@ import numpy as np
 from keras.datasets import mnist
 
 # 获取数据集
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+(x_train， y_train)， (x_test， y_test) = mnist.load_data()
 
 # 规范化
-img_rows, img_cols = 28, 28
+img_rows， img_cols = 28， 28
 if K.image_data_format() == 'channels_first':
-    x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols)
-    x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
-    input_shape = (1, img_rows, img_cols)
+    x_train = x_train.reshape(x_train.shape[0]， 1， img_rows， img_cols)
+    x_test = x_test.reshape(x_test.shape[0]， 1， img_rows， img_cols)
+    input_shape = (1， img_rows， img_cols)
 else:
-    x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
-    x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
-    input_shape = (img_rows, img_cols, 1)
+    x_train = x_train.reshape(x_train.shape[0]， img_rows， img_cols， 1)
+    x_test = x_test.reshape(x_test.shape[0]， img_rows， img_cols， 1)
+    input_shape = (img_rows， img_cols， 1)
 
 X_train = x_train.astype('float32')
 X_test = x_test.astype('float32')
@@ -561,39 +560,39 @@ X_train /= 255
 X_test /= 255
 
 # 统计各标签数量
-label, count = np.unique(y_train, return_counts=True)
-# print(label, count)
+label， count = np.unique(y_train， return_counts=True)
+# print(label， count)
 
 # 可视化标签数量
 fig = plt.figure()
-plt.bar(label, count, width=0.7, align='center')
+plt.bar(label， count， width=0.7， align='center')
 plt.title("Label Distribution")
 plt.xlabel("Label")
 plt.ylabel("Count")
 plt.xticks(label)
-plt.ylim(0, 7500)
-for label, count in zip(label, count):
-    plt.text(label, count, '%d' % count, ha='center', va='bottom', fontsize=10)
+plt.ylim(0， 7500)
+for label， count in zip(label， count):
+    plt.text(label， count， '%d' % count， ha='center'， va='bottom'， fontsize=10)
 # plt.show()
 
 # one-hot编码
 n_classes = 10
-# print('before one-hot:', y_train.shape)
-Y_train = np_utils.to_categorical(y_train, n_classes)
-# print('after one-hot:', Y_train.shape)
-Y_test = np_utils.to_categorical(y_test, n_classes)
+# print('before one-hot:'， y_train.shape)
+Y_train = np_utils.to_categorical(y_train， n_classes)
+# print('after one-hot:'， Y_train.shape)
+Y_test = np_utils.to_categorical(y_test， n_classes)
 
 # 使用 Keras sequential model 定义 MNIST CNN 网络
 model = Sequential()
 # 第1层卷积，32个3x3的卷积核 ，激活函数使用 relu
-model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu',
+model.add(Conv2D(filters=32， kernel_size=(3， 3)， activation='relu'，
                  input_shape=input_shape))
 
 # 第2层卷积，64个3x3的卷积核，激活函数使用 relu
-model.add(Conv2D(filters=64, kernel_size=(3, 3), activation='relu'))
+model.add(Conv2D(filters=64， kernel_size=(3， 3)， activation='relu'))
 
 # 最大池化层，池化窗口 2x2
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(MaxPooling2D(pool_size=(2， 2)))
 
 # Dropout 25% 的输入神经元
 model.add(Dropout(0.25))
@@ -602,13 +601,13 @@ model.add(Dropout(0.25))
 model.add(Flatten())
 
 # 全联接层
-model.add(Dense(128, activation='relu'))
+model.add(Dense(128， activation='relu'))
 
 # Dropout 50% 的输入神经元
 model.add(Dropout(0.5))
 
 # 使用 softmax 激活函数做多分类，输出各数字的概率
-model.add(Dense(n_classes, activation='softmax'))
+model.add(Dense(n_classes， activation='softmax'))
 
 model.summary()
 
@@ -616,37 +615,37 @@ for layer in model.layers:
     print(layer.get_output_at(0).get_shape().as_list())
 
 # 编译模型
-model.compile(loss='categorical_crossentropy',
-              metrics=['accuracy'], optimizer='adam')
+model.compile(loss='categorical_crossentropy'，
+              metrics=['accuracy']， optimizer='adam')
 # 训练模型
 history = model.fit(
-    X_train,
-    Y_train,
-    batch_size=128,
-    epochs=5,
-    verbose=2,
-    validation_data=(X_test, Y_test)
+    X_train，
+    Y_train，
+    batch_size=128，
+    epochs=5，
+    verbose=2，
+    validation_data=(X_test， Y_test)
 )
 
 # 可视化指标
 # print(history.history)
 fig = plt.figure()
 
-plt.subplot(2, 1, 1)
+plt.subplot(2， 1， 1)
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
 plt.title('Model Accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='lower right')
+plt.legend(['train'， 'test']， loc='lower right')
 
-plt.subplot(2, 1, 2)
+plt.subplot(2， 1， 2)
 plt.plot(history.history['loss'])  # 损失
 plt.plot(history.history['val_loss'])  # 测试集上的损失
 plt.title('Model Loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper right')
+plt.legend(['train'， 'test']， loc='upper right')
 plt.tight_layout()
 plt.show()
 
@@ -657,16 +656,16 @@ if tf.io.gfile.exists(save_dir):
 tf.io.gfile.makedirs(save_dir)
 
 model_name = 'keras_mnist.h5'
-model_path = os.path.join(save_dir, model_name)
+model_path = os.path.join(save_dir， model_name)
 model.save(model_path)
 print('Saved trained model at %s ' % model_path)
 ```
-利用cnn卷积神经网络训练后,可视化指标如下:
+利用CNN卷积神经网络训练后，可视化指标如下:
 <img alt="手写数字3" src="https://i.loli.net/2019/12/04/xtWKq3zBeJHVr98.jpg" width="50%" />
 
 #### 任务：验证码识别
 
-**第1步:创建验证码数据集**
+**第1步：创建验证码数据集**
 
 具体步骤如下:
 1. 引入第三方包`ImageCaptcha`
@@ -687,11 +686,11 @@ import PIL.Image as Image
 import tensorflow as tf
 
 # 定义常量
-NUMBER = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-LOWERCASE = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-             'v', 'w', 'x', 'y', 'z']
-UPPERCASE = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-             'V', 'W', 'X', 'Y', 'Z']
+NUMBER = ['0'， '1'， '2'， '3'， '4'， '5'， '6'， '7'， '8'， '9']
+LOWERCASE = ['a'， 'b'， 'c'， 'd'， 'e'， 'f'， 'g'， 'h'， 'i'， 'j'， 'k'， 'l'， 'm'， 'n'， 'o'， 'p'， 'q'， 'r'， 's'， 't'， 'u'，
+             'v'， 'w'， 'x'， 'y'， 'z']
+UPPERCASE = ['A'， 'B'， 'C'， 'D'， 'E'， 'F'， 'G'， 'H'， 'I'， 'J'， 'K'， 'L'， 'M'， 'N'， 'O'， 'P'， 'Q'， 'R'， 'S'， 'T'， 'U'，
+             'V'， 'W'， 'X'， 'Y'， 'Z']
 
 CAPTCHA_CHARSET = NUMBER   # 验证码字符集
 CAPTCHA_LEN = 4            # 验证码长度
@@ -705,7 +704,7 @@ TEST_DATA_DIR = './test-data/'
 
 
 # 生成随机字符
-def gen_random_text(charset=CAPTCHA_CHARSET, length=CAPTCHA_LEN):
+def gen_random_text(charset=CAPTCHA_CHARSET， length=CAPTCHA_LEN):
     text = [random.choice(charset) for _ in range(length)]
     return ''.join(text)
 
@@ -713,53 +712,53 @@ def gen_random_text(charset=CAPTCHA_CHARSET, length=CAPTCHA_LEN):
 
 
 def create_captcha_dataset(
-        size=100,
-        data_dir='./data/',
-        height=60,
-        width=160,
+        size=100，
+        data_dir='./data/'，
+        height=60，
+        width=160，
         image_format='.png'):
     if tf.io.gfile.exists(data_dir):
         tf.io.gfile.rmtree(data_dir)
     tf.io.gfile.makedirs(data_dir)
 
-    captcha = ImageCaptcha(width=width, height=height)
+    captcha = ImageCaptcha(width=width， height=height)
 
     for _ in range(size):
-        text = gen_random_text(CAPTCHA_CHARSET, CAPTCHA_LEN)
-        captcha.write(text, data_dir+text+image_format)
+        text = gen_random_text(CAPTCHA_CHARSET， CAPTCHA_LEN)
+        captcha.write(text， data_dir+text+image_format)
 
     return None
 
 
 # 训练集
-create_captcha_dataset(TRAIN_DATASET_SIZE, TRAIN_DATA_DIR)
+create_captcha_dataset(TRAIN_DATASET_SIZE， TRAIN_DATA_DIR)
 # 测试集
-create_captcha_dataset(TEST_DATASET_SIZE, TEST_DATA_DIR)
+create_captcha_dataset(TEST_DATASET_SIZE， TEST_DATA_DIR)
 
 
 def gen_captcha_dataset(
-        size=100,
-        height=60,
-        width=160,
+        size=100，
+        height=60，
+        width=160，
         image_format='.png'):
-    captcha = ImageCaptcha(width=width, height=height)
-    images, texts = [None]*size, [None]*size
+    captcha = ImageCaptcha(width=width， height=height)
+    images， texts = [None]*size， [None]*size
 
     for i in range(size):
-        texts[i] = gen_random_text(CAPTCHA_CHARSET, CAPTCHA_LEN)
+        texts[i] = gen_random_text(CAPTCHA_CHARSET， CAPTCHA_LEN)
         images[i] = np.array(Image.open(captcha.generate(texts[i])))
 
-    return images, texts
+    return images， texts
 
 
 # 生成100张验证码图像
-images, texts = gen_captcha_dataset()
+images， texts = gen_captcha_dataset()
 
 
 # 可视化验证码前20张图片
 plt.figure()
 for i in range(20):
-    plt.subplot(5, 4, i+1)
+    plt.subplot(5， 4， i+1)
     plt.tight_layout()
     plt.imshow(images[i])
     plt.title("Label: {}".format(texts[i]))
@@ -770,7 +769,7 @@ plt.show()
 最后生成 100 张验证码图像和字符如下:
 <img alt="验证码1" src="https://i.loli.net/2019/12/04/cmGYqsn6NyEuL3r.jpg" width="50%" />
 
-**第2步:数据处理**
+**第2步：数据处理**
 
 具体步骤:
 1. 读取训练集前 100 张图片，并通过文件名解析验证码（标签）
@@ -789,11 +788,11 @@ import glob
 import numpy as np
 import matplotlib.pyplot as plt
 
-NUMBER = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-LOWERCASE = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-             'v', 'w', 'x', 'y', 'z']
-UPPERCASE = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-             'V', 'W', 'X', 'Y', 'Z']
+NUMBER = ['0'， '1'， '2'， '3'， '4'， '5'， '6'， '7'， '8'， '9']
+LOWERCASE = ['a'， 'b'， 'c'， 'd'， 'e'， 'f'， 'g'， 'h'， 'i'， 'j'， 'k'， 'l'， 'm'， 'n'， 'o'， 'p'， 'q'， 'r'， 's'， 't'， 'u'，
+             'v'， 'w'， 'x'， 'y'， 'z']
+UPPERCASE = ['A'， 'B'， 'C'， 'D'， 'E'， 'F'， 'G'， 'H'， 'I'， 'J'， 'K'， 'L'， 'M'， 'N'， 'O'， 'P'， 'Q'， 'R'， 'S'， 'T'， 'U'，
+             'V'， 'W'， 'X'， 'Y'， 'Z']
 
 CAPTCHA_CHARSET = NUMBER   # 验证码字符集
 CAPTCHA_LEN = 4            # 验证码长度
@@ -816,7 +815,7 @@ for filename in glob.glob(TRAIN_DATA_DIR+'*.png'):
 # 数据可视化
 # plt.figure()
 # for i in range(20):
-#     plt.subplot(5, 4, i+1)
+#     plt.subplot(5， 4， i+1)
 #     plt.tight_layout()
 #     plt.imshow(image[i])
 #     plt.title("Label: {}".format(text[i]))
@@ -824,23 +823,23 @@ for filename in glob.glob(TRAIN_DATA_DIR+'*.png'):
 #     plt.yticks([])
 # plt.show()
 
-image = np.array(image, dtype=np.float32)
-# print(image.shape)  # (100, 60, 160, 3)
+image = np.array(image， dtype=np.float32)
+# print(image.shape)  # (100， 60， 160， 3)
 
 # 将RGB转化为灰度图
 
 def rgb2grey(img):
-    return np.dot(img[..., :3], [0.299, 0.587, 0.114])
+    return np.dot(img[...， :3]， [0.299， 0.587， 0.114])
 
 image = rgb2grey(image)
-# print(image.shape)  # (100, 60, 160)
+# print(image.shape)  # (100， 60， 160)
 
 # 数据可视化
 # plt.figure()
 # for i in range(20):
-#     plt.subplot(5, 4, i+1)
+#     plt.subplot(5， 4， i+1)
 #     plt.tight_layout()
-#     plt.imshow(image[i], cmap='Greys')
+#     plt.imshow(image[i]， cmap='Greys')
 #     plt.title("Label: {}".format(text[i]))
 #     plt.xticks([])
 #     plt.yticks([])
@@ -851,31 +850,31 @@ image = image/255
 # 适配keras图像数据格式
 
 
-def fit_keras_channels(batch, rows=CAPTCHA_HEIGHT, cols=CAPTCHA_WIDTH):
+def fit_keras_channels(batch， rows=CAPTCHA_HEIGHT， cols=CAPTCHA_WIDTH):
     if K.image_data_format() == 'channels_first':
-        batch = batch.reshape(batch.shape[0], 1, rows, cols)
-        input_shape = (1, rows, cols)
+        batch = batch.reshape(batch.shape[0]， 1， rows， cols)
+        input_shape = (1， rows， cols)
     else:
-        batch = batch.reshape(batch.shape[0], rows, cols, 1)
-        input_shape = (rows, cols, 1)
-    return batch, input_shape
+        batch = batch.reshape(batch.shape[0]， rows， cols， 1)
+        input_shape = (rows， cols， 1)
+    return batch， input_shape
 
 
-image, input_shape = fit_keras_channels(image)
-# print(image.shape)  # (100, 60, 160, 1)
-# print(input_shape)  # (60, 160, 1)
+image， input_shape = fit_keras_channels(image)
+# print(image.shape)  # (100， 60， 160， 1)
+# print(input_shape)  # (60， 160， 1)
 
 
 # 对验证码中每个字符进行 one-hot 编码
-def text2vec(text, length=CAPTCHA_LEN, charset=CAPTCHA_CHARSET):
+def text2vec(text， length=CAPTCHA_LEN， charset=CAPTCHA_CHARSET):
     text_len = len(text)
     # 验证码长度校验
     if text_len != length:
         raise ValueError(
-            'Error: length of captcha should be {}, but got {}'.format(length, text_len))
+            'Error: length of captcha should be {}， but got {}'.format(length， text_len))
 
-    # 生成一个形如（CAPTCHA_LEN*CAPTHA_CHARSET,) 的一维向量
-    # 例如，4个纯数字的验证码生成形如(4*10,)的一维向量
+    # 生成一个形如（CAPTCHA_LEN*CAPTHA_CHARSET，) 的一维向量
+    # 例如，4个纯数字的验证码生成形如(4*10，)的一维向量
     vec = np.zeros(length * len(charset))
     for i in range(length):
         # One-hot 编码验证码中的每个数字
@@ -891,9 +890,9 @@ for i in range(len(vec)):
 
 # 将验证码向量解码为对应字符
 def vec2text(vector):
-    if not isinstance(vector, np.ndarray):
+    if not isinstance(vector， np.ndarray):
         vector = np.asarray(vector)
-    vector = np.reshape(vector, [CAPTCHA_LEN, -1])
+    vector = np.reshape(vector， [CAPTCHA_LEN， -1])
     text = ''
     for item in vector:
         text += CAPTCHA_CHARSET[np.argmax(item)]
@@ -902,9 +901,9 @@ def vec2text(vector):
 最后生成的数字灰度图效果如下:
 ------------------验证码识别2------------------
 
-**第3步:训练模型**
+**第3步：训练模型**
 
-具体步骤(前6步准备工作已经做过了,主要是要进行7-15步的模型训练过程,16-17步是做对应的保存工作):
+具体步骤(前6步准备工作已经做过了，主要是要进行7-15步的模型训练过程，16-17步是做对应的保存工作):
 1. 引入第三方包
 2. 定义超参数和字符集
 3. 将 RGB 验证码图像转为灰度图
@@ -936,11 +935,11 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 
-NUMBER = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-LOWERCASE = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-             'v', 'w', 'x', 'y', 'z']
-UPPERCASE = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-             'V', 'W', 'X', 'Y', 'Z']
+NUMBER = ['0'， '1'， '2'， '3'， '4'， '5'， '6'， '7'， '8'， '9']
+LOWERCASE = ['a'， 'b'， 'c'， 'd'， 'e'， 'f'， 'g'， 'h'， 'i'， 'j'， 'k'， 'l'， 'm'， 'n'， 'o'， 'p'， 'q'， 'r'， 's'， 't'， 'u'，
+             'v'， 'w'， 'x'， 'y'， 'z']
+UPPERCASE = ['A'， 'B'， 'C'， 'D'， 'E'， 'F'， 'G'， 'H'， 'I'， 'J'， 'K'， 'L'， 'M'， 'N'， 'O'， 'P'， 'Q'， 'R'， 'S'， 'T'， 'U'，
+             'V'， 'W'， 'X'， 'Y'， 'Z']
 
 CAPTCHA_CHARSET = NUMBER   # 验证码字符集
 CAPTCHA_LEN = 4            # 验证码长度
@@ -966,28 +965,28 @@ filename_str = "{}captcha_{}_{}_bs_{}_epochs_{}{}"
 MODEL_VIS_FILE = 'captcha_classfication' + '.png'
 # 模型文件
 MODEL_FILE = filename_str.format(
-    MODEL_DIR, OPT, LOSS, str(BATCH_SIZE), str(EPOCHS), MODEL_FORMAT)
+    MODEL_DIR， OPT， LOSS， str(BATCH_SIZE)， str(EPOCHS)， MODEL_FORMAT)
 # 训练记录文件
 HISTORY_FILE = filename_str.format(
-    HISTORY_DIR, OPT, LOSS, str(BATCH_SIZE), str(EPOCHS), HISTORY_FORMAT)
+    HISTORY_DIR， OPT， LOSS， str(BATCH_SIZE)， str(EPOCHS)， HISTORY_FORMAT)
 
 
 def rgb2gray(img):
-    return np.dot(img[..., :3], [0.299, 0.587, 0.114])
+    return np.dot(img[...， :3]， [0.299， 0.587， 0.114])
 
 
 # 对验证码中每个字符进行 one-hot 编码
 
 
-def text2vec(text, length=CAPTCHA_LEN, charset=CAPTCHA_CHARSET):
+def text2vec(text， length=CAPTCHA_LEN， charset=CAPTCHA_CHARSET):
     text_len = len(text)
     # 验证码长度校验
     if text_len != length:
         raise ValueError(
-            'Error: length of captcha should be {}, but got {}'.format(length, text_len))
+            'Error: length of captcha should be {}， but got {}'.format(length， text_len))
 
-    # 生成一个形如（CAPTCHA_LEN*CAPTHA_CHARSET,) 的一维向量
-    # 例如，4个纯数字的验证码生成形如(4*10,)的一维向量
+    # 生成一个形如（CAPTCHA_LEN*CAPTHA_CHARSET，) 的一维向量
+    # 例如，4个纯数字的验证码生成形如(4*10，)的一维向量
     vec = np.zeros(length * len(charset))
     for i in range(length):
         # One-hot 编码验证码中的每个数字
@@ -999,23 +998,23 @@ def text2vec(text, length=CAPTCHA_LEN, charset=CAPTCHA_CHARSET):
 
 
 def vec2text(vector):
-    if not isinstance(vector, np.ndarray):
+    if not isinstance(vector， np.ndarray):
         vector = np.asarray(vector)
-    vector = np.reshape(vector, [CAPTCHA_LEN, -1])
+    vector = np.reshape(vector， [CAPTCHA_LEN， -1])
     text = ''
     for item in vector:
         text += CAPTCHA_CHARSET[np.argmax(item)]
     return text
 
 
-def fit_keras_channels(batch, rows=CAPTCHA_HEIGHT, cols=CAPTCHA_WIDTH):
+def fit_keras_channels(batch， rows=CAPTCHA_HEIGHT， cols=CAPTCHA_WIDTH):
     if K.image_data_format() == 'channels_first':
-        batch = batch.reshape(batch.shape[0], 1, rows, cols)
-        input_shape = (1, rows, cols)
+        batch = batch.reshape(batch.shape[0]， 1， rows， cols)
+        input_shape = (1， rows， cols)
     else:
-        batch = batch.reshape(batch.shape[0], rows, cols, 1)
-        input_shape = (rows, cols, 1)
-    return batch, input_shape
+        batch = batch.reshape(batch.shape[0]， rows， cols， 1)
+        input_shape = (rows， cols， 1)
+    return batch， input_shape
 
 # 读取训练集
 
@@ -1025,20 +1024,20 @@ Y_train = []
 for filename in glob.glob(TRAIN_DATA_DIR + '*.png'):
     X_train.append(np.array(Image.open(filename)))
     Y_train.append(filename.lstrip(TRAIN_DATA_DIR).rstrip('.png')[1:])
-X_train = np.array(X_train, dtype=np.float32)
+X_train = np.array(X_train， dtype=np.float32)
 X_train = rgb2gray(X_train)
 X_train = X_train / 255
-X_train, input_shape = fit_keras_channels(X_train)
-# (3948, 60, 160, 1) <class 'numpy.ndarray'>
-print(X_train.shape, type(X_train))
-print(input_shape)  # (60, 160, 1)
+X_train， input_shape = fit_keras_channels(X_train)
+# (3948， 60， 160， 1) <class 'numpy.ndarray'>
+print(X_train.shape， type(X_train))
+print(input_shape)  # (60， 160， 1)
 
 # 处理训练集标签
 Y_train = list(Y_train)
 for i in range(len(Y_train)):
     Y_train[i] = text2vec(Y_train[i])
 Y_train = np.asarray(Y_train)
-print(Y_train.shape, type(Y_train))
+print(Y_train.shape， type(Y_train))
 
 
 # 读取测试集，处理对应图像和标签
@@ -1048,33 +1047,33 @@ for filename in glob.glob(TEST_DATA_DIR + '*.png'):
     X_test.append(np.array(Image.open(filename)))
     Y_test.append(filename.lstrip(TEST_DATA_DIR).rstrip('.png')[1:])
 # list -> rgb -> gray -> normalization -> fit keras
-X_test = np.array(X_test, dtype=np.float32)
+X_test = np.array(X_test， dtype=np.float32)
 X_test = rgb2gray(X_test)
 X_test = X_test / 255
-X_test, _ = fit_keras_channels(X_test)
+X_test， _ = fit_keras_channels(X_test)
 Y_test = list(Y_test)
 for i in range(len(Y_test)):
     Y_test[i] = text2vec(Y_test[i])
 Y_test = np.asarray(Y_test)
-print(X_test.shape, type(X_test))
-print(Y_test.shape, type(Y_test))
+print(X_test.shape， type(X_test))
+print(Y_test.shape， type(Y_test))
 
 
 # 创建验证码识别模型
-inputs = Input(shape=input_shape, name="inputs")
+inputs = Input(shape=input_shape， name="inputs")
 # 第1层卷积
-conv1 = Conv2D(32, (3, 3), name="conv1")(inputs)
-relu1 = Activation('relu', name="relu1")(conv1)
+conv1 = Conv2D(32， (3， 3)， name="conv1")(inputs)
+relu1 = Activation('relu'， name="relu1")(conv1)
 
 # 第2层卷积
-conv2 = Conv2D(32, (3, 3), name="conv2")(relu1)
-relu2 = Activation('relu', name="relu2")(conv2)
-pool2 = MaxPooling2D(pool_size=(2, 2), padding='same', name="pool2")(relu2)
+conv2 = Conv2D(32， (3， 3)， name="conv2")(relu1)
+relu2 = Activation('relu'， name="relu2")(conv2)
+pool2 = MaxPooling2D(pool_size=(2， 2)， padding='same'， name="pool2")(relu2)
 
 # 第3层卷积
-conv3 = Conv2D(64, (3, 3), name="conv3")(pool2)
-relu3 = Activation('relu', name="relu3")(conv3)
-pool3 = MaxPooling2D(pool_size=(2, 2), padding='same', name="pool3")(relu3)
+conv3 = Conv2D(64， (3， 3)， name="conv3")(pool2)
+relu3 = Activation('relu'， name="relu3")(conv3)
+pool3 = MaxPooling2D(pool_size=(2， 2)， padding='same'， name="pool3")(relu3)
 
 # 将 Pooled feature map 摊平后输入全连接网络
 x = Flatten()(pool3)
@@ -1083,26 +1082,26 @@ x = Flatten()(pool3)
 x = Dropout(0.25)(x)
 
 # 4个全连接层分别做10分类，分别对应4个字符。
-x = [Dense(10, activation='softmax', name='fc%d' % (i+1))(x) for i in range(4)]
+x = [Dense(10， activation='softmax'， name='fc%d' % (i+1))(x) for i in range(4)]
 
 # 4个字符向量拼接在一起，与标签向量形式一致，作为模型输出。
 outs = Concatenate()(x)
 
 # 定义模型的输入与输出
-model = Model(inputs=inputs, outputs=outs)
-model.compile(optimizer=OPT, loss=LOSS, metrics=['accuracy'])
+model = Model(inputs=inputs， outputs=outs)
+model.compile(optimizer=OPT， loss=LOSS， metrics=['accuracy'])
 
 model.summary()
-plot_model(model, to_file=MODEL_VIS_FILE, show_shapes=True)
-history = model.fit(X_train,
-                    Y_train,
-                    batch_size=BATCH_SIZE,
-                    epochs=EPOCHS,
-                    verbose=2,
-                    validation_data=(X_test, Y_test))
+plot_model(model， to_file=MODEL_VIS_FILE， show_shapes=True)
+history = model.fit(X_train，
+                    Y_train，
+                    batch_size=BATCH_SIZE，
+                    epochs=EPOCHS，
+                    verbose=2，
+                    validation_data=(X_test， Y_test))
 
 print(vec2text(Y_test[9]))
-yy = model.predict(X_test[9].reshape(1, 60, 160, 1))
+yy = model.predict(X_test[9].reshape(1， 60， 160， 1))
 print(vec2text(yy))
 
 if not tf.io.gfile.exists(MODEL_DIR):
@@ -1114,7 +1113,7 @@ print('Saved trained model at %s ' % MODEL_FILE)
 训练模型得到的参数如下:
 ```
 
-Train on 3956 samples, validate on 954 samples
+Train on 3956 samples， validate on 954 samples
 Epoch 1/10
  - 149s - loss: 0.3270 - acc: 0.9000 - val_loss: 0.3247 - val_acc: 0.9000
 Epoch 2/10
@@ -1141,7 +1140,7 @@ Epoch 10/10
 要实现词云效果，首先需要安装wordcloud库，`pip install wordcloud`进行安装即可。
 **1. 英文词云**
 
-实现基本的英文词云：
+实现基本的英文词云:
 ```python
 # -*- coding: utf-8 -*-
 
@@ -1154,15 +1153,15 @@ text = open('./text/constitution.txt').read()
 wc = WordCloud().generate(text)
 
 # 显示词云
-plt.imshow(wc, interpolation='bilinear')
+plt.imshow(wc， interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # 保存到文件
 wc.to_file('./img/word1.png')
 ```
-效果展示：
-------------------word1.png-------------------------
+效果展示:
+<img alt="word1" src="https://i.loli.net/2019/12/05/JH9ISij5pf3s4c7.png" width="50%" />
 **2. 中文词云**
 ```python
 # -*- coding: utf-8 -*-
@@ -1171,20 +1170,23 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 # 打开文本
-text = open('./text/xyj.txt',encoding='UTF-8').read()
+text = open('./text/xyj.txt'，encoding='UTF-8').read()
 # 生成对象
-wc = WordCloud(font_path='Hiragino.ttf', width=800, height=600, mode='RGBA', background_color=None).generate(text)
+wc = WordCloud(font_path='Hiragino.ttf'， width=800， height=600， mode='RGBA'， background_color=None).generate(text)
 
 # 显示词云
-plt.imshow(wc, interpolation='bilinear')
+plt.imshow(wc， interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # 保存到文件
 wc.to_file('./img/word2.png')
 ```
-其中读取文件使用`text = open('xxx.txt',encoding='UTF-8').read()`，注意这里要写`encoding='UTF-8'`，否则无法正确读取内容。要额外引入字体文件，如上例引入了`Hiragino.ttf`字体。最后生成的效果如下，但是有个问题就是每个词并不是按照中文意思进行断开的，无实际意义，接下来我们处理中文分词问题。
-------------------word2.png-------------------------
+
+其中读取文件使用`text = open('xxx.txt'，encoding='UTF-8').read()`，注意这里要写`encoding='UTF-8'`，否则无法正确读取内容。要额外引入字体文件，如上例引入了`Hiragino.ttf`字体。最后生成的效果如下，但是有个问题就是每个词并不是按照中文意思进行断开的，无实际意义，接下来我们处理中文分词问题。
+
+<img alt="word2" src="https://i.loli.net/2019/12/05/uULNjfAvbi1Qzog.png" width="50%" />
+
 **3. 中文词云+分词**
 ```python
 # -*- coding: utf-8 -*-
@@ -1194,24 +1196,26 @@ import matplotlib.pyplot as plt
 import jieba
 
 # 打开文本
-text = open('./text/xyj.txt',encoding='UTF-8').read()
+text = open('./text/xyj.txt'，encoding='UTF-8').read()
 
 # 中文分词
 text=' '.join(jieba.cut(text))
 
 # 生成对象
-wc = WordCloud(font_path='Hiragino.ttf', width=800, height=600, mode='RGBA', background_color=None).generate(text)
+wc = WordCloud(font_path='Hiragino.ttf'， width=800， height=600， mode='RGBA'， background_color=None).generate(text)
 
 # 显示词云
-plt.imshow(wc, interpolation='bilinear')
+plt.imshow(wc， interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # 保存到文件
 wc.to_file('./img/word3.png')
 ```
-因为英文文章中每个单词都是使用空格隔开的，因此不需要手动分词，而中文文章每个词是连在一起的，需要引入第三方包jieba进行中文分词操作。核心代码是`text=' '.join(jieba.cut(text))`，这样可以使得每个独立的词用空格隔开。最后生成的效果如下：
-------------------word3.png-------------------------
+因为英文文章中每个单词都是使用空格隔开的，因此不需要手动分词，而中文文章每个词是连在一起的，需要引入第三方包jieba进行中文分词操作。核心代码是`text=' '.join(jieba.cut(text))`，这样可以使得每个独立的词用空格隔开。最后生成的效果如下:
+
+<img alt="word3" src="https://i.loli.net/2019/12/05/6cnprdOQqC1Hg9y.png" width="50%" />
+
 **4. 中文词云+分词+黑白蒙版**
 ```python
 # -*- coding: utf-8 -*-
@@ -1223,61 +1227,66 @@ import numpy as np
 import jieba
 
 # 打开文本
-text = open('./text/xyj.txt',encoding='UTF-8').read()
+text = open('./text/xyj.txt'，encoding='UTF-8').read()
 
 # 中文分词
 text=' '.join(jieba.cut(text))
 
 # 启用黑白蒙版
 mask=np.array(Image.open('./mask/black_mask.png'))
-wc = WordCloud(mask=mask,font_path='Hiragino.ttf', width=800, height=600, mode='RGBA', background_color=None).generate(text)
+wc = WordCloud(mask=mask，font_path='Hiragino.ttf'， width=800， height=600， mode='RGBA'， background_color=None).generate(text)
 
 # 显示词云
-plt.imshow(wc, interpolation='bilinear')
+plt.imshow(wc， interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # 保存到文件
 wc.to_file('./img/word4.png')
 ```
-这里使用了黑白图片作为蒙版，WordCloud()函数中传入mask参数，则可以启用对应的蒙版，这样生成的词云会与蒙版的图形相同。效果如下：
-------------------black_mask.png-------------------------
-------------------word4.png-------------------------
+这里使用了黑白图片作为蒙版，WordCloud()函数中传入mask参数，则可以启用对应的蒙版，这样生成的词云会与蒙版的图形相同。效果如下:
+
+<img alt="black_mask" src="https://i.loli.net/2019/12/05/tL2DrkwCBfImVjX.png" width="50%" />
+<img alt="word4" src="https://i.loli.net/2019/12/05/rtBYgubj2FHWRax.png" width="50%" />
+
 **5. 中文词云+分词+彩色蒙版**
+
 ```python
 # -*- coding: utf-8 -*-
 
-from wordcloud import WordCloud,ImageColorGenerator
+from wordcloud import WordCloud，ImageColorGenerator
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
 import jieba
 
 # 打开文本
-text = open('./text/xyj.txt',encoding='UTF-8').read()
+text = open('./text/xyj.txt'，encoding='UTF-8').read()
 
 # 中文分词
 text=' '.join(jieba.cut(text))
 
 # 启用彩色蒙版
 mask=np.array(Image.open('./mask/color_mask.png'))
-wc = WordCloud(mask=mask,font_path='Hiragino.ttf', width=800, height=600, mode='RGBA', background_color=None).generate(text)
+wc = WordCloud(mask=mask，font_path='Hiragino.ttf'， width=800， height=600， mode='RGBA'， background_color=None).generate(text)
 
 # 从图片中生成颜色
 image_colors=ImageColorGenerator(mask)
 wc.recolor(color_func=image_colors)
 
 # 显示词云
-plt.imshow(wc, interpolation='bilinear')
+plt.imshow(wc， interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # 保存到文件
 wc.to_file('./img/word5.png')
 ```
-这里使用了彩色图片作为蒙版，从`wordcloud`引入`ImageColorGenerator`函数，从图片中生成颜色，这样生成的词云颜色和蒙版的颜色是相同的（每个部分的颜色都是大致对应的），效果如下：
-------------------color_mask.png-------------------------
-------------------word5.png-------------------------
+这里使用了彩色图片作为蒙版，从`wordcloud`引入`ImageColorGenerator`函数，从图片中生成颜色，这样生成的词云颜色和蒙版的颜色是相同的（每个部分的颜色都是大致对应的），效果如下:
+
+<img alt="color_mask" src="https://i.loli.net/2019/12/05/CPoBbah9xpc8vQw.png" width="50%" />
+<img alt="word5" src="https://i.loli.net/2019/12/05/gM61KJWk2CfFbtP.png" width="50%" />
+
 **6. 中文词云+分词+彩色蒙版+自定义颜色**
 ```python
 # -*- coding: utf-8 -*-
@@ -1290,45 +1299,46 @@ import random
 import jieba
 
 # 打开文本
-text = open('./text/xyj.txt',encoding='UTF-8').read()
+text = open('./text/xyj.txt'，encoding='UTF-8').read()
 
 # 中文分词
 text=' '.join(jieba.cut(text))
 
 # 自定义颜色函数
-def random_color(word, font_size, position, orientation, font_path, random_state):
-	s = 'hsl(0, %d%%, %d%%)' % (random.randint(60, 80), random.randint(60, 80))
+def random_color(word， font_size， position， orientation， font_path， random_state):
+	s = 'hsl(0， %d%%， %d%%)' % (random.randint(60， 80)， random.randint(60， 80))
 	return s
 
 # 启用彩色蒙版
 mask=np.array(Image.open('./mask/color_mask.png'))
-wc = WordCloud(color_func=random_color,mask=mask,font_path='Hiragino.ttf', width=800, height=600, mode='RGBA', background_color=None).generate(text)
+wc = WordCloud(color_func=random_color，mask=mask，font_path='Hiragino.ttf'， width=800， height=600， mode='RGBA'， background_color=None).generate(text)
 
 # 显示词云
-plt.imshow(wc, interpolation='bilinear')
+plt.imshow(wc， interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # 保存到文件
 wc.to_file('./img/word6.png')
 ```
-为了实现为词云自定义颜色，我们可以单独实现一个上色函数random_color，在WordCloud()函数中传入color_func参数即可，效果如下：
-------------------word6.png-------------------------
+为了实现为词云自定义颜色，我们可以单独实现一个上色函数random_color，在WordCloud()函数中传入color_func参数即可，效果如下:
+<img alt="word6" src="https://i.loli.net/2019/12/05/NR35QBMyviqaPLE.png" width="50%" />
+
 **7. 中文词云+分词+彩色蒙版+关键词权重**
 ```python
 # -*- coding: utf-8 -*-
 
-from wordcloud import WordCloud,ImageColorGenerator
+from wordcloud import WordCloud，ImageColorGenerator
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
 import jieba.analyse
 
 # 打开文本
-text = open('./text/xyj.txt',encoding='UTF-8').read()
+text = open('./text/xyj.txt'，encoding='UTF-8').read()
 
 # 提取关键词和权重
-freq=jieba.analyse.extract_tags(text,topK=200,withWeight=True)
+freq=jieba.analyse.extract_tags(text，topK=200，withWeight=True)
 freq = {i[0]: i[1] for i in freq}
 
 # 中文分词
@@ -1336,21 +1346,908 @@ text=' '.join(jieba.cut(text))
 
 # 启用彩色蒙版
 mask=np.array(Image.open('./mask/color_mask.png'))
-wc = WordCloud(mask=mask,font_path='Hiragino.ttf', width=800, height=600, mode='RGBA', background_color=None).generate_from_frequencies(freq)
+wc = WordCloud(mask=mask，font_path='Hiragino.ttf'， width=800， height=600， mode='RGBA'， background_color=None).generate_from_frequencies(freq)
 
 # 从图片中生成颜色
 image_colors=ImageColorGenerator(mask)
 wc.recolor(color_func=image_colors)
 
 # 显示词云
-plt.imshow(wc, interpolation='bilinear')
+plt.imshow(wc， interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # 保存到文件
 wc.to_file('./img/word7.png')
 ```
-为了在词云中凸显词语出现的频率，我们可以采用根据频率上色的方法，频率出现越高则着色越深。先提取关键词和权重，再通过`WordCloud().generate_from_frequencies(freq)`生成词云即可，注意这里的freq是词与频次关系的字典。最后生成的效果如下：
-------------------word7.png-------------------------
+为了在词云中凸显词语出现的频率，我们可以采用根据频率上色的方法，频率出现越高则着色越深。先提取关键词和权重，再通过`WordCloud().generate_from_frequencies(freq)`生成词云即可，注意这里的freq是词与频次关系的字典。最后生成的效果如下:
+<img alt="word7" src="https://i.loli.net/2019/12/05/3QJc5DhoREsryuz.png" width="50%" />
 
 #### 任务：图像风格迁移
+
+...未完待续...
+
+#### 任务：自编码器图像去噪
+
+自编码器深度学习中的一类无监督学习模型，由encoder和decoder两个部分组成
+
+自编码器主要是一种思想，encoder和decoder可以由全连接层\CNN\RNN等模型实现
+
+**第1步：完成模型训练，并保存模型**
+
+具体步骤:
+1. 获取训练集和测试集
+2. 随机添加噪声点
+3. 可视化噪声图
+4. 构建模型
+5. 训练模型
+6. 保存模型
+
+```python
+# -*- coding: utf-8 -*-
+
+from keras.datasets import mnist
+import numpy as np
+import matplotlib.pyplot as plt
+from keras.layers import Input， Dense， Conv2D， MaxPooling2D， UpSampling2D
+from keras.models import Model， load_model
+
+# 获取训练集和测试集
+(x_train， _)， (x_test， _) = mnist.load_data()
+x_train = x_train.astype('float32') / 255.
+x_test = x_test.astype('float32') / 255.
+x_train = np.reshape(x_train， (len(x_train)， 28， 28， 1))
+x_test = np.reshape(x_test， (len(x_test)， 28， 28， 1))
+
+# 随机添加噪声点
+noise_factor = 0.5
+x_train_noisy = x_train + noise_factor * np.random.normal(loc=0.0， scale=1.0， size=x_train.shape) 
+x_test_noisy = x_test + noise_factor * np.random.normal(loc=0.0， scale=1.0， size=x_test.shape) 
+x_train_noisy = np.clip(x_train_noisy， 0.， 1.)
+x_test_noisy = np.clip(x_test_noisy， 0.， 1.)
+
+# 可视化噪声图
+n = 10
+plt.figure(figsize=(20， 2))
+for i in range(n):
+    ax = plt.subplot(1， n， i + 1)
+    plt.imshow(x_test_noisy[i].reshape(28， 28))
+    plt.gray()
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+plt.show()
+
+# 构建模型
+input_img = Input(shape=(28， 28， 1，)) # N * 28 * 28 * 1
+x = Conv2D(32， (3， 3)， padding='same'， activation='relu')(input_img) # 28 * 28 * 32
+x = MaxPooling2D((2， 2)， padding='same')(x) # 14 * 14 * 32
+x = Conv2D(32， (3， 3)， padding='same'， activation='relu')(x) # 14 * 14 * 32
+encoded = MaxPooling2D((2， 2)， padding='same')(x) # 7 * 7 * 32
+x = Conv2D(32， (3， 3)， padding='same'， activation='relu')(encoded) # 7 * 7 * 32
+x = UpSampling2D((2， 2))(x) # 14 * 14 * 32
+x = Conv2D(32， (3， 3)， padding='same'， activation='relu')(x) # 14 * 14 * 32
+x = UpSampling2D((2， 2))(x) # 28 * 28 * 32
+decoded = Conv2D(1， (3， 3)， padding='same'， activation='sigmoid')(x) # 28 * 28 * 1
+
+# 训练模型
+autoencoder = Model(input_img， decoded)
+autoencoder.compile(optimizer='adadelta'， loss='binary_crossentropy')
+autoencoder.fit(x_train_noisy， x_train，
+                epochs=100，
+                batch_size=128，
+                shuffle=True，
+                validation_data=(x_test_noisy， x_test))
+# 保存模型
+autoencoder.save('autoencoder.h5')
+```
+可视化噪声图片效果如下:
+--------------自编码1-----------------------
+
+**第2步：加载训练好的模型，用来图像去噪**
+```python
+from keras.datasets import mnist
+import numpy as np
+import matplotlib.pyplot as plt
+from keras.models import Model，load_model
+
+# 加载训练好了的模型
+autoencoder = load_model('autoencoder.h5')
+
+# 获取训练集和测试集
+(x_train， _)， (x_test， _) = mnist.load_data()
+x_train = x_train.astype('float32') / 255.
+x_test = x_test.astype('float32') / 255.
+x_train = np.reshape(x_train， (len(x_train)， 28， 28， 1))
+x_test = np.reshape(x_test， (len(x_test)， 28， 28， 1))
+
+# 随机添加噪声点
+noise_factor = 0.5
+x_train_noisy = x_train + noise_factor * np.random.normal(loc=0.0， scale=1.0， size=x_train.shape) 
+x_test_noisy = x_test + noise_factor * np.random.normal(loc=0.0， scale=1.0， size=x_test.shape) 
+x_train_noisy = np.clip(x_train_noisy， 0.， 1.)
+x_test_noisy = np.clip(x_test_noisy， 0.， 1.)
+
+decoded_imgs = autoencoder.predict(x_test_noisy)
+n = 10
+plt.figure(figsize=(20， 4))
+for i in range(n):
+    # 展示原始噪声图
+    ax = plt.subplot(2， n， i + 1)
+    plt.imshow(x_test_noisy[i].reshape(28， 28))
+    plt.gray()
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+ 
+    # 展示去噪后的图片
+    ax = plt.subplot(2， n， i + 1 + n)
+    plt.imshow(decoded_imgs[i].reshape(28， 28))
+    plt.gray()
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+plt.show()
+```
+原始噪声图 vs 去噪后的图片 的效果如下:
+--------------自编码2-----------------------
+
+
+#### 任务：变分自编码器
+我们经常会有这样的需求:根据很多个样本，学会生成新的样本
+
+以mnist为例，在看过成百上千张图片后，让计算机能够模仿生成一些类似的图片，这些图片在原始数据中并不存在，但是与原来图片看起来相似
+
+简言之就是需要学会数据x的分布，根据数据分布产生新样本
+
+VAE(变分自编码器)和AE(自编码器)的区别:
+1. AE中隐层表示的分布未知，而VAE中隐层变量服从高斯分布
+2. AE中学习的是encoder和decoder，VAE中还学习隐变量的分布，包括高斯分布的均值和方差
+3. AE只能从1个x得到对应的重构x
+4. VAE可以产生新的z，从而得到新的x，即生成新的样本(VAE是一种常见的生成式模型)
+
+可以使用`keras.datasets`中的`mnist`或`fashion_mnist`进行测试:
+```python
+# -*- coding: utf-8 -*-
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+from keras.layers import Input， Dense， Lambda
+from keras.models import Model
+from keras import backend as K
+from keras import objectives
+from keras.datasets import mnist
+# from keras.datasets import fashion_mnist
+
+# 定义常数
+batch_size = 100
+original_dim = 784 # 28*28
+intermediate_dim = 256
+latent_dim = 2
+epochs = 50
+
+x = Input(shape=(original_dim，)) # 维度28*28，数据数量不确定
+h = Dense(intermediate_dim， activation='relu')(x) # 输出维度是256
+z_mean = Dense(latent_dim)(h) # 全连接层
+z_log_var = Dense(latent_dim)(h) # 全连接层
+
+# 根据均值和方差生成z
+def sampling(args):
+    z_mean， z_log_var = args
+    epsilon = K.random_normal(shape=(batch_size， latent_dim)， mean=0.)
+    return z_mean + K.exp(z_log_var / 2) * epsilon
+# Lambda层不参与训练，只参与计算，用于后面产生新的z
+z = Lambda(sampling， output_shape=(latent_dim，))([z_mean， z_log_var])
+
+# decoder部分包含两个全连接层
+decoder_h = Dense(intermediate_dim， activation='relu')
+decoder_mean = Dense(original_dim， activation='sigmoid')
+h_decoded = decoder_h(z)
+x_decoded_mean = decoder_mean(h_decoded)
+
+# 总的损失函数，计算交叉熵
+def vae_loss(x， x_decoded_mean):
+    xent_loss = original_dim * objectives.binary_crossentropy(x， x_decoded_mean)
+    kl_loss = -0.5 * K.sum(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var)， axis=-1)
+    return xent_loss + kl_loss
+
+# 这里使用rmsprop优化算法和手写的loss函数vae_loss
+vae = Model(x， x_decoded_mean)
+vae.compile(optimizer='rmsprop'， loss=vae_loss)
+
+# 加载并训练数据
+(x_train， y_train)， (x_test， y_test) = mnist.load_data()
+x_train = x_train.astype('float32') / 255.
+x_test = x_test.astype('float32') / 255.
+x_train = x_train.reshape((len(x_train)， np.prod(x_train.shape[1:])))
+x_test = x_test.reshape((len(x_test)， np.prod(x_test.shape[1:])))
+
+vae.fit(x_train， x_train，
+        shuffle=True，
+        epochs=epochs，
+        batch_size=batch_size，
+        validation_data=(x_test， x_test))
+
+
+# 定义一个encoder，看看mnist中的数据在隐层中是怎么样的，前面将latent_dim定位为2，是为了输出二维平面化图
+encoder = Model(x， z_mean)
+
+x_test_encoded = encoder.predict(x_test， batch_size=batch_size)
+plt.figure(figsize=(6， 6))
+plt.scatter(x_test_encoded[:， 0]， x_test_encoded[:， 1]， c=y_test)
+plt.colorbar()
+plt.show()
+
+# 定义生成器
+decoder_input = Input(shape=(latent_dim，))
+_h_decoded = decoder_h(decoder_input)
+_x_decoded_mean = decoder_mean(_h_decoded)
+generator = Model(decoder_input， _x_decoded_mean)
+
+# 验证生成器能生成什么样的图片
+n = 20
+digit_size = 28
+figure = np.zeros((digit_size * n， digit_size * n))
+grid_x = np.linspace(-4， 4， n)
+grid_y = np.linspace(-4， 4， n)
+
+for i， xi in enumerate(grid_x):
+    for j， yi in enumerate(grid_y):
+        z_sample = np.array([[yi， xi]])
+        x_decoded = generator.predict(z_sample)
+        digit = x_decoded[0].reshape(digit_size， digit_size)
+        figure[(n - i - 1) * digit_size: (n - i) * digit_size，
+               j * digit_size: (j + 1) * digit_size] = digit
+
+plt.figure(figsize=(10， 10))
+plt.imshow(figure)
+plt.show()
+```
+encoder的可视化效果(mnist中的数据在隐层中的形态):
+-------------------------变分自编码器1---------------
+验证生成器能生成什么样的图片:
+-------------------------变分自编码器2---------------
+
+#### 任务：生成式对抗网络
+除VAE以外，生成式对抗网络(GAN)也是一种非常流行的无监督生成式模型.
+
+GAN中包括两个核心网络:
+1. 生成器(generator):记作G，通过对大量样本的学习，能够生成一些以假乱真的样本，和VAE类似
+2. 判别器(discriminator):记作D，接受真实样本和G生成的样本，并进行判别和区分
+3. G和D相互博弈，通过学习，G的生成能力和D的判别能力都逐渐增强并收敛
+
+GAN的训练非常困难，有很多需要注意的细节，才能生成质量较高的图片:
+1. 恰当地使用BN(Batch Normalization) / LeakyReLU等
+2. 用strides为2的卷积代替池化
+3. 交替训练，避免一方过强
+
+完整代码如下:
+```python
+# -*- coding: utf-8 -*-
+
+import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+import os， imageio
+
+# 加载手写数据集
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets('MNIST_data')
+
+# 定义参数
+batch_size = 100 # 每次训练的样本数
+z_dim = 100 # 输出大小
+OUTPUT_DIR = 'samples' # 输出目录
+if not os.path.exists(OUTPUT_DIR):
+    os.mkdir(OUTPUT_DIR)
+
+# 定义X、noise、is_training变量
+X = tf.placeholder(dtype=tf.float32， shape=[None， 28， 28， 1]， name='X')
+noise = tf.placeholder(dtype=tf.float32， shape=[None， z_dim]， name='noise')
+is_training = tf.placeholder(dtype=tf.bool， name='is_training')
+
+# 激活函数leakyRelu
+def lrelu(x， leak=0.2):
+    return tf.maximum(x， leak * x)
+
+# 损失函数
+def sigmoid_cross_entropy_with_logits(x， y):
+    return tf.nn.sigmoid_cross_entropy_with_logits(logits=x， labels=y)
+
+
+# 关键点---判别器/生成器的定义
+
+# 1 判别器
+def discriminator(image， reuse=None， is_training=is_training):
+    momentum = 0.9 # 动量
+    
+    with tf.variable_scope('discriminator'， reuse=reuse):
+
+        # 卷积开始，filters越来越多，图片越来越小
+        # h0: -1，28，28，1
+        # h1: -1，24，24，64
+        # h2: -1，12，12，128
+        # h3: -1，6，6，256
+        # h4: -1，3，3，512
+        # h4作为判别器输出
+        
+        h0 = lrelu(tf.layers.conv2d(image， kernel_size=5， filters=64， strides=2， padding='same'))
+        
+        h1 = tf.layers.conv2d(h0， kernel_size=5， filters=128， strides=2， padding='same')
+        # batch_norm转化为标准的高斯分布，指数加权滑动平均算法，decay是衰减系数
+        h1 = lrelu(tf.contrib.layers.batch_norm(h1， is_training=is_training， decay=momentum))
+        
+        h2 = tf.layers.conv2d(h1， kernel_size=5， filters=256， strides=2， padding='same')
+        h2 = lrelu(tf.contrib.layers.batch_norm(h2， is_training=is_training， decay=momentum))
+        
+        h3 = tf.layers.conv2d(h2， kernel_size=5， filters=512， strides=2， padding='same')
+        h3 = lrelu(tf.contrib.layers.batch_norm(h3， is_training=is_training， decay=momentum))
+        
+        h4 = tf.contrib.layers.flatten(h3)
+        h4 = tf.layers.dense(h4， units=1)
+        # 返回经过sigmoid处理后的h4和未被激活的h4
+        return tf.nn.sigmoid(h4)， h4
+
+# 2 生成器(输入的z是噪音，为二维tensor)
+def generator(z， is_training=is_training):
+    momentum = 0.9
+    with tf.variable_scope('generator'， reuse=None):
+        d = 3
+
+        # 逆卷积开始，filters越来越少
+        # h0: -1，3，3，512
+        # h1: -1，6，6，256
+        # h2: -1，12，12，128
+        # h3: -1，24，24，64
+        # h4: -1，28，28，1
+        # h4作为生成器的输出
+
+        h0 = tf.layers.dense(z， units=d * d * 512)
+        h0 = tf.reshape(h0， shape=[-1， d， d， 512])
+        h0 = tf.nn.relu(tf.contrib.layers.batch_norm(h0， is_training=is_training， decay=momentum))
+        
+        h1 = tf.layers.conv2d_transpose(h0， kernel_size=5， filters=256， strides=2， padding='same')
+        h1 = tf.nn.relu(tf.contrib.layers.batch_norm(h1， is_training=is_training， decay=momentum))
+        
+        h2 = tf.layers.conv2d_transpose(h1， kernel_size=5， filters=128， strides=2， padding='same')
+        h2 = tf.nn.relu(tf.contrib.layers.batch_norm(h2， is_training=is_training， decay=momentum))
+        
+        h3 = tf.layers.conv2d_transpose(h2， kernel_size=5， filters=64， strides=2， padding='same')
+        h3 = tf.nn.relu(tf.contrib.layers.batch_norm(h3， is_training=is_training， decay=momentum))
+        
+        h4 = tf.layers.conv2d_transpose(h3， kernel_size=5， filters=1， strides=1， padding='valid'， activation=tf.nn.tanh， name='g')
+        return h4
+
+g = generator(noise) # 生成的假图片
+d_real， d_real_logits = discriminator(X) # 真图片激活后h4和未激活h4的值
+d_fake， d_fake_logits = discriminator(g， reuse=True) # 假图片激活后h4和未激活h4的值
+
+vars_g = [var for var in tf.trainable_variables() if var.name.startswith('generator')] # 和generator相关的参数
+vars_d = [var for var in tf.trainable_variables() if var.name.startswith('discriminator')] # 和discriminator相关的参数
+
+loss_d_real = tf.reduce_mean(sigmoid_cross_entropy_with_logits(d_real_logits， tf.ones_like(d_real))) # 真图片导致的判别器损失
+loss_d_fake = tf.reduce_mean(sigmoid_cross_entropy_with_logits(d_fake_logits， tf.zeros_like(d_fake))) # 假图片导致的判别器损失
+loss_g = tf.reduce_mean(sigmoid_cross_entropy_with_logits(d_fake_logits， tf.ones_like(d_fake))) # 生成器损失
+loss_d = loss_d_real + loss_d_fake # 判别器损失(真图片+假图片)
+
+
+# 优化函数
+# 先完成update_ops的相关操作(如BN的参数更新)，再完成后续的优化操作
+update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+with tf.control_dependencies(update_ops):
+    optimizer_d = tf.train.AdamOptimizer(learning_rate=0.0002， beta1=0.5).minimize(loss_d， var_list=vars_d)
+    optimizer_g = tf.train.AdamOptimizer(learning_rate=0.0002， beta1=0.5).minimize(loss_g， var_list=vars_g)
+
+# 辅助函数，用于将多张图片以网格状拼接在一起
+def montage(images):
+    if isinstance(images， list):
+        images = np.array(images)
+    img_h = images.shape[1]
+    img_w = images.shape[2]
+    n_plots = int(np.ceil(np.sqrt(images.shape[0])))
+    m = np.ones((images.shape[1] * n_plots + n_plots + 1， images.shape[2] * n_plots + n_plots + 1)) * 0.5
+    for i in range(n_plots):
+        for j in range(n_plots):
+            this_filter = i * n_plots + j
+            if this_filter < images.shape[0]:
+                this_img = images[this_filter]
+                m[1 + i + i * img_h:1 + i + (i + 1) * img_h，
+                  1 + j + j * img_w:1 + j + (j + 1) * img_w] = this_img
+    return m
+
+
+# 开始训练(需要交替训练，如每次迭代训练G两次)
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+z_samples = np.random.uniform(-1.0， 1.0， [batch_size， z_dim]).astype(np.float32)
+samples = []
+loss = {'d': []， 'g': []}
+
+for i in range(60000):
+    # 产生随机noise
+    n = np.random.uniform(-1.0， 1.0， [batch_size， z_dim]).astype(np.float32)
+    # 依次取数据
+    batch = mnist.train.next_batch(batch_size=batch_size)[0]
+    batch = np.reshape(batch， [-1， 28， 28， 1])
+    # batch是0~1(relu)，我们要将它映射到-1~1(tanh的取值范围)
+    batch = (batch - 0.5) * 2 
+    
+    d_ls， g_ls = sess.run([loss_d， loss_g]， feed_dict={X: batch， noise: n， is_training: True})
+    loss['d'].append(d_ls)
+    loss['g'].append(g_ls)
+    
+    #依次训练D-G-G(判别器训练1次，生成器训练2次)
+    sess.run(optimizer_d， feed_dict={X: batch， noise: n， is_training: True})
+    sess.run(optimizer_g， feed_dict={X: batch， noise: n， is_training: True})
+    sess.run(optimizer_g， feed_dict={X: batch， noise: n， is_training: True})
+    
+    # 每迭代1000轮，打印样本
+    if i % 1000 == 0:
+        print(i， d_ls， g_ls)
+        gen_imgs = sess.run(g， feed_dict={noise: z_samples， is_training: False})
+        # -1~1转0~1
+        gen_imgs = (gen_imgs + 1) / 2
+        imgs = [img[:， :， 0] for img in gen_imgs]
+        gen_imgs = montage(imgs)
+        plt.axis('off')
+        plt.imshow(gen_imgs， cmap='gray')
+        plt.savefig(os.path.join(OUTPUT_DIR， 'sample_%d.jpg' % i))
+        plt.show()
+        samples.append(gen_imgs)
+
+plt.plot(loss['d']， label='Discriminator')
+plt.plot(loss['g']， label='Generator')
+plt.legend(loc='upper right')
+plt.savefig('Loss.png')
+plt.show()
+imageio.mimsave(os.path.join(OUTPUT_DIR， 'samples.gif')， samples， fps=5)
+
+# 保存模型
+saver = tf.train.Saver()
+saver.save(sess， './mnist_dcgan'， global_step=60000)
+```
+图片经过卷积的基本结构变化如下:
+--------------------------GAN1------------------------
+生成的手写数字图片的动图效果为:
+--------------------------GAN2------------------------
+
+训练好模型后，可直接加载模型，自动生成类似图片:
+```python
+# -*- coding: utf-8 -*-
+
+import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+
+batch_size = 100
+z_dim = 100
+
+def montage(images):
+    if isinstance(images， list):
+        images = np.array(images)
+    img_h = images.shape[1]
+    img_w = images.shape[2]
+    n_plots = int(np.ceil(np.sqrt(images.shape[0])))
+    m = np.ones((images.shape[1] * n_plots + n_plots + 1， images.shape[2] * n_plots + n_plots + 1)) * 0.5
+    for i in range(n_plots):
+        for j in range(n_plots):
+            this_filter = i * n_plots + j
+            if this_filter < images.shape[0]:
+                this_img = images[this_filter]
+                m[1 + i + i * img_h:1 + i + (i + 1) * img_h，
+                  1 + j + j * img_w:1 + j + (j + 1) * img_w] = this_img
+    return m
+
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+
+saver = tf.train.import_meta_graph('./mnist_dcgan-60000.meta')
+saver.restore(sess， tf.train.latest_checkpoint('./'))
+
+graph = tf.get_default_graph()
+g = graph.get_tensor_by_name('generator/g/Tanh:0')
+noise = graph.get_tensor_by_name('noise:0')
+is_training = graph.get_tensor_by_name('is_training:0')
+
+n = np.random.uniform(-1.0， 1.0， [batch_size， z_dim]).astype(np.float32)
+gen_imgs = sess.run(g， feed_dict={noise: n， is_training: False})
+gen_imgs = (gen_imgs + 1) / 2
+imgs = [img[:， :， 0] for img in gen_imgs]
+gen_imgs = montage(imgs)
+plt.axis('off')
+plt.imshow(gen_imgs， cmap='gray')
+plt.show()
+```
+
+#### 任务：人脸图片生成DCGAN
+在人脸数据上训练DCGAN，并生成一些人脸图片 (使用两个数据集:LFW和CelebA)
+
+和GAN的训练过程类似，代码几乎都一样，只是要处理的是彩色图片，注意图片通道
+
+训练模型:
+```python
+# -*- coding: utf-8 -*-
+
+import tensorflow as tf
+import numpy as np
+import urllib
+import tarfile
+import os
+import matplotlib.pyplot as plt
+%matplotlib inline
+from imageio import imread， imsave， mimsave
+from scipy.misc import imresize
+import glob # 读取图片路径
+
+# 下载和处理LFW数据
+# 因为下载的文件夹中含有各个人名子文件夹，我们现在的任务是将它们全部转移保存到同一文件夹中
+url = 'http://vis-www.cs.umass.edu/lfw/lfw.tgz'
+filename = 'lfw.tgz'
+directory = 'lfw_imgs'
+new_dir = 'lfw_new_imgs'
+
+if not os.path.isdir(new_dir):
+    os.mkdir(new_dir)
+    
+    if not os.path.isdir(directory):
+        if not os.path.isfile(filename):
+            urllib.request.urlretrieve(url， filename)
+        tar = tarfile.open(filename， 'r:gz')
+        tar.extractall(path=directory)
+        tar.close()
+    
+    count = 0
+    for dir_， _， files in os.walk(directory):
+        for file_ in files:
+            img = imread(os.path.join(dir_， file_))
+            imsave(os.path.join(new_dir， '%d.png' % count)， img)
+            count += 1
+
+
+# 指定要用哪个数据集
+# dataset = 'lfw_new_imgs' # LFW
+dataset = 'celeba' # CelebA
+images = glob.glob(os.path.join(dataset， '*.*')) 
+# print(len(images))
+
+
+batch_size = 100
+z_dim = 100
+WIDTH = 64
+HEIGHT = 64
+
+OUTPUT_DIR = 'samples_' + dataset
+if not os.path.exists(OUTPUT_DIR):
+    os.mkdir(OUTPUT_DIR)
+
+# 彩色图，3通道
+X = tf.placeholder(dtype=tf.float32， shape=[None， HEIGHT， WIDTH， 3]， name='X')
+noise = tf.placeholder(dtype=tf.float32， shape=[None， z_dim]， name='noise')
+is_training = tf.placeholder(dtype=tf.bool， name='is_training')
+
+def lrelu(x， leak=0.2):
+    return tf.maximum(x， leak * x)
+
+def sigmoid_cross_entropy_with_logits(x， y):
+    return tf.nn.sigmoid_cross_entropy_with_logits(logits=x， labels=y)
+
+
+# 判别器(和GAN相同)
+def discriminator(image， reuse=None， is_training=is_training):
+    momentum = 0.9
+    with tf.variable_scope('discriminator'， reuse=reuse):
+        h0 = lrelu(tf.layers.conv2d(image， kernel_size=5， filters=64， strides=2， padding='same'))
+        
+        h1 = tf.layers.conv2d(h0， kernel_size=5， filters=128， strides=2， padding='same')
+        h1 = lrelu(tf.contrib.layers.batch_norm(h1， is_training=is_training， decay=momentum))
+        
+        h2 = tf.layers.conv2d(h1， kernel_size=5， filters=256， strides=2， padding='same')
+        h2 = lrelu(tf.contrib.layers.batch_norm(h2， is_training=is_training， decay=momentum))
+        
+        h3 = tf.layers.conv2d(h2， kernel_size=5， filters=512， strides=2， padding='same')
+        h3 = lrelu(tf.contrib.layers.batch_norm(h3， is_training=is_training， decay=momentum))
+        
+        h4 = tf.contrib.layers.flatten(h3)
+        h4 = tf.layers.dense(h4， units=1)
+        return tf.nn.sigmoid(h4)， h4
+
+
+# 生成器(d改为4，GAN的d是3)
+def generator(z， is_training=is_training):
+    momentum = 0.9
+    with tf.variable_scope('generator'， reuse=None):
+        d = 4
+
+        # h0: -1，4，4，512
+        # h1: -1，8，8，256
+        # h2: -1，16，16，128
+        # h3: -1，32，32，64
+        # h4: -1，64，64，3
+        # h4作为判别器输出
+
+        h0 = tf.layers.dense(z， units=d * d * 512)
+        h0 = tf.reshape(h0， shape=[-1， d， d， 512])
+        h0 = tf.nn.relu(tf.contrib.layers.batch_norm(h0， is_training=is_training， decay=momentum))
+        
+        h1 = tf.layers.conv2d_transpose(h0， kernel_size=5， filters=256， strides=2， padding='same')
+        h1 = tf.nn.relu(tf.contrib.layers.batch_norm(h1， is_training=is_training， decay=momentum))
+        
+        h2 = tf.layers.conv2d_transpose(h1， kernel_size=5， filters=128， strides=2， padding='same')
+        h2 = tf.nn.relu(tf.contrib.layers.batch_norm(h2， is_training=is_training， decay=momentum))
+        
+        h3 = tf.layers.conv2d_transpose(h2， kernel_size=5， filters=64， strides=2， padding='same')
+        h3 = tf.nn.relu(tf.contrib.layers.batch_norm(h3， is_training=is_training， decay=momentum))
+        
+        h4 = tf.layers.conv2d_transpose(h3， kernel_size=5， filters=3， strides=2， padding='same'， activation=tf.nn.tanh， name='g')
+        return h4
+
+
+g = generator(noise)
+d_real， d_real_logits = discriminator(X)
+d_fake， d_fake_logits = discriminator(g， reuse=True)
+
+vars_g = [var for var in tf.trainable_variables() if var.name.startswith('generator')]
+vars_d = [var for var in tf.trainable_variables() if var.name.startswith('discriminator')]
+
+loss_d_real = tf.reduce_mean(sigmoid_cross_entropy_with_logits(d_real_logits， tf.ones_like(d_real)))
+loss_d_fake = tf.reduce_mean(sigmoid_cross_entropy_with_logits(d_fake_logits， tf.zeros_like(d_fake)))
+loss_g = tf.reduce_mean(sigmoid_cross_entropy_with_logits(d_fake_logits， tf.ones_like(d_fake)))
+loss_d = loss_d_real + loss_d_fake
+
+update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+with tf.control_dependencies(update_ops):
+    optimizer_d = tf.train.AdamOptimizer(learning_rate=0.0002， beta1=0.5).minimize(loss_d， var_list=vars_d)
+    optimizer_g = tf.train.AdamOptimizer(learning_rate=0.0002， beta1=0.5).minimize(loss_g， var_list=vars_g)
+
+
+ # 读取图片的函数
+def read_image(path， height， width):
+    image = imread(path)
+    h = image.shape[0]
+    w = image.shape[1]
+    
+    if h > w:
+        image = image[h // 2 - w // 2: h // 2 + w // 2， :， :]
+    else:
+        image = image[:， w // 2 - h // 2: w // 2 + h // 2， :]    
+    
+    image = imresize(image， (height， width))
+    # image是1-255
+    return image / 255. # 0-1之间   
+
+# 合成图片的函数
+def montage(images):    
+    if isinstance(images， list):
+        images = np.array(images)
+    img_h = images.shape[1]
+    img_w = images.shape[2]
+    n_plots = int(np.ceil(np.sqrt(images.shape[0])))
+    if len(images.shape) == 4 and images.shape[3] == 3:
+        m = np.ones(
+            (images.shape[1] * n_plots + n_plots + 1，
+             images.shape[2] * n_plots + n_plots + 1， 3)) * 0.5
+    elif len(images.shape) == 4 and images.shape[3] == 1:
+        m = np.ones(
+            (images.shape[1] * n_plots + n_plots + 1，
+             images.shape[2] * n_plots + n_plots + 1， 1)) * 0.5
+    elif len(images.shape) == 3:
+        m = np.ones(
+            (images.shape[1] * n_plots + n_plots + 1，
+             images.shape[2] * n_plots + n_plots + 1)) * 0.5
+    else:
+        raise ValueError('Could not parse image shape of {}'.format(images.shape))
+    for i in range(n_plots):
+        for j in range(n_plots):
+            this_filter = i * n_plots + j
+            if this_filter < images.shape[0]:
+                this_img = images[this_filter]
+                m[1 + i + i * img_h:1 + i + (i + 1) * img_h，
+                  1 + j + j * img_w:1 + j + (j + 1) * img_w] = this_img
+    return m
+
+# 开始训练
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+z_samples = np.random.uniform(-1.0， 1.0， [batch_size， z_dim]).astype(np.float32)
+samples = []
+loss = {'d': []， 'g': []}
+
+offset = 0
+for i in range(60000):
+    n = np.random.uniform(-1.0， 1.0， [batch_size， z_dim]).astype(np.float32)
+    
+    offset = (offset + batch_size) % len(images)
+    batch = np.array([read_image(img， HEIGHT， WIDTH) for img in images[offset: offset + batch_size]])
+    batch = (batch - 0.5) * 2
+    
+    d_ls， g_ls = sess.run([loss_d， loss_g]， feed_dict={X: batch， noise: n， is_training: True})
+    loss['d'].append(d_ls)
+    loss['g'].append(g_ls)
+    
+    sess.run(optimizer_d， feed_dict={X: batch， noise: n， is_training: True})
+    sess.run(optimizer_g， feed_dict={X: batch， noise: n， is_training: True})
+    sess.run(optimizer_g， feed_dict={X: batch， noise: n， is_training: True})
+        
+    if i % 500 == 0:
+        print(i， d_ls， g_ls)
+        gen_imgs = sess.run(g， feed_dict={noise: z_samples， is_training: False})
+        gen_imgs = (gen_imgs + 1) / 2
+        imgs = [img[:， :， :] for img in gen_imgs]
+        gen_imgs = montage(imgs)
+        plt.axis('off')
+        plt.imshow(gen_imgs)
+        imsave(os.path.join(OUTPUT_DIR， 'sample_%d.jpg' % i)， gen_imgs)
+        plt.show()
+        samples.append(gen_imgs)
+
+plt.plot(loss['d']， label='Discriminator')
+plt.plot(loss['g']， label='Generator')
+plt.legend(loc='upper right')
+plt.savefig(os.path.join(OUTPUT_DIR， 'Loss.png'))
+plt.show()
+mimsave(os.path.join(OUTPUT_DIR， 'samples.gif')， samples， fps=10)
+
+
+saver = tf.train.Saver()
+saver.save(sess， os.path.join(OUTPUT_DIR， 'dcgan_' + dataset)， global_step=60000)
+```
+
+加载已训练好的模型，自动生成人脸图片:
+```python
+# -*- coding: utf-8 -*-
+
+import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+batch_size = 100
+z_dim = 100
+# dataset = 'lfw_new_imgs'
+dataset = 'celeba'
+
+def montage(images):    
+    if isinstance(images， list):
+        images = np.array(images)
+    img_h = images.shape[1]
+    img_w = images.shape[2]
+    n_plots = int(np.ceil(np.sqrt(images.shape[0])))
+    if len(images.shape) == 4 and images.shape[3] == 3:
+        m = np.ones(
+            (images.shape[1] * n_plots + n_plots + 1，
+             images.shape[2] * n_plots + n_plots + 1， 3)) * 0.5
+    elif len(images.shape) == 4 and images.shape[3] == 1:
+        m = np.ones(
+            (images.shape[1] * n_plots + n_plots + 1，
+             images.shape[2] * n_plots + n_plots + 1， 1)) * 0.5
+    elif len(images.shape) == 3:
+        m = np.ones(
+            (images.shape[1] * n_plots + n_plots + 1，
+             images.shape[2] * n_plots + n_plots + 1)) * 0.5
+    else:
+        raise ValueError('Could not parse image shape of {}'.format(images.shape))
+    for i in range(n_plots):
+        for j in range(n_plots):
+            this_filter = i * n_plots + j
+            if this_filter < images.shape[0]:
+                this_img = images[this_filter]
+                m[1 + i + i * img_h:1 + i + (i + 1) * img_h，
+                  1 + j + j * img_w:1 + j + (j + 1) * img_w] = this_img
+    return m
+
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+
+saver = tf.train.import_meta_graph(os.path.join('samples_' + dataset， 'dcgan_' + dataset + '-60000.meta'))
+saver.restore(sess， tf.train.latest_checkpoint('samples_' + dataset))
+graph = tf.get_default_graph()
+g = graph.get_tensor_by_name('generator/g/Tanh:0')
+noise = graph.get_tensor_by_name('noise:0')
+is_training = graph.get_tensor_by_name('is_training:0')
+
+n = np.random.uniform(-1.0， 1.0， [batch_size， z_dim]).astype(np.float32)
+gen_imgs = sess.run(g， feed_dict={noise: n， is_training: False})
+gen_imgs = (gen_imgs + 1) / 2
+imgs = [img[:， :， :] for img in gen_imgs]
+gen_imgs = montage(imgs)
+gen_imgs = np.clip(gen_imgs， 0， 1)
+plt.figure(figsize=(8， 8))
+plt.axis('off')
+plt.imshow(gen_imgs)
+plt.show()
+```
+
+#### 任务：Inception-v3图片分类
+Inception-v3是由Google提出，用于实现ImageNet大规模视觉识别任务的一种神经网络
+
+Inception-v3反复使用了Inception Block，涉及大量的卷积和池化. 这里我们选择加载pre-trained的Inception-v3模型，来完成一些图片分类任务.
+
+Inception-v3的模型结构:
+----------------Inception-v3----------------------
+
+**训练好的模型包括3个部分:**
+1. classify_image_graph_def.pb: Inception-v3模型结构和参数
+2. imagenet_2012_challenge_label_map_proto.pbtxt: 从类别编码到类别字符串的对应关系
+3. imagenet_synset_to_human_label_map.txt: 从类别字符串到类别名的对应关系
+
+```python
+# -*- coding: utf-8 -*-
+
+import tensorflow as tf
+import numpy as np
+
+# 字符串id到name的映射字典
+# n00004475	organism， being
+# n00005787	benthos
+# n00006024	heterotroph
+# ...
+uid_to_human = {}
+for line in tf.gfile.GFile('imagenet_synset_to_human_label_map.txt').readlines():
+	items = line.strip().split('\t')
+	uid_to_human[items[0]] = items[1]
+
+# node到字符串id的映射字典
+# entry {
+#   target_class: 449
+#   target_class_string: "n01440764"
+# }
+# entry {
+#   target_class: 450
+#   target_class_string: "n01443537"
+# }
+node_id_to_uid = {}
+for line in tf.gfile.GFile('imagenet_2012_challenge_label_map_proto.pbtxt').readlines():
+	if line.startswith('  target_class:'):
+		target_class = int(line.split(': ')[1])
+	if line.startswith('  target_class_string:'):
+		target_class_string = line.split(': ')[1].strip('\n').strip('\"')
+		node_id_to_uid[target_class] = target_class_string
+
+
+# node到name的映射字典（很具上述得到的node_id_to_uid和uid_to_human生成）
+node_id_to_name = {}
+for key， value in node_id_to_uid.items():
+	node_id_to_name[key] = uid_to_human[value]
+
+
+# 加载模型
+def create_graph():
+	with tf.gfile.FastGFile('classify_image_graph_def.pb'， 'rb') as f:
+		graph_def = tf.GraphDef()
+		graph_def.ParseFromString(f.read())
+		_ = tf.import_graph_def(graph_def， name='')
+
+
+# 分类图片的函数
+def classify_image(image， top_k=1):
+	image_data = tf.gfile.FastGFile(image， 'rb').read()
+
+	create_graph()
+
+	with tf.Session() as sess:
+		# 'softmax:0': A tensor containing the normalized prediction across 1000 labels
+		# 'pool_3:0': A tensor containing the next-to-last layer containing 2048 float description of the image
+		# 'DecodeJpeg/contents:0': A tensor containing a string providing JPEG encoding of the image
+		softmax_tensor = sess.graph.get_tensor_by_name('softmax:0')
+		predictions = sess.run(softmax_tensor， feed_dict={'DecodeJpeg/contents:0': image_data})
+		predictions = np.squeeze(predictions)
+
+		top_k = predictions.argsort()[-top_k:]
+		for node_id in top_k:
+			human_string = node_id_to_name[node_id]
+			score = predictions[node_id]
+			print('%s (score = %.5f)' % (human_string， score))
+
+classify_image('./img/test3.png')
+```
+
+**定制分类任务**
+
+Inception-v3是针对ImageNet图片分类设计的，因此最后一层全连接层的神经元个数和分类标签的个数相同。如果需要特别定制分类任务的话，只需要使用自己的标注数据，然后替换掉最后一层全连接层即可。
+
+最后一层全连接层的神经元个数等于定制分类任务的标签个数，模型只训练最后一层的参数，其他参数保持不变。这样的话保留了Inception-v3对于图像的理解和抽象能力，同时满足了定制的分类任务，属于迁移学习的一种典型应用场景。
+
+
+#### 任务：股票价格预测
+
+股票价格预测如果只基于历史数据进行预测，显示是完全不靠谱的。股票价格是典型的时间序列数据（简称时序数据），会受到经济环境、政府政策、人为操作等多方面因素的影响，不想气象数据那样具备明显的时间和季节性模式，例如一天之内或一年之类的气温变化等。
+
+尽管如此，以股票价格为例，介绍如何对时序数进行预测，仍然值得一提。具体实现详见github。
