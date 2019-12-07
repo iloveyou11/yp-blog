@@ -39,6 +39,8 @@ cover_picture: /images/banner.jpg
 
 [吴恩达机器学习图解笔记](https://www.bilibili.com/video/av20994456)
 
+[李宏毅深度学习图解笔记](https://www.bilibili.com/video/av20381986)
+
 [探索一句话版的机器学习与深度学习](https://www.bilibili.com/video/av22581633)
 
 还有其他视频干货建议在主页查看，总之，他的风格是以图解笔记的形式讲解，诙谐易懂~

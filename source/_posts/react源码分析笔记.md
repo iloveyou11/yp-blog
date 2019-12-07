@@ -10,7 +10,7 @@ comments: true
 cover_picture: /images/banner.jpg
 ---
 
-react作为一个优秀的前端前端框架,必定有着它的过人之处.Facebook团队花费三年多打造的这个框架,如今已经成为了企业追捧的框架选择,让我们来学习react优秀的设计思想吧!
+react作为一个优秀的前端前端框架，必定有着它的过人之处。Facebook团队花费三年多打造的这个框架，如今已经成为了企业追捧的框架选择，让我们来学习react优秀的设计思想吧！
 
 <!-- more -->
 

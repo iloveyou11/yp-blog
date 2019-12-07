@@ -20,7 +20,7 @@ cover_picture:  /images/banner.jpg
 **第1步：进行数据处理**
 
 首先读取csv数据，再对x1 x2 ... xn y数据进行归一化处理，接下来添加单独的一列x0(值均为1，常数项)
-<img alt="回归模型1" src="https://i.loli.net/2019/12/04/pS4qj1zguRPa7lY.jpg" width="50%" />
+<img alt="回归模型1" src="https://i.loli.net/2019/12/04/pS4qj1zguRPa7lY.jpg" width="40%" />
 
 ```python
 import numpy as np
@@ -69,8 +69,8 @@ ones = pd.DataFrame({'ones': np.ones(len(df))})
 df = pd.concat([ones， df]， axis=1)
 print(df.head())
 ```
-<img alt="回归模型2" src="https://i.loli.net/2019/12/04/TSDOhWt62yqJG79.jpg" width="50%" />
-<img alt="回归模型3" src="https://i.loli.net/2019/12/04/isW5zX1EYHSpnw7.jpg" width="50%" />
+<img alt="回归模型2" src="https://i.loli.net/2019/12/04/TSDOhWt62yqJG79.jpg" width="40%" />
+<img alt="回归模型3" src="https://i.loli.net/2019/12/04/isW5zX1EYHSpnw7.jpg" width="40%" />
 
 经过归一化处理后的数据结构如下:
 ```
@@ -278,7 +278,7 @@ ax.set_ylabel('loss')
 plt.show()
 ```
 每次迭代过程中，损失值的变化趋势如下:
-<img alt="回归模型4" src="https://i.loli.net/2019/12/04/Kf2Wnlhwq1uXaQd.jpg" width="50%" />
+<img alt="回归模型4" src="https://i.loli.net/2019/12/04/Kf2Wnlhwq1uXaQd.jpg" width="40%" />
 由此可见，随着迭代次数的增多，损失值越来越小，最后趋于平稳，模型越来越优.
 
 
@@ -306,7 +306,7 @@ for i in range(15):
 plt.show()
 ```
 最后得到的数据集如下:
-<img alt="手写数字1" src="https://i.loli.net/2019/12/04/9WyiPqcbEkVTmrl.jpg" width="50%" />
+<img alt="手写数字1" src="https://i.loli.net/2019/12/04/9WyiPqcbEkVTmrl.jpg" width="40%" />
 
 **第2步：利用softmax进行手写数字识别**
 
@@ -445,7 +445,7 @@ Epoch 5/5
  - 11s - loss: 0.0265 - acc: 0.9910 - val_loss: 0.0724 - val_acc: 0.9786
 ```
 可视化指标效果如下:
-<img alt="手写数字2" src="https://i.loli.net/2019/12/04/2eY6HaTyqbkKZOr.jpg" width="50%" />
+<img alt="手写数字2" src="https://i.loli.net/2019/12/04/2eY6HaTyqbkKZOr.jpg" width="40%" />
 
 保存模型后，如果要实现模型的加载，则可以使用`load_model`函数，其中`model_path`是模型的路径.使用训练好的此模型统计测试集上的分类结果，具体代码如下:
 ```python
@@ -661,7 +661,7 @@ model.save(model_path)
 print('Saved trained model at %s ' % model_path)
 ```
 利用CNN卷积神经网络训练后，可视化指标如下:
-<img alt="手写数字3" src="https://i.loli.net/2019/12/04/xtWKq3zBeJHVr98.jpg" width="50%" />
+<img alt="手写数字3" src="https://i.loli.net/2019/12/04/xtWKq3zBeJHVr98.jpg" width="40%" />
 
 #### 任务：验证码识别
 
@@ -767,7 +767,7 @@ for i in range(20):
 plt.show()
 ```
 最后生成 100 张验证码图像和字符如下:
-<img alt="验证码1" src="https://i.loli.net/2019/12/04/cmGYqsn6NyEuL3r.jpg" width="50%" />
+<img alt="验证码1" src="https://i.loli.net/2019/12/04/cmGYqsn6NyEuL3r.jpg" width="40%" />
 
 **第2步：数据处理**
 
@@ -899,7 +899,7 @@ def vec2text(vector):
     return text
 ```
 最后生成的数字灰度图效果如下:
-------------------验证码识别2------------------
+<img alt="验证码2" src="https://i.loli.net/2019/12/06/c4yFqEJgYQPSaGZ.jpg" width="40%" />
 
 **第3步：训练模型**
 
@@ -1161,7 +1161,7 @@ plt.show()
 wc.to_file('./img/word1.png')
 ```
 效果展示:
-<img alt="word1" src="https://i.loli.net/2019/12/05/JH9ISij5pf3s4c7.png" width="50%" />
+<img alt="word1" src="https://i.loli.net/2019/12/05/JH9ISij5pf3s4c7.png" width="40%" />
 **2. 中文词云**
 ```python
 # -*- coding: utf-8 -*-
@@ -1185,7 +1185,7 @@ wc.to_file('./img/word2.png')
 
 其中读取文件使用`text = open('xxx.txt'，encoding='UTF-8').read()`，注意这里要写`encoding='UTF-8'`，否则无法正确读取内容。要额外引入字体文件，如上例引入了`Hiragino.ttf`字体。最后生成的效果如下，但是有个问题就是每个词并不是按照中文意思进行断开的，无实际意义，接下来我们处理中文分词问题。
 
-<img alt="word2" src="https://i.loli.net/2019/12/05/uULNjfAvbi1Qzog.png" width="50%" />
+<img alt="word2" src="https://i.loli.net/2019/12/05/uULNjfAvbi1Qzog.png" width="40%" />
 
 **3. 中文词云+分词**
 ```python
@@ -1214,7 +1214,7 @@ wc.to_file('./img/word3.png')
 ```
 因为英文文章中每个单词都是使用空格隔开的，因此不需要手动分词，而中文文章每个词是连在一起的，需要引入第三方包jieba进行中文分词操作。核心代码是`text=' '.join(jieba.cut(text))`，这样可以使得每个独立的词用空格隔开。最后生成的效果如下:
 
-<img alt="word3" src="https://i.loli.net/2019/12/05/6cnprdOQqC1Hg9y.png" width="50%" />
+<img alt="word3" src="https://i.loli.net/2019/12/05/6cnprdOQqC1Hg9y.png" width="40%" />
 
 **4. 中文词云+分词+黑白蒙版**
 ```python
@@ -1246,8 +1246,8 @@ wc.to_file('./img/word4.png')
 ```
 这里使用了黑白图片作为蒙版，WordCloud()函数中传入mask参数，则可以启用对应的蒙版，这样生成的词云会与蒙版的图形相同。效果如下:
 
-<img alt="black_mask" src="https://i.loli.net/2019/12/05/tL2DrkwCBfImVjX.png" width="50%" />
-<img alt="word4" src="https://i.loli.net/2019/12/05/rtBYgubj2FHWRax.png" width="50%" />
+<img alt="black_mask" src="https://i.loli.net/2019/12/05/tL2DrkwCBfImVjX.png" width="40%" />
+<img alt="word4" src="https://i.loli.net/2019/12/05/rtBYgubj2FHWRax.png" width="40%" />
 
 **5. 中文词云+分词+彩色蒙版**
 
@@ -1284,8 +1284,8 @@ wc.to_file('./img/word5.png')
 ```
 这里使用了彩色图片作为蒙版，从`wordcloud`引入`ImageColorGenerator`函数，从图片中生成颜色，这样生成的词云颜色和蒙版的颜色是相同的（每个部分的颜色都是大致对应的），效果如下:
 
-<img alt="color_mask" src="https://i.loli.net/2019/12/05/CPoBbah9xpc8vQw.png" width="50%" />
-<img alt="word5" src="https://i.loli.net/2019/12/05/gM61KJWk2CfFbtP.png" width="50%" />
+<img alt="color_mask" src="https://i.loli.net/2019/12/05/CPoBbah9xpc8vQw.png" width="40%" />
+<img alt="word5" src="https://i.loli.net/2019/12/05/gM61KJWk2CfFbtP.png" width="40%" />
 
 **6. 中文词云+分词+彩色蒙版+自定义颜色**
 ```python
@@ -1322,7 +1322,7 @@ plt.show()
 wc.to_file('./img/word6.png')
 ```
 为了实现为词云自定义颜色，我们可以单独实现一个上色函数random_color，在WordCloud()函数中传入color_func参数即可，效果如下:
-<img alt="word6" src="https://i.loli.net/2019/12/05/NR35QBMyviqaPLE.png" width="50%" />
+<img alt="word6" src="https://i.loli.net/2019/12/05/NR35QBMyviqaPLE.png" width="40%" />
 
 **7. 中文词云+分词+彩色蒙版+关键词权重**
 ```python
@@ -1361,17 +1361,16 @@ plt.show()
 wc.to_file('./img/word7.png')
 ```
 为了在词云中凸显词语出现的频率，我们可以采用根据频率上色的方法，频率出现越高则着色越深。先提取关键词和权重，再通过`WordCloud().generate_from_frequencies(freq)`生成词云即可，注意这里的freq是词与频次关系的字典。最后生成的效果如下:
-<img alt="word7" src="https://i.loli.net/2019/12/05/3QJc5DhoREsryuz.png" width="50%" />
+<img alt="word7" src="https://i.loli.net/2019/12/05/3QJc5DhoREsryuz.png" width="40%" />
 
-#### 任务：图像风格迁移
-
-...未完待续...
-
-#### 任务：自编码器图像去噪
+#### 任务：自编码器图像去噪AE
 
 自编码器深度学习中的一类无监督学习模型，由encoder和decoder两个部分组成
 
 自编码器主要是一种思想，encoder和decoder可以由全连接层\CNN\RNN等模型实现
+
+自编码器Auto-Encoder的原理：
+<img alt="自编码3" src="https://i.loli.net/2019/12/06/7Kb6U1MCRWBnhto.jpg" width="60%" />
 
 **第1步：完成模型训练，并保存模型**
 
@@ -1441,7 +1440,7 @@ autoencoder.fit(x_train_noisy， x_train，
 autoencoder.save('autoencoder.h5')
 ```
 可视化噪声图片效果如下:
---------------自编码1-----------------------
+<img alt="自编码1" src="https://i.loli.net/2019/12/06/jF5SXZAWdVzf1HM.jpg" width="60%" />
 
 **第2步：加载训练好的模型，用来图像去噪**
 ```python
@@ -1487,17 +1486,17 @@ for i in range(n):
 plt.show()
 ```
 原始噪声图 vs 去噪后的图片 的效果如下:
---------------自编码2-----------------------
+<img alt="自编码2" src="https://i.loli.net/2019/12/06/Nl3fRZ9b7viKWPV.jpg" width="60%" />
 
 
-#### 任务：变分自编码器
+#### 任务：变分自编码器VAE
 我们经常会有这样的需求:根据很多个样本，学会生成新的样本
 
 以mnist为例，在看过成百上千张图片后，让计算机能够模仿生成一些类似的图片，这些图片在原始数据中并不存在，但是与原来图片看起来相似
 
 简言之就是需要学会数据x的分布，根据数据分布产生新样本
 
-VAE(变分自编码器)和AE(自编码器)的区别:
+**VAE(变分自编码器)和AE(自编码器)的区别:**
 1. AE中隐层表示的分布未知，而VAE中隐层变量服从高斯分布
 2. AE中学习的是encoder和decoder，VAE中还学习隐变量的分布，包括高斯分布的均值和方差
 3. AE只能从1个x得到对应的重构x
@@ -1602,11 +1601,11 @@ plt.imshow(figure)
 plt.show()
 ```
 encoder的可视化效果(mnist中的数据在隐层中的形态):
--------------------------变分自编码器1---------------
+<img alt="变分自编码器1" src="https://i.loli.net/2019/12/06/pGhBjnA2Z8V6Cfy.jpg" width="40%" />
 验证生成器能生成什么样的图片:
--------------------------变分自编码器2---------------
+<img alt="变分自编码器2" src="https://i.loli.net/2019/12/06/Kd8aIAczRDxqitO.jpg" width="40%" />
 
-#### 任务：生成式对抗网络
+#### 任务：生成式对抗网络GAN
 除VAE以外，生成式对抗网络(GAN)也是一种非常流行的无监督生成式模型.
 
 GAN中包括两个核心网络:
@@ -1805,9 +1804,9 @@ saver = tf.train.Saver()
 saver.save(sess， './mnist_dcgan'， global_step=60000)
 ```
 图片经过卷积的基本结构变化如下:
---------------------------GAN1------------------------
+<img alt="GAN1" src="https://i.loli.net/2019/12/06/o1SbOdCWfzRrM5P.png" width="80%" />
 生成的手写数字图片的动图效果为:
---------------------------GAN2------------------------
+<img alt="GAN2" src="https://i.loli.net/2019/12/06/HorfvGPthVemqK1.gif" width="40%" />
 
 训练好模型后，可直接加载模型，自动生成类似图片:
 ```python
@@ -2161,7 +2160,7 @@ Inception-v3是由Google提出，用于实现ImageNet大规模视觉识别任务
 Inception-v3反复使用了Inception Block，涉及大量的卷积和池化. 这里我们选择加载pre-trained的Inception-v3模型，来完成一些图片分类任务.
 
 Inception-v3的模型结构:
-----------------Inception-v3----------------------
+<img alt="Inception-v3" src="https://i.loli.net/2019/12/06/o2V9uhQRzCvDOj7.png" width="80%" />
 
 **训练好的模型包括3个部分:**
 1. classify_image_graph_def.pb: Inception-v3模型结构和参数
@@ -2244,10 +2243,3 @@ classify_image('./img/test3.png')
 Inception-v3是针对ImageNet图片分类设计的，因此最后一层全连接层的神经元个数和分类标签的个数相同。如果需要特别定制分类任务的话，只需要使用自己的标注数据，然后替换掉最后一层全连接层即可。
 
 最后一层全连接层的神经元个数等于定制分类任务的标签个数，模型只训练最后一层的参数，其他参数保持不变。这样的话保留了Inception-v3对于图像的理解和抽象能力，同时满足了定制的分类任务，属于迁移学习的一种典型应用场景。
-
-
-#### 任务：股票价格预测
-
-股票价格预测如果只基于历史数据进行预测，显示是完全不靠谱的。股票价格是典型的时间序列数据（简称时序数据），会受到经济环境、政府政策、人为操作等多方面因素的影响，不想气象数据那样具备明显的时间和季节性模式，例如一天之内或一年之类的气温变化等。
-
-尽管如此，以股票价格为例，介绍如何对时序数进行预测，仍然值得一提。具体实现详见github。
