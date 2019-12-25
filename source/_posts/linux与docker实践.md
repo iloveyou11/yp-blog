@@ -17,7 +17,7 @@ DevOps要求开发、测试、运维一体化，实现敏捷开发、敏捷部�
 
 计划——编码——构建——测试——发布——部署——运营——监控
 <img src="https://i.loli.net/2019/09/18/DFfQdUReJAcuTHK.jpg" width="50%" alt="devOps流程" />
-[图片参考https://blog.csdn.net/gcttong00/article/details/82892676]
+[图片参考地址](https://blog.csdn.net/gcttong00/article/details/82892676)
 **自己之前没有了解的流程有哪些？举一个自己开发的项目的例子，来描述devOps流程，思考怎样才能效率开发？**
 
 在腾讯实习过程中，了解了部门项目开发流程：需求-视觉设计-需求评审-开发排期-开发与接口联调-测试-上线。每个新功能（feature）的提出必须排期，跟进团队日历，再依次根据这个流程进行。
@@ -177,6 +177,34 @@ docker restart [name] 重启容器
 docker rm [name] 删除容器
 docker logs -f [name] 查看容器详细运行信息
 ```
+
+以下这幅图清晰地展示了docker涉及到的常见命令：
+![docker.png](https://i.loli.net/2019/12/16/WjPCpwztqyJaYv6.png)
+```
+build：创建出想要的镜像
+
+push：镜像上传到仓库
+search：仓库查找镜像
+pull：仓库下载镜像
+
+save/export：将镜像导出为压缩文件
+load/import：导入镜像文件压缩包
+
+rmi：删除镜像
+inspect：查看某一镜像详细信息
+images：查看所有镜像
+
+run/exec/attach：从镜像创建容器
+pause/unpause：暂停/恢复容器运行
+stop/start：停止/启动容器运行
+
+inspect：查看容器详细信息
+ps：查看所有容器
+rm：删除容器
+commit：将容器保存为镜像
+
+```
+
 **docker-compose**
 
 使用docker-compose可以同时管理多个容器，同时启动、停止，当容器数量很多时，能有效减少大量的人工操作。
