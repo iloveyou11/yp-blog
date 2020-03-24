@@ -62,7 +62,9 @@ cover_picture: /images/banner.jpg
 建议观看网易云提供的 [数据科学人工智能-必备数学基础](https://study.163.com/course/introduction.htm?courseId=1005695008&share=1&shareId=1023934022#/courseDetail?tab=1) 教程，包括了高等数学、线性代数、概率论与数理统计的知识点，每个从事机器学习方向的工程师最好掌握
 
 **计算机视觉视频**
-[Python3+TensorFlow 打造人脸识别智能小程序](https://coding.imooc.com/class/chapter/327.html#Anchor)---慕课网良心视频，我主要通过这个视频熟悉了CNN的具体细节
+[Python3+TensorFlow 打造人脸识别智能小程序](https://coding.imooc.com/class/chapter/327.html#Anchor)---慕课网良心视频，主要通过这个视频熟悉CNN的具体细节
 [TensorFlow极客时间](https://www.bilibili.com/video/av54557524/?p=48)---注重理论与实战的结合，非常棒的教程
 [深度学习之tensorflow2.0入门到实战](https://coding.imooc.com/class/344.html#Anchor)---很详细清楚，基本知识点和网络搭建方法，特别是一些细节都覆盖了，推荐。  [点我可看](https://www.bilibili.com/video/av76951063?from=search&seid=6126019341165060789)
 [人工智能实战项目合集](https://www.bilibili.com/video/av76145282)---如果想多练习一些深度学习的项目，看这个没错
+[机器学习与深度学习集训营-邹博](https://www.bilibili.com/video/av50327129)---涵盖基础数学知识、机器学习算法、CNN/RNN、强化学习
+[深度学习之目标检测常用算法原理+实践精讲](https://www.bilibili.com/video/av68991919)
