@@ -155,8 +155,7 @@ git merge dev
 ```
 
 **常见操作：**
-  命令 | 含义
-  -|-|-
+```
   git init | 仓库的初始化  
   git clone [url] | 从某个远程仓库拷贝  
   git status | 显示工作目录的状态
@@ -175,8 +174,10 @@ git merge dev
   git reset HEAD~2 [path] | 带文件路径，默认是--mixed，只将暂存区，路径path下的文件恢复到之前2个版本
   git checkout [file] | 撤销工作区中已修改的文件
   git commit  --amend | 覆盖上一次的提交。
+```
 
 **远程仓库相关命令：**
+```
 git clone <url>   克隆远程仓库到本地
 git remote  列出每个远程仓库的简短名字
 git remote -v    列出每个远程仓库的简短名字与其对应的 URL
@@ -188,8 +189,10 @@ git fetch [remote-name]  从远程仓库数据拉取最新到本地，但不自�
 git  pull   [remote-name] [branch-name]  把远程仓库数据拉到本地，并自行合并
 git pull 的魔法经常令人困惑所以通常单独显式地使用 fetch 与 merge 命令会更好一些。
 git  push [remote-name] [branch-name]    把本地代码推送到远程仓库，一般先执行git pull、在执行git push  确
+```
 
 **分支相关命令：**
+```
 git branch   查看分支（当前工作分支前面会标一个*号）
 git branch -v  查看每一个分支的最后一次提交
 git branch -vv  查看每一个分支的详细信息，如每一个分支正在跟踪哪个远程分支与本地分支是否是领先、落后
@@ -211,6 +214,7 @@ git push origin --delete serverfix    删除某个远程分支
 git checkout -m <branchname>  将本地的修改加入到新的分支上
 
 git checkout -b branch-name  origin/branch-name 在本地创建和远程分支对应的分支，本地和远程分支的名称最好一致
+```
 
 ### 五、其他
 **给开源软件贡献代码：**
@@ -220,7 +224,7 @@ git checkout -b branch-name  origin/branch-name 在本地创建和远程分支�
 
 **免密登录：**
 
-<img width="80%" src="https://i.loli.net/2020/04/07/soaVlvdKjBwp3yT.jpg" alt="git免密登录" />
+<img width="60%" src="https://i.loli.net/2020/04/07/soaVlvdKjBwp3yT.jpg" alt="git免密登录" />
 
 **任务管理相关：**
 1. issues（文档、big修复等任务管理）

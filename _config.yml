@@ -8,8 +8,10 @@ subtitle: yp
 description: 一个专注web开发技术的网站
 keywords: web
 author: Yang Pei
-language:
-timezone:
+
+search:
+  path: search.xml
+  field: post
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -73,7 +75,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: miho
+# theme: miho
+theme: 3hexo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
