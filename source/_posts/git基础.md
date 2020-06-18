@@ -6,7 +6,7 @@ author: yangpei
 tags:
   - git
 comments: true
-cover_picture: /images/banner.jpg
+cover_picture: images/banner.jpg
 ---
 
 对于git做深入地了解，总结了在实际工作过程中git进行版本管理和团队协作的基本操作方法。
