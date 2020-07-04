@@ -3,8 +3,6 @@ title: NLP系列6：词向量与文本生成
 date: 2020-03-24
 categories: AI
 author: yangpei
-tags:
-  - 自然语言处理
 comments: true
 cover_picture: /images/banner.jpg
 ---

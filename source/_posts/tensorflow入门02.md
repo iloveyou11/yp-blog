@@ -3,9 +3,6 @@ title: tensorflow入门-2
 date: 2020-04-04
 categories: AI
 author: yangpei
-tags:
-  - 机器学习
-  - tensorflow
 comments: true
 cover_picture: /images/banner.jpg
 ---

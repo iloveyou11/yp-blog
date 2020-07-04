@@ -3,8 +3,6 @@ title: NLP系列2：分词与文本表示
 date: 2020-03-20
 categories: AI
 author: yangpei
-tags:
-  - 自然语言处理
 comments: true
 cover_picture: /images/banner.jpg
 ---

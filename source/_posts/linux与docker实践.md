@@ -1,11 +1,8 @@
 ---
 title: linux与docker实践
 date: 2019-09-22
-categories: linux
+categories: 计算机
 author: yangpei
-tags:
-  - linux
-  - docker
 comments: true
 cover_picture: /images/banner.jpg
 ---

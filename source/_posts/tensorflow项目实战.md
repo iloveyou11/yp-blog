@@ -3,9 +3,6 @@ title: tensorflow项目实战
 date:  2019-12-04
 categories:  AI
 author:  yangpei
-tags: 
-  - 深度学习
-  - 计算机视觉
 comments:  true
 cover_picture:  /images/banner.jpg
 ---

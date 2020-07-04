@@ -3,9 +3,6 @@ title: tensorflow入门-1
 date: 2020-04-03
 categories: AI
 author: yangpei
-tags:
-  - 深度学习
-  - tensorflow
 comments: true
 cover_picture: /images/banner.jpg
 ---

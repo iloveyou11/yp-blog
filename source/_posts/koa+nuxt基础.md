@@ -1,11 +1,8 @@
 ---
 title: koa+nuxt基础
 date: 2019-06-10
-categories: 技能
+categories: 前端
 author: yangpei
-tags:
-  - koa
-  - nuxt
 comments: true
 cover_picture: /images/banner.jpg
 ---

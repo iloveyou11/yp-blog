@@ -1,10 +1,8 @@
 ---
 title: 深入理解react
 date: 2019-09-25
-categories: react
+categories: 前端
 author: yangpei
-tags:
-  - react
 comments: true
 cover_picture: /images/banner.jpg
 ---

@@ -1,9 +1,7 @@
 ---
 title: web安全
 date: 2019-06-05
-categories: 安全
-tags:
-  - 安全
+categories: 前端
 comments: true
 cover_picture: /images/banner.jpg
 ---

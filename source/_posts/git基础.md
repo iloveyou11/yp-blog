@@ -1,10 +1,8 @@
 ---
 title: git基础
 date: 2020-04-07
-categories: 技能
+categories: 前端
 author: yangpei
-tags:
-  - git
 comments: true
 cover_picture: images/banner.jpg
 ---

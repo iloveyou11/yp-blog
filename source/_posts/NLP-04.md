@@ -3,8 +3,6 @@ title: NLP系列4：NLP核心任务
 date: 2020-03-22
 categories: AI
 author: yangpei
-tags:
-  - 自然语言处理
 comments: true
 cover_picture: /images/banner.jpg
 ---

@@ -1,11 +1,8 @@
 ---
 title: 从零搭建react环境
 date: 2019-10-30
-categories: 大前端
+categories: 前端
 author: yangpei
-tags:
-  - webpack
-  - react
 comments: true
 ---
 目前react、vue项目都提供了对应的脚手架工具，让大家都能够轻易地创建项目，直接进行开发，省去了繁琐的打包配置问题。但是，这些脚手架生成的初始化项目中，到底做了哪些工作呢？这些webpack配置、性能优化等等知识都是前端工程师学习发展路上需要掌握的内容。因此我们是有必要学会不依靠脚手架工具亲自搭建vue、react项目环境的。

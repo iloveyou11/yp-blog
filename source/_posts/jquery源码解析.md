@@ -1,10 +1,8 @@
 ---
 title: jquery源码解析
 date: 2019-08-11
-categories: JavaScript
+categories: 前端
 author: yangpei
-tags:
-  - js
 comments: true
 cover_picture: /images/banner.jpg
 ---

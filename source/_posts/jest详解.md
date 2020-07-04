@@ -1,10 +1,8 @@
 ---
 title: 前端自动化测试——jest必会
 date: 2019-09-16
-categories: JavaScript
+categories: 前端
 author: yangpei
-tags:
-  - js
 comments: true
 cover_picture: /images/banner.jpg
 ---

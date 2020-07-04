@@ -1,10 +1,8 @@
 ---
 title: linux node项目环境部署
 date: 2019-01-03
-categories: linux
+categories: 计算机
 author: yangpei
-tags:
-  - linux
 comments: true
 cover_picture: /images/banner.jpg
 ---

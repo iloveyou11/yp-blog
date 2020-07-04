@@ -3,8 +3,6 @@ title: NLP系列1：NLP简介
 date: 2020-03-19
 categories: AI
 author: yangpei
-tags:
-  - 自然语言处理
 comments: true
 cover_picture: /images/banner.jpg
 ---

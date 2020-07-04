@@ -1,11 +1,8 @@
 ---
 title: react源码分析笔记
 date: 2019-11-26
-categories: react
+categories: 前端
 author: yangpei
-tags:
-  - react
-  - 源码
 comments: true
 cover_picture: /images/banner.jpg
 ---

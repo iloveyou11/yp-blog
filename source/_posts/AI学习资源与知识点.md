@@ -3,10 +3,6 @@ title: AI学习资源与知识点
 date: 2019-12-04
 categories: AI
 author: yangpei
-tags:
-  - 机器学习
-  - 深度学习
-  - 计算机视觉
 comments: true
 cover_picture: /images/banner.jpg
 ---

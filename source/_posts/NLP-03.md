@@ -3,8 +3,6 @@ title: NLP系列3：语言系统与NLP基础
 date: 2020-03-21
 categories: AI
 author: yangpei
-tags:
-  - 自然语言处理
 comments: true
 cover_picture: /images/banner.jpg
 ---

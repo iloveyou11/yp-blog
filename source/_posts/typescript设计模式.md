@@ -1,9 +1,7 @@
 ---
 title: ts设计模式详解
 date: 2019-08-10
-categories: JavaScript
-tags:
-  - typescript
+categories: 前端
 comments: true
 cover_picture: /images/banner.jpg
 ---

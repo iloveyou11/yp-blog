@@ -1,10 +1,8 @@
 ---
 title: tts功能开发上遇到的坑
 date: 2019-08-12
-categories: JavaScript
+categories: 前端
 author: yangpei
-tags:
-  - js
 comments: true
 cover_picture: /images/banner.jpg
 ---

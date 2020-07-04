@@ -1,10 +1,8 @@
 ---
 title: typescript详解
 date: 2019-07-29
-categories: JavaScript
+categories: 前端
 author: yangpei
-tags:
-  - typescript
 comments: true
 cover_picture: /images/banner.jpg
 ---

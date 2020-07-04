@@ -1,12 +1,8 @@
 ---
 title: 浅析node
 date: 2019-09-26
-categories: Node
+categories: 前端
 author: yangpei
-tags:
-  - Node
-  - koa
-  - webpack
 comments: true
 cover_picture: /images/banner.jpg
 ---

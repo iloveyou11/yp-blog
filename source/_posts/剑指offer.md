@@ -1,10 +1,8 @@
 ---
 title: 剑指offer笔记
 date: 2019-04-08
-categories: 算法与数据结构
+categories: 计算机
 author: yangpei
-tags:
-  - 算法与数据结构
 comments: true
 cover_picture: /images/banner.jpg
 ---

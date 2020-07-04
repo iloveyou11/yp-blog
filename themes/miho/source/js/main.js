@@ -148,19 +148,6 @@
             sideMenuBoxIsOpen = true;
         }
     });
-    //标签展示
-    $("#sidebar-tag").click(function(e) {
-        tags.css('display', 'block');
-        categories.css('display', 'none');
-        e.stopPropagation();
-        if (sideMenuBoxIsOpen) {
-            Blog.showSidebarBox(true);
-            sideMenuBoxIsOpen = false;
-        } else {
-            Blog.showSidebarBox(false);
-            sideMenuBoxIsOpen = true;
-        }
-    });
     //点击菜单区域不能关闭菜单
     sideMenuBox.click(function(e) {
         e.stopPropagation();

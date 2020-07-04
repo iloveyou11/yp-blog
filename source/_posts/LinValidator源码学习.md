@@ -1,10 +1,8 @@
 ---
 title: LinValidator源码学习
 date: 2019-07-25
-categories: 源码
+categories: 前端
 author: yangpei
-tags:
-  - 源码
 comments: true
 cover_picture: /images/banner.jpg
 ---

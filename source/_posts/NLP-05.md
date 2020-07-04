@@ -3,8 +3,6 @@ title: NLP系列5：重要模型与算法
 date: 2020-03-23
 categories: AI
 author: yangpei
-tags:
-  - 自然语言处理
 comments: true
 cover_picture: /images/banner.jpg
 ---

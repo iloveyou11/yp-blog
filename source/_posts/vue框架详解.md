@@ -1,10 +1,8 @@
 ---
 title: 深入理解vue
 date: 2019-09-24
-categories: vue
+categories: 前端
 author: yangpei
-tags:
-  - vue
 comments: true
 cover_picture: /images/banner.jpg
 ---

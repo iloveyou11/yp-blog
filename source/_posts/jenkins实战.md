@@ -1,10 +1,8 @@
 ---
 title: jenkins实战
 date: 2020-04-07
-categories: 技能
+categories: 前端
 author: yangpei
-tags:
-  - jenkins
 comments: true
 ---
 

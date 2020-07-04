@@ -1,10 +1,8 @@
 ---
 title: iframe和定时器的思考
 date: 2019-07-25
-categories: JavaScript
+categories: 前端
 author: yangpei
-tags:
-  - js
 comments: true
 cover_picture: /images/banner.jpg
 ---
