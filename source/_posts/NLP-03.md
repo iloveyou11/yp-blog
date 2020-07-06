@@ -18,6 +18,8 @@ cover_picture: /images/banner.jpg
 [NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/03/23/NLP-05/)
 [NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/03/24/NLP-06/)
 
+
+
 #### 专家系统
 **专家系统=推理引擎+知识**，利用知识和推理来解决决策问题
 专家系统与基于概率的系统的区别：

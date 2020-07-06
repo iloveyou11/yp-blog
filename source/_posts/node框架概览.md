@@ -7,6 +7,10 @@ comments: true
 cover_picture: /images/banner.jpg
 ---
 
+<!-- more -->
+
+
+
 #### 导言
 Koa2和Koa1的区别，和express的区别？
 1. 异步流程控制

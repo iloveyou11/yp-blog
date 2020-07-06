@@ -11,6 +11,8 @@ cover_picture: images/banner.jpg
 
 <!-- more -->
 
+
+
 ### 一、介绍
 git是什么？git是一款分布式版本控制软件。
 

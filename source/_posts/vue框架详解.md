@@ -6,6 +6,9 @@ author: yangpei
 comments: true
 cover_picture: /images/banner.jpg
 ---
+<!-- more -->
+
+
 
 #### vue基础
 ##### vue-cli脚手架

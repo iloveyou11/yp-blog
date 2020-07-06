@@ -11,6 +11,8 @@ cover_picture: /images/banner.jpg
 
 <!-- more -->
 
+
+
 ### 一、tensorflow基础
 #### 基础语法
 计算单元有常量`c = tf.constant(2)`，变量`v = tf.Variable(2)`，占位符`p = tf.placeholder(tf.float32)`。常见四则运算：

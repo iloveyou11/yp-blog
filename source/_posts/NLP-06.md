@@ -18,6 +18,8 @@ cover_picture: /images/banner.jpg
 [NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/03/23/NLP-05/)
 [NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/03/24/NLP-06/)
 
+
+
 ### 词向量（wordvector）
 
 <img width="100%" src="https://i.loli.net/2020/03/25/lxXWp9yaeIjfq8Y.jpg" alt="词向量" />

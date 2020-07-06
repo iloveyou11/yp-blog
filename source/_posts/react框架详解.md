@@ -7,6 +7,10 @@ comments: true
 cover_picture: /images/banner.jpg
 ---
 
+<!-- more -->
+
+
+
 #### react基础
 ##### 介绍
 安装官方脚手架项目

@@ -18,6 +18,8 @@ cover_picture: /images/banner.jpg
 [NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/03/23/NLP-05/)
 [NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/03/24/NLP-06/)
 
+
+
 本系列内容：
 
 <img width="60%" src="https://i.loli.net/2020/03/24/ctd87JmD9RPTUq4.jpg" alt="系列4知识点" />

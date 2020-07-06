@@ -6,6 +6,9 @@ author: yangpei
 comments: true
 cover_picture: /images/banner.jpg
 ---
+<!-- more -->
+
+
 
 ##### 基本配置（自动编译）
 

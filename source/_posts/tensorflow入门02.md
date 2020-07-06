@@ -11,6 +11,8 @@ cover_picture: /images/banner.jpg
 
 <!-- more -->
 
+
+
 具体教程详见[最全Tensorflow2.0 入门教程持续更新](https://zhuanlan.zhihu.com/p/59507137)
 
 ### 一、tensorflow2.0安装

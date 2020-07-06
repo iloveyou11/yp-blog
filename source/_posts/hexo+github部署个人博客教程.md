@@ -13,6 +13,8 @@ cover_picture: /images/banner.jpg
 
 <!-- more -->
 
+
+
 #### 搭建的具体流程
 
 - 安装 git，申请 github 账号，生成 ssh 密钥，在 github 新建 new SSH Key

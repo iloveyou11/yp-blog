@@ -18,6 +18,8 @@ cover_picture: /images/banner.jpg
 [NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/03/23/NLP-05/)
 [NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/03/24/NLP-06/)
 
+
+
 #### 分词
 1. 最大匹配算法（贪心算法）
 包括前向最大匹配和后向最大匹配，缺点是不能考虑语义，可能是局部最优
