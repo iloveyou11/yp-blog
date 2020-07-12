@@ -216,7 +216,3 @@ Transformer的结构和Attention模型一样，Transformer模型中也采用了 
 
 1. encoder，包含两层，一个self-attention层和一个前馈神经网络，self-attention能帮助当前节点不仅仅只关注当前的词，从而能获取到上下文的语义。
 2. decoder也包含encoder提到的两层网络，但是在这两层中间还有一层attention层，帮助当前节点获取到当前需要关注的重点内容。
-
-每一个encoder和decoder的内部结构如下图：
-
-<img width="50%" src="https://i.loli.net/2020/03/31/R3oic7n2LBD5hex.jpg" alt="transformer block" />
