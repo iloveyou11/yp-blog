@@ -1,6 +1,6 @@
 ---
 title: NLP系列6：词向量与文本生成
-date: 2020-03-24
+date: 2020-04-05
 categories: AI
 author: yangpei
 comments: true
@@ -169,12 +169,16 @@ The animal didn't cross the street because it was too tired
 7、	sparsity——稀疏性，提高可解释性
 
 ### seq2seq
-这里待补充……
+seq2seq属于encoder-decoder结构的一种，常见是encoder-decoder结构，基本思想就是利用两个RNN，一个RNN作为encoder，另一个RNN作为decoder。encoder负责将输入序列压缩成指定长度的向量，这个向量就可以看成是这个序列的语义，这个过程称为编码，获取语义向量最简单的方式就是直接将最后一个输入的隐状态作为语义向量C。也可以对最后一个隐含状态做一个变换得到语义向量，还可以将输入序列的所有隐含状态做一个变换得到语义变量。
 
-### BERT
-`BERT`的全称是`Bidirectional Encoder Representation from Transformers`，是Google2018年提出的预训练模型，即双向Transformer的`Encoder`，因为`decoder`是不能获要预测的信息的。模型的主要创新点都在pre-train方法上，即用了Masked LM和Next Sentence Prediction两种方法分别捕捉词语和句子级别的representation。
+而decoder则负责根据语义向量生成指定的序列，这个过程也称为解码，如下图，最简单的方式是将encoder得到的语义变量作为初始状态输入到decoder的RNN中，得到输出序列。可以看到上一时刻的输出会作为当前时刻的输入，而且其中语义向量C只作为初始状态参与运算，后面的运算都与语义向量C无关。
 
-这里待补充……
+seq2seq的应用场景如下：
+1. 机器翻译（当前最为著名的Google翻译，就是完全基于Seq2Seq+Attention机制开发出来的）。
+2. 聊天机器人（小爱，微软小冰等也使用了Seq2Seq的技术（不是全部））。
+3. 文本摘要自动生成（今日头条等使用了该技术）。
+4. 图片描述自动生成。
+5. 机器写诗歌、代码补全、生成 commit message、故事风格改写等。
 
 ### 主题模型（LDA）
 **PLSA和LDA的区别：**PLSA确定了主题概率，LDA未确定固定的主题概率，只规定了主题概率服从Dirichlet分布

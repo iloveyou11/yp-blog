@@ -13,16 +13,28 @@ banner_img: images/banner.jpg
 
 menu:
   home:
-    title: Home
+    title: 主页
     url: /
     target: false
   archive:
-    title: Archives
+    title: 全部
     url: /archives
     target: false
-  user:
-    title: About
-    url: /about
+  AI:
+    title: AI
+    url: /categories/AI/
+    target: false
+  前端:
+    title: 前端
+    url: /categories/前端/
+    target: false
+  计算机:
+    title: 计算机
+    url: /categories/计算机/
+    target: false
+  语言:
+    title: 语言
+    url: /categories/语言/
     target: false
 
 social:

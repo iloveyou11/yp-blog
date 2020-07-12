@@ -1,6 +1,6 @@
 ---
 title: NLP系列3：语言系统与NLP基础
-date: 2020-03-21
+date: 2020-03-27
 categories: AI
 author: yangpei
 comments: true
@@ -138,5 +138,10 @@ else if ...
 <img width="40%" src="https://i.loli.net/2020/03/24/gDfd3BVZvr68kQX.jpg" alt="SVM目标函数" />
 
 - 什么是KKT条件？（等式条件、不等式条件）
+我们之前学习过，针对满足等式条件的最优解问题，采用Lagrange乘子法解决，而需要满足不等式条件或不等式、等式组合条件的称为KKT条件
+
 - 什么是Primal-Dual Problem？
+[优化方法：原问题和拉格朗日对偶问题（primal-dual）](https://blog.csdn.net/zuzhiang/article/details/103293545)
+
 - 什么是kernal trick？
+将原来的特征映射到更高维度的空间中，使其更容易分类，但是计算量不会随之增加。

@@ -107,10 +107,6 @@ menu:
     title: Archives
     url: /archives
     target: false
-  user:
-    title: About
-    url: /about
-    target: false
 # Social setting, use to display social information | 社交设置，用来展示社交信息
 #  name:                  Font Awesome icon | Font Awesome 图标
 #    title: Home          Icon title | 图标标题

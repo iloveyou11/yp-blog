@@ -1,6 +1,6 @@
 ---
 title: NLP系列2：分词与文本表示
-date: 2020-03-20
+date: 2020-03-25
 categories: AI
 author: yangpei
 comments: true
@@ -76,6 +76,7 @@ one-hot有以下三种形式
 - count-based representation（考虑单词的计数）
 - tfidf-based representation（考虑了单词重要性，不是出现次数越多代表越重要！不是出现次数越少代表越不重要！）
 **tf-idf**的计算公式为： `tfidf(w)=tf(d,w)*idf(w)`，其中`tf(d,w)`表示文档d中w单词出现的词频，`idf(w)`表示单词的重要性，`idf(w)=log(N/N(w))`
+其中，TF是指计算词的词频，即某一个词出现在文本中的频率，注意需要进行归一化处理；IDF是指逆向文件频率，是一个词普遍重要性的度量。
 
 2. **词向量表示法**（考虑了单词的语义）
 使用词向量word vector表示单词，称为分布式表示法。常见的深度学习模型有skip-gram、glove、CBow、RNN/LSTM、MF（矩阵分解）……

@@ -1,6 +1,6 @@
 ---
 title: NLP系列5：重要模型与算法
-date: 2020-03-23
+date: 2020-04-03
 categories: AI
 author: yangpei
 comments: true
