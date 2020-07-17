@@ -1,6 +1,6 @@
 ---
 title: jenkins实战
-date: 2020-04-07
+date: 2020-06-02
 categories: 前端
 author: yangpei
 comments: true
@@ -35,17 +35,11 @@ comments: true
 
 `「持续集成（ContinuousIntegration）」`、`「持续交付（Continuous Delivery）」`和`「持续部署（Continuous Deployment）」`提供了一个优秀的 DevOps 环境，对于整个团队来说，好处与挑战并行。无论如何，频繁部署、快速交付以及开发测试流程自动化都将成为未来软件工程的重要组成部分。
 
-
-### 传统网站部署流程
-<img src="" alt="网站部署" />
-
 ### 主流网站部署流程
 目前主流网站部署方法，通过Hudson/Jenkins工具平台实现全自动部署+测试，是一个可扩展的持续集成引擎，是一个开源软件项目，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。Jenkins非常易于安装和配置。
 1）开发人员：写好代码，不需要自己进行源码编译、打包等工作，直接将代码分支存放在SVN、GIT仓库即可。
 2）运维人员：减轻人工干预的错误率，同时解放运维人员繁杂的上传代码、手动备份和更新。
 3）测试人员：可以通过jenkins进行简单的代码及网站测试。
-
-<img src="" alt="主流网站部署流程" />
 
 ### Jenkins
 原文地址：[实战笔记：Jenkins打造强大的前端自动化工作流](https://juejin.im/post/5ad1980e6fb9a028c42ea1be)

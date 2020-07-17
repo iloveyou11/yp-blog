@@ -1,6 +1,6 @@
 ---
 title: NLP系列3：语言系统与NLP基础
-date: 2020-03-27
+date: 2020-04-21
 categories: AI
 author: yangpei
 comments: true
@@ -97,9 +97,20 @@ else if ...
 **MLE：**最大似然估计（仅仅考虑数据本身）
 **MAP：**最大后验估计（需要考虑先验知识）
 
+MLE与MAP的直观理解：
+1、MLE（最大似然估计）：扔硬币，仅仅通过观测值2/3来预测正/反面向上的概率
+2、MAP（最大后验估计）：扔硬币，仍然会得到观测值2/3，但拥有这个硬币的主人告诉我，出现正面的概率大概是80%，会与我的观测值2/3出现偏差（可能我观测到的样本不够多），这时计算正/反面向上的概率应结合先验概率（主人的想法）为66.7%~80%之间
+
 随着样本数杨的增大，先验所起到的作用会越来越小。当样本数N趋近于无穷大时，MAP的解趋近于MLE的解。
 
-高斯先验相当于加了L2正则项，拉普拉斯先验相当于加了L1正则项。
+`adding prior is equivalent to regularization！`
+`Gaussian Prior is L2 regularization`——高斯先验相当于加了L2正则项
+
+<img src="https://i.loli.net/2020/07/17/wxysWkM3ESdbqKY.png" alt="L2" width="80%" />
+
+`Laplace Prior is L1 regularization`——拉普拉斯先验相当于加了L1正则项
+
+<img src="https://i.loli.net/2020/07/17/Z1ncrgqLazU5sHM.png" alt="L1" width="80%" />
 
 #### lasso
 **特征选择策略：**

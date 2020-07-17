@@ -1,6 +1,6 @@
 ---
 title: NLP系列4：NLP核心任务
-date: 2020-03-30
+date: 2020-05-02
 categories: AI
 author: yangpei
 comments: true
@@ -88,4 +88,6 @@ bootstrap是精准匹配，snowball是近似匹配
 
 #### 句法分析
 ##### CKY算法
+CKY算法是一种使用动态规划对`上下文无关文法（CFG）`进行`语法分析（parsing）`的算法。
+
 <img width="50%" src="https://i.loli.net/2020/03/24/Xty6sNZ3CnIRfjh.jpg" alt="CKY" />

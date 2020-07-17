@@ -1,6 +1,6 @@
 ---
 title: NLP系列2：分词与文本表示
-date: 2020-03-25
+date: 2020-04-02
 categories: AI
 author: yangpei
 comments: true
@@ -18,7 +18,9 @@ cover_picture: /images/banner.jpg
 [NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/03/23/NLP-05/)
 [NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/03/24/NLP-06/)
 
+以下是NLP相关模型的发展历程：
 
+<img src="https://i.loli.net/2020/07/16/kCRwasGEUoS8qzK.png" alt="NLP模型发展" width="80%" />
 
 #### 分词
 1. 最大匹配算法（贪心算法）
@@ -79,7 +81,7 @@ one-hot有以下三种形式
 其中，TF是指计算词的词频，即某一个词出现在文本中的频率，注意需要进行归一化处理；IDF是指逆向文件频率，是一个词普遍重要性的度量。
 
 2. **词向量表示法**（考虑了单词的语义）
-使用词向量word vector表示单词，称为分布式表示法。常见的深度学习模型有skip-gram、glove、CBow、RNN/LSTM、MF（矩阵分解）……
+使用词向量word vector表示单词，称为分布式表示法。常见的深度学习模型有`skip-gram`、`glove`(global vectors for word representation)、`CBow`、`RNN/LSTM`、`MF`（矩阵分解）……
 
 <img width="60%" src="https://i.loli.net/2020/03/24/1nK8ShFtClQ9mE3.png" alt="词向量可视化" />
 
@@ -91,11 +93,22 @@ one-hot有以下三种形式
 2. 余弦相似度
 
 #### 倒排表
-在问答系统中，根据用户输入在知识库中匹配问题，找到相似度最大的问题。如果知识库有n个问题，则需要计算n次。复杂度为`o(n)*o(相似度计算)`，复杂度太高，不能满足实时性的要求。
+问答系统需要进性相似度匹配，然后返回相似度最高的。时间复杂度为`o(n)*o(相似度计算)`，非常大，完全不能满足时间的要求。
+
+使用“层次过滤”思想，给定输入，先抛掉最不可能是答案的样本，再抛掉最不可能是答案的样本……一直到最后剩下的样本量就不大了，再计算相似度即可（余弦相似度）。过滤器的时间复杂度是层层递增的。
 
 <img width="60%" src="https://i.loli.net/2020/03/24/UOtBQIfdwMDNJnq.jpg" alt="倒排表" />
 
-引入倒排表来提高系统的时间效率，核心思路是“层次过滤思想”。遇到输入问题时，做一层层的过滤，先抛掉毫不沾边的样本，再依次过滤……而不是一个个地计算余弦相似度。
+过滤器如何实现呢？需要引入倒排表：
+**倒排表（Inverted Index）**：有一个完整的词典库，分别记录每个单词出现在哪些文档中，例如：
+```
+我们：[Doc1，Doc13]
+昨天：[Doc2]
+在：[Doc1，Doc4，Doc5]
+运动：[Doc1，Doc3，Doc5]
+什么：[Doc1，Doc6]
+```
+这样可以快速找到哪个单词出现在哪个文档中（否则根据单词一个个去搜索文档时间复杂度非常高）
 
 #### 语言模型LM
 是否一句话从语法上通顺
@@ -117,6 +130,9 @@ perplexity（迷惑度）计算，基本思想是给测试集赋予较高概率�
 `perplexity=2^(-x)   x是最大似然估计`
 
 <img width="70%" src="https://i.loli.net/2020/03/24/rkECxu3j9W6UPKO.jpg" alt="perplexity" />
+
+perplexity（衡量语言模型的好坏）计算方法：`perplexity=2*(-x)`，perplexity越小越好。
+每个likelihood都要计算（后一个词相对前一个词出现的概率），然后分别求对数，再求解平均值，即可得到x。
 
 例如，训练的三个模型unigram、bigram、trigram，perplexity分别为300、200、100，可知此次训练的trigram模型最好。
 

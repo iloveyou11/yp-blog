@@ -1,6 +1,6 @@
 ---
 title: git基础
-date: 2020-04-07
+date: 2020-06-15
 categories: 前端
 author: yangpei
 comments: true

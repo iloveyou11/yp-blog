@@ -1,6 +1,6 @@
 ---
 title: NLP系列5：重要模型与算法
-date: 2020-04-03
+date: 2020-05-10
 categories: AI
 author: yangpei
 comments: true
@@ -138,6 +138,12 @@ SBSCAN 最大的缺点是当集群的密度变化时，它表现的不像其他�
 
 #### 高斯混合模型（GMM）
 高斯混合模型（Gaussian Mixture Model）通常简称GMM，是一种业界广泛使用的聚类算法，该方法使用了高斯分布作为参数模型，并使用了期望最大（Expectation Maximization，简称EM）算法进行训练。
+
+GMM是高斯混合模型，属于`soft clustering`，而k-means是`hard clustering`，将多个高斯分布叠加在一起，拟合数据的能力更强。example:
+```
+k-means：一个人->体育
+GMM：一个人->概率分布，体育（30%），科技（50%），音乐（20%）
+```
 
 高斯分布（Gaussian distribution）有时也被称为正态分布（normal distribution），是一种在自然界大量的存在的、最为常见的分布形式。
 
