@@ -10,6 +10,8 @@ cover_picture: /images/banner.jpg
 ### 什么是transformer
 一句话解释：`transformer`是带有`self-attention`的`seq2seq`，输出能同时计算，可以代替RNN结构（必须按输入的顺序计算），因此transformer对于sequence to sequence的应用场景更为高效。
 
+transformer是首个完全抛弃RNN的recurrence，CNN的convolution，仅用attention来做特征抽取的模型。
+
 **Transformer中抛弃了传统的CNN和RNN，整个网络结构完全是由Attention机制组成。**
 
 <!-- more -->
@@ -57,6 +59,10 @@ transformer的模型结构图如下：
 <img src="https://i.loli.net/2020/07/12/NLS2CcavgdDGwUA.png" width="50%" alt="transformer计算流程3" />
 
 【注意】以上从x1到xn的运算是可以同时进行的，通过attention值的大小，可以与其他的vector产生上下文关联。
+
+**transformer计算的范围**
+
+Transformer的可处理文本长度定为512，而不是更大的值，一个很重要的因素是，在计算attention的过程中，需要计算（Multi-head attention并不会减少计算量），这也是为什么Transformer处理长距离依赖问题并不太好的原因之一。
 
 ### 概念详解
 
@@ -123,3 +129,29 @@ Add & Norm做了**残差连接**（多条路的选择给模型自己选择）
 2. softmax后会得到整个加权结果（相当于归一化）
 3. 此时每个词看的不只是他前面的序列，而是整个输入序列
 4. 同一时间能计算出所有词的表达结果（利用矩阵乘法）
+
+### 模型改进
+
+原始版的Transformer虽然并不成熟，层数固定不够灵活、算力需求过大导致的不适合处理超长序列等缺陷限制了其实际应用前景。但是其优秀的特征抽取能力吸引了很多学者的关注。很多人提出了不同的变种Transformer来改进或者规避它的缺陷。其中，Universal Transformer、Transformer-XL、Reformer就是典型的代表。 
+
+#### Universal Transformer
+
+在Transformer中，输入经过Attention后，会进入全连接层进行运算，而Universal Transformer模型则会进入一个共享权重的transition function继续循环计算。这里Transition function可以和之前一样是全连接层，也可以是其他函数层。
+
+为了控制循环的次数，模型引入了Adaptive Computation Time（ACT）机制。ACT可以调整计算步数，加入ACT机制的Universal transformer被称为Adaptive universal transformer。引入ACT机制后，模型对于文本中更重要的token会进行更多次数的循环，而对于相对不重要的单词会减少计算资源的投入。
+
+<img src="https://i.loli.net/2020/07/22/JXgR19pBNy7xior.png" alt="Universal Transformer" width="80%" />
+
+#### Transformer-XL
+
+Transformer通常会将本文分割成长度小于等于d（默认是512）的segment，每个segment之间互相独立，互不干涉。距离超过512的token之间的依赖关系就完全无法建模抽取。同时，这还会带来一个`context fragmentation`的问题，因为segment的划分并不是根据语义边界，而是根据长度进行划分的，可能会将一个完整的句子拆成两个。
+
+Transformer-XL提出了`segment-level Recurrence`来解决这个问题。在对当前segment进行处理的时候，缓存并利用上一个segment中所有layer的隐向量，而且上一个segment的所有隐向量只参与前向计算，不再进行反向传播。
+
+Transformer-XL在没有大幅度提高算力需求的情况下，一定程度上解决了长距离依赖问题。
+
+#### Reformer
+
+针对transformer处理文本长度过短（512）的问题，提出了两个机制分别解决这两个问题，它们是`locality-sensitve hashing(LSH) attention`和`Reversible transformer`。
+
+首先用LSH来对每个segment进行分桶，将相似的部分放在同一个桶里面。然后我们将每一个桶并行化计算其中两两之间的点乘。还考虑到有一定的概率相似的向量会被分到不同的桶里，因此采用了多轮hashing来降低这个概率。Reformer在减少了attention计算量的情况下，还减少了模型的内存占用，为未来大型预训练模型的落地奠定了基础。
