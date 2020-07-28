@@ -155,3 +155,7 @@ Transformer-XL在没有大幅度提高算力需求的情况下，一定程度上
 针对transformer处理文本长度过短（512）的问题，提出了两个机制分别解决这两个问题，它们是`locality-sensitve hashing(LSH) attention`和`Reversible transformer`。
 
 首先用LSH来对每个segment进行分桶，将相似的部分放在同一个桶里面。然后我们将每一个桶并行化计算其中两两之间的点乘。还考虑到有一定的概率相似的向量会被分到不同的桶里，因此采用了多轮hashing来降低这个概率。Reformer在减少了attention计算量的情况下，还减少了模型的内存占用，为未来大型预训练模型的落地奠定了基础。
+
+---
+
+推荐阅读：[【NLP】Transformer](http://mantchs.com/2019/09/26/NLP/Transformer/)
