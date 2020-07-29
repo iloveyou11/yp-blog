@@ -37,6 +37,8 @@ cover_picture: /images/banner.jpg
 
 | 方法 | 描述 |
 | :---- | :---- |
+| 朴素贝叶斯 | 朴素贝叶斯法( naive Bayes)可算是最简单常用的一种生成式模型。朴素贝叶斯法基于贝叶斯定理将联合概率转化为条件概率，然后利用特征条件独立假设简化条件概率的计算。 |
+| SVM | 找出一个决策边界，使得边界到正负样本的最小距离都最远。 |
 | fastText  | fastText原理是把句子中所有的词进行lookup得到词向量之后，对向量进行平均（某种意义上可以理解为只有一个avgpooling特殊CNN），然后直接接softmax层预测label。在label比较多的时候，为了降低计算量，论文最后一层采用了层次softmax的方法，既根据label的频次建立哈夫曼树，每个label对应一个哈夫曼编码，每个哈夫曼树节点具有一个向量作为参数进行更新，预测的时候隐层输出与每个哈夫曼树节点向量做点乘，根据结果决定向左右哪个方向移动，最终落到某个label对应的节点上。 |
 | TextCNN  | 首先，对句子做padding或者截断，保证句子长度为固定值s=7,单词embedding成d=5维度的向量，这样句子被表示为(s,d)(s,d)大小的矩阵（类比图像中的像素）。然后经过有filter_size=(2,3,4)的一维卷积层，每个filter_size有两个输出channel。第三层是一个1-maxpooling层，这样不同长度句子经过pooling层之后都能变成定长的表示了，最后接一层全连接的softmax层，输出每个类别的概率。 |
 | TextRNN	 | 对于英文，都是基于词的。对于中文，首先要确定是基于字的还是基于词的。如果是基于词，要先对句子进行分词。之后，每个字/词对应RNN的一个时刻，隐层输出作为下一时刻的输入。最后时刻的隐层输出h_ThTcatch住整个句子的抽象特征，再接一个softmax进行分类。|
@@ -47,6 +49,177 @@ cover_picture: /images/banner.jpg
 | VDCNN	| 目前NLP领域的模型，无论是机器翻译、文本分类、序列标注等问题大都使用浅层模型。VDCNN探究的是深层模型在文本分类任务中的有效性，最优性能网络达到了29层。| 
 
 ### 文本分类实践
+#### 朴素贝叶斯
+[代码](https://github.com/NLP-LOVE/Introduction-NLP/tree/master/code/ch11/text_classification.py)
+
+```python
+from pyhanlp import SafeJClass
+
+
+import zipfile
+import os
+from pyhanlp.static import download, remove_file, HANLP_DATA_PATH
+
+def test_data_path():
+    """
+    获取测试数据路径，位于$root/data/test，根目录由配置文件指定。
+    :return:
+    """
+    data_path = os.path.join(HANLP_DATA_PATH, 'test')
+    if not os.path.isdir(data_path):
+        os.mkdir(data_path)
+    return data_path
+
+
+
+## 验证是否存在 MSR语料库，如果没有自动下载
+def ensure_data(data_name, data_url):
+    root_path = test_data_path()
+    dest_path = os.path.join(root_path, data_name)
+    if os.path.exists(dest_path):
+        return dest_path
+    
+    if data_url.endswith('.zip'):
+        dest_path += '.zip'
+    download(data_url, dest_path)
+    if data_url.endswith('.zip'):
+        with zipfile.ZipFile(dest_path, "r") as archive:
+            archive.extractall(root_path)
+        remove_file(dest_path)
+        dest_path = dest_path[:-len('.zip')]
+    return dest_path
+
+
+sogou_corpus_path = ensure_data('搜狗文本分类语料库迷你版', 'http://file.hankcs.com/corpus/sogou-text-classification-corpus-mini.zip')
+
+
+## ===============================================
+## 以下开始朴素贝叶斯分类
+
+
+
+NaiveBayesClassifier = SafeJClass('com.hankcs.hanlp.classification.classifiers.NaiveBayesClassifier')
+IOUtil = SafeJClass('com.hankcs.hanlp.corpus.io.IOUtil')
+
+
+def train_or_load_classifier():
+    model_path = sogou_corpus_path + '.ser'
+    if os.path.isfile(model_path):
+        return NaiveBayesClassifier(IOUtil.readObjectFrom(model_path))
+    classifier = NaiveBayesClassifier()                                # 朴素贝叶斯分类器
+    classifier.train(sogou_corpus_path)
+    model = classifier.getModel()
+    IOUtil.saveObjectTo(model, model_path)
+    return NaiveBayesClassifier(model)
+
+
+def predict(classifier, text):
+    print("《%16s》\t属于分类\t【%s】" % (text, classifier.classify(text)))
+    # 如需获取离散型随机变量的分布，请使用predict接口
+    # print("《%16s》\t属于分类\t【%s】" % (text, classifier.predict(text)))
+
+
+if __name__ == '__main__':
+    classifier = train_or_load_classifier()
+    predict(classifier, "C罗获2018环球足球奖最佳球员 德尚荣膺最佳教练")
+    predict(classifier, "英国造航母耗时8年仍未服役 被中国速度远远甩在身后")
+    predict(classifier, "研究生考录模式亟待进一步专业化")
+    predict(classifier, "如果真想用食物解压,建议可以食用燕麦")
+    predict(classifier, "通用及其部分竞争对手目前正在考虑解决库存问题")
+```
+朴素贝叶斯法实现简单，但由于特征独立性假设过于强烈，有时会影响准确性.
+
+#### SVM
+[代码](https://github.com/NLP-LOVE/Introduction-NLP/tree/master/code/ch11/svm_text_classification.py)
+
+```python
+from pyhanlp.static import STATIC_ROOT, download
+
+
+import zipfile
+import os
+from pyhanlp.static import download, remove_file, HANLP_DATA_PATH
+
+def test_data_path():
+    """
+    获取测试数据路径，位于$root/data/test，根目录由配置文件指定。
+    :return:
+    """
+    data_path = os.path.join(HANLP_DATA_PATH, 'test')
+    if not os.path.isdir(data_path):
+        os.mkdir(data_path)
+    return data_path
+
+
+
+## 验证是否存在 MSR语料库，如果没有自动下载
+def ensure_data(data_name, data_url):
+    root_path = test_data_path()
+    dest_path = os.path.join(root_path, data_name)
+    if os.path.exists(dest_path):
+        return dest_path
+    
+    if data_url.endswith('.zip'):
+        dest_path += '.zip'
+    download(data_url, dest_path)
+    if data_url.endswith('.zip'):
+        with zipfile.ZipFile(dest_path, "r") as archive:
+            archive.extractall(root_path)
+        remove_file(dest_path)
+        dest_path = dest_path[:-len('.zip')]
+    return dest_path
+
+
+sogou_corpus_path = ensure_data('搜狗文本分类语料库迷你版', 'http://file.hankcs.com/corpus/sogou-text-classification-corpus-mini.zip')
+
+
+## ===============================================
+## 以下开始 支持向量机SVM
+
+
+
+def install_jar(name, url):
+    dst = os.path.join(STATIC_ROOT, name)
+    if os.path.isfile(dst):
+        return dst
+    download(url, dst)
+    return dst
+
+
+install_jar('text-classification-svm-1.0.2.jar', 'http://file.hankcs.com/bin/text-classification-svm-1.0.2.jar')
+install_jar('liblinear-1.95.jar', 'http://file.hankcs.com/bin/liblinear-1.95.jar')
+from pyhanlp import *
+
+LinearSVMClassifier = SafeJClass('com.hankcs.hanlp.classification.classifiers.LinearSVMClassifier')
+IOUtil = SafeJClass('com.hankcs.hanlp.corpus.io.IOUtil')
+
+
+def train_or_load_classifier():
+    model_path = sogou_corpus_path + '.svm.ser'
+    if os.path.isfile(model_path):
+        return LinearSVMClassifier(IOUtil.readObjectFrom(model_path))
+    classifier = LinearSVMClassifier()
+    classifier.train(sogou_corpus_path)
+    model = classifier.getModel()
+    IOUtil.saveObjectTo(model, model_path)
+    return LinearSVMClassifier(model)
+
+
+def predict(classifier, text):
+    print("《%16s》\t属于分类\t【%s】" % (text, classifier.classify(text)))
+    # 如需获取离散型随机变量的分布，请使用predict接口
+    # print("《%16s》\t属于分类\t【%s】" % (text, classifier.predict(text)))
+
+
+if __name__ == '__main__':
+    classifier = train_or_load_classifier()
+    predict(classifier, "C罗获2018环球足球奖最佳球员 德尚荣膺最佳教练")
+    predict(classifier, "潜艇具有很强的战略威慑能力与实战能力")
+    predict(classifier, "研究生考录模式亟待进一步专业化")
+    predict(classifier, "如果真想用食物解压,建议可以食用燕麦")
+    predict(classifier, "通用及其部分竞争对手目前正在考虑解决库存问题")
+```
+
 #### fastText
 fastText是一个快速文本分类算法，FastText 算法能获得和深度模型相同的精度，但是计算时间却要远远小于深度学习模型。fastText 可以作为一个文本分类的 baseline 模型。fastText不需要训练好的词向量模型，它会自己训练词向量模型。fastText两个重要的优化：`Hierarchical Softmax`、`N-gram`。fastText模型架构和word2vec中的CBOW很相似， 不同之处是fastText预测标签而CBOW预测的是中间词，模型架构类似但是模型任务不同。
 

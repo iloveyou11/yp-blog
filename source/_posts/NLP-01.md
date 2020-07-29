@@ -60,7 +60,6 @@ NLG 是从结构化数据中以可读地方式自动生成文本的过程。难�
 - 机器翻译（Machine translation）
 - 自动摘要（Automatic summarization）
 - 文字蕴涵（Textual entailment）
-- 问答系统（Question Answering System）
 - 情感分析（Emotion Analysis）
 - 聊天机器人（Chatbot）
 
@@ -94,6 +93,7 @@ NLG 是从结构化数据中以可读地方式自动生成文本的过程。难�
 #### 举例
 1. **搭建问答系统流程**
 **核心思想：**假设预先有一个知识库，存储了很多（question-answer），根据用户输入的问题，返回相似度最高的问题对应的答案。**基本流程：**分词——预处理——文本转为向量——计算相似度——排序——返回结果
+
 2. **文本处理流程**
 
 <img width="100%" src="https://i.loli.net/2020/03/24/7MFanwmNT25ofqb.jpg" alt="文本处理流程"/>

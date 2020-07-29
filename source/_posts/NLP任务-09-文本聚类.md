@@ -24,4 +24,4 @@ cover_picture: /images/banner.jpg
 [NLP任务-15-情感分析](https://iloveyou11.github.io/2020/07/28/NLP%E4%BB%BB%E5%8A%A1-15-%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/)
 [NLP任务-16-聊天机器人](https://iloveyou11.github.io/2020/07/28/NLP%E4%BB%BB%E5%8A%A1-16-%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/)
 
-#### 待补充……
+推荐阅读[文本聚类](https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/10.%E6%96%87%E6%9C%AC%E8%81%9A%E7%B1%BB.md)

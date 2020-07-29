@@ -25,11 +25,16 @@ cover_picture: /images/banner.jpg
 [NLP模型-16-受限玻尔兹曼机](https://iloveyou11.github.io/2020/07/28/NLP%E6%A8%A1%E5%9E%8B-16-%E5%8F%97%E9%99%90%E7%8E%BB%E5%B0%94%E5%85%B9%E6%9B%BC%E6%9C%BA/)
 [NLP模型-17-深度信念网络](https://iloveyou11.github.io/2020/07/28/NLP%E6%A8%A1%E5%9E%8B-17-%E6%B7%B1%E5%BA%A6%E4%BF%A1%E5%BF%B5%E7%BD%91%E7%BB%9C/)
 
-### 核方法
-核方法是把低维空间的非线性可分问题，转化为高维空间的线性可分问题的方法。
-### 核技巧
+### 核方法(kernal method)
+核方法是把低维空间的非线性可分问题，转化为高维空间的线性可分问题的方法。当然,核方法不仅仅适用于SVM，还适用于其他数据为非线性可分的场景。对于非线性可分的训练集，可以大概率通过将其非线性映射到一个高维空间来转化成线性可分的训练集。
+### 核技巧(kernal trick)
 核技巧是一种利用核函数直接计算`φ(x),φ(z)`，以避开分别计算`φ(x)`和`φ(z)`，从而加速核方法计算的技巧。得益于SVM对偶问题的表现形式，核技巧可以应用于SVM。
-### 核函数
+### 核函数(kernal function)
 核函数就是低维空间中的内积的某个函数，即核函数就等于就是高维空间的内积。
 
-#### 待补充……
+常用的核函数如下：
+
+<img src="https://i.loli.net/2020/07/29/dEgFYhmB1cz6eUH.png" alt="核函数" width="60%" />
+
+推荐观看大神的视频[《机器学习-白板推导系列-核方法》](https://www.bilibili.com/video/av34731384/?p=1)
+推荐阅读大神的github笔记[Machine-Learning-Session](https://github.com/shuhuai007/Machine-Learning-Session)
