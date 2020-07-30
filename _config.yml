@@ -9,9 +9,9 @@ description: 一个专注前端智能化开发技术的网站
 keywords: web
 author: Yang Pei
 
-search:
-  path: search.xml
-  field: post
+# search:
+#   path: search.xml
+#   field: post
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -97,3 +97,34 @@ live2d:
     height: 300 #模型高度
   mobile:
     show: false #是否在手机端显示
+
+# hexo-neat
+# 博文压缩
+neat_enable: true
+# 压缩html
+neat_html:
+  enable: true
+  exclude:
+# 压缩css
+neat_css:
+  enable: true
+  exclude:
+    - "**/*.min.css"
+# 压缩js
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - "**/*.min.js"
+    - "**/jquery.fancybox.pack.js"
+    - "**/index.js"
+    - "**/clicklove.js"
+    - "**/fireworks.js"
+# 站内搜索
+# search:
+#   path: search.xml
+#   field: post
+#   format: html
+#   limit: 10000

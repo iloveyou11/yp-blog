@@ -8,11 +8,11 @@
                 </a>
                 <nav id="header-menu-nav" class="right">
                     <% for (var i in theme.menu) { %>
-                    <a <% if(theme.menu[i].target){ %>target="_blank"<% } %> <% if(theme.menu[i].url){ %>href="<%- url_for(theme.menu[i].url) %><% } %>">
+                        <a <% if(theme.menu[i].target){ %>target="_blank" <% } %> <% if(theme.menu[i].url){ %>href="<%- url_for(theme.menu[i].url) %><% } %>">
                         <i class="fa fa-<%= i %>"></i>
                         <span><% if(theme.menu[i].title){ %><%= theme.menu[i].title %><% } %></span>
                     </a>
-                    <% } %>
+                        <% } %>
                 </nav>
                 <a class="mobile-header-menu-button">
                     <i class="fa fa-bars"></i>
@@ -28,25 +28,26 @@
             <div class="header-info">
                 <div id="header-title">
                     <% if (theme.header_title){ %>
-                    <h2>
-                        <%= theme.header_title %>
-                    </h2>
-                    <% } %>
+                        <h2>
+                            <%= theme.header_title %>
+                        </h2>
+                        <% } %>
                 </div>
                 <div id="header-description">
                     <% if (theme.header_description){ %>
-                    <h3>
-                        <%= theme.header_description %>
-                    </h3>
-                    <% } %>
+                        <h3>
+                            <%= theme.header_description %>
+                        </h3>
+                        <% } %>
                 </div>
             </div>
             <nav class="header-nav">
                 <div class="social">
                     <% for (var i in theme.social) { %>
-                        <a <% if(theme.social[i].title){ %>title="<%= theme.social[i].title %>"<% } %> <% if(theme.social[i].target){ %>target="_blank"<% } %> <% if(theme.social[i].url){ %>href="<%- url_for(theme.social[i].url) %><% } %>">
-                            <i class="fa fa-<%= i %> fa-2x"></i></a>
-                    <% } %>
+                        <a <% if(theme.social[i].title){ %>title="<%= theme.social[i].title %>" <% } %> <% if(theme.social[i].target){ %>target="_blank" <% } %>
+                        <% if(theme.social[i].url){ %>href="<%- url_for(theme.social[i].url) %><% } %>">
+                        <i class="fa fa-<%= i %> fa-2x"></i></a>
+                        <% } %>
                 </div>
             </nav>
         </div>
