@@ -7,6 +7,8 @@ comments: true
 cover_picture: /images/banner.jpg
 ---
 
+<!-- more -->
+
 [NLP模型-01-预训练语言模型](https://iloveyou11.github.io/2020/07/28/NLP%E6%A8%A1%E5%9E%8B-01-%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/)
 [NLP模型-02-HMM](https://iloveyou11.github.io/2020/07/28/NLP%E6%A8%A1%E5%9E%8B-02-HMM/)
 [NLP模型-03-GMM](https://iloveyou11.github.io/2020/07/28/NLP%E6%A8%A1%E5%9E%8B-03-GMM/)

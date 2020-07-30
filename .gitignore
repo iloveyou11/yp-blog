@@ -6,5 +6,5 @@ node_modules/
 public/
 .deploy*/
 template.md
-test.js
+test/
 backup

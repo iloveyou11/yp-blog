@@ -3,14 +3,17 @@
         <% if (post.link || post.title){ %>
             <header class="article-header">
                 <%- partial('post/title', {class_name: 'article-title'}) %>
-                    <% if (index && post.categories && post.categories.length){ %>
-                        <span class="header-cate">
+                    <% if(theme.word_count&&!post.no_word_count){%>
+                        <%- partial('post/word')%>
+                            <%}%>
+                                <% if (index && post.categories && post.categories.length){ %>
+                                    <span class="header-cate">
                 <i class="fa fa-map-marker"></i>
                 <% post.categories.forEach(function (category) { %>
                 <a href="<%= config.root %>categories/<%= category.name.replace(/\s+/g, '') %>/"><%- category.name %></a>
                 <% }) %>
             </span>
-                        <% } %>
+                                    <% } %>
             </header>
             <% } %>
                 <div class="article-entry <% if (is_post()) { %>post-content<% } %>" itemprop="articleBody">
@@ -61,21 +64,23 @@
                                 <%- partial('plugins/comments/youyan') %>
                                     <% } else if (theme.gitment.owner) { %>
                                         <%- partial('plugins/comments/gitment') %>
-                                            <% } else if (theme.disqus || config.disqus_shortname) { %>
-                                                <section id="comments">
-                                                    <div id="disqus_thread">
-                                                        <script type="text/javascript">
-                                                            var disqus_shortname = '<%= theme.disqus || config.disqus_shortname %>';
-                                                            (function() {
-                                                                var dsq = document.createElement('script');
-                                                                dsq.type = 'text/javascript';
-                                                                dsq.async = true;
-                                                                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                                            })();
-                                                        </script>
-                                                        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                                    </div>
-                                                </section>
-                                                <% } %>
-                                                    <% } %>
+                                            <% } else if (theme.livere.on) { %>
+                                                <%- partial('plugins/comments/livere') %>
+                                                    <% } else if (theme.disqus || config.disqus_shortname) { %>
+                                                        <section id="comments">
+                                                            <div id="disqus_thread">
+                                                                <script type="text/javascript">
+                                                                    var disqus_shortname = '<%= theme.disqus || config.disqus_shortname %>';
+                                                                    (function() {
+                                                                        var dsq = document.createElement('script');
+                                                                        dsq.type = 'text/javascript';
+                                                                        dsq.async = true;
+                                                                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                                                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                                                    })();
+                                                                </script>
+                                                                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                            </div>
+                                                        </section>
+                                                        <% } %>
+                                                            <% } %>

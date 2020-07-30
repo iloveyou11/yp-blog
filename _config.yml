@@ -84,3 +84,16 @@ deploy:
   type: git
   repo: https://github.com/iloveyou11/iloveyou11.github.io.git
   branch: master
+
+# 在右下角添加卡通人物
+live2d:
+  enable: true
+  scriptFrom: local
+  model:
+    use: live2d-widget-model-epsilon2_1 #模型选择
+  display:
+    position: right #模型位置
+    width: 150 #模型宽度
+    height: 300 #模型高度
+  mobile:
+    show: false #是否在手机端显示
