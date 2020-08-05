@@ -145,7 +145,7 @@ excerpt_length: 190
 # Excerpt link | 摘录链接
 excerpt_link: more>>
 # New window open link | 新窗口打开文章
-open_new_link: false
+open_new_link: true
 # Article default cover picture，size：350*150 | 文章默认封面图，尺寸：350*150
 cover_picture: images/banner.jpg
 # Open background particles | 开启背景粒子

@@ -13,6 +13,11 @@
                         <span><% if(theme.menu[i].title){ %><%= theme.menu[i].title %><% } %></span>
                     </a>
                         <% } %>
+                            <!-- 新增站内搜索 -->
+                            <span class="local-search local-search-google local-search-plugin">
+                        <input type="search" placeholder="站内搜索" id="local-search-input" class="local-search-input-cls">
+                        <div id="local-search-result" class="local-search-result-cls"></div>
+                    </span>
                 </nav>
                 <a class="mobile-header-menu-button">
                     <i class="fa fa-bars"></i>

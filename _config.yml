@@ -76,7 +76,6 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: miho
-#theme: 3hexo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -122,9 +121,13 @@ neat_js:
     - "**/index.js"
     - "**/clicklove.js"
     - "**/fireworks.js"
-# 站内搜索
+
 # search:
 #   path: search.xml
 #   field: post
 #   format: html
 #   limit: 10000
+
+search:
+  path: search.xml
+  field: post
