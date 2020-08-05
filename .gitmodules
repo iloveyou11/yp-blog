@@ -1,0 +1,3 @@
+[submodule "themes/miho/source/js/fancybox"]
+	path = themes/miho/source/js/fancybox
+	url = https://github.com/fancyapps/fancybox.git
