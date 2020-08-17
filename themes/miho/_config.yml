@@ -95,7 +95,7 @@ gitment:
   client_id: "" #client ID
   client_secret: "" #client secret
 livere:
-  on: true
+  on: false
   livere_uid: "MTAyMC81MDE5Mi8yNjY4Mg=="
 
 # Analytics | 分析

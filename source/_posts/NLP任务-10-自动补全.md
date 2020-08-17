@@ -19,8 +19,6 @@ cover_picture: /images/banner.jpg
 [NLP任务-10-自动补全](https://iloveyou11.github.io/2020/06/20/NLP%E4%BB%BB%E5%8A%A1-10-%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8/)
 [NLP任务-11-语义消歧](https://iloveyou11.github.io/2020/06/21/NLP%E4%BB%BB%E5%8A%A1-11-%E8%AF%AD%E4%B9%89%E6%B6%88%E6%AD%A7/)
 
-
-
 自动补全是个基于NLP的搜索任务，主要包括了以下几个方面：
 1.	语言理解
 2.	文档召回和排序
