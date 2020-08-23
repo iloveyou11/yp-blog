@@ -1,7 +1,7 @@
 ---
 title: NLP任务-08-文本分类
 date: 2020-06-18
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

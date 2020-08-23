@@ -1,7 +1,7 @@
 ---
 title: NLP任务-04-词性标注
 date: 2020-06-14
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

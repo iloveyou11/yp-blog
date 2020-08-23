@@ -1,7 +1,7 @@
 ---
 title: NLP模型-02-HMM
 date: 2020-07-14
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

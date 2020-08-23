@@ -1,7 +1,7 @@
 ---
 title: NLP系列2：分词与文本表示
 date: 2020-04-02
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

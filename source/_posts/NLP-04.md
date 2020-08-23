@@ -1,7 +1,7 @@
 ---
 title: NLP系列4：NLP核心任务
 date: 2020-05-02
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

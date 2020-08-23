@@ -5,7 +5,7 @@ keywords: YP's Blog
 # Head headline | 头部标题
 header_title: YP's Blog
 # Head description | 头部描述
-header_description: 一个专注前端智能化开发的技术博客
+header_description: 一个专注前端智能化领域的技术博客
 # Link to your logo | logo地址
 logo: images/logo.png
 # Link to your banner_img | 首页banner图地址
@@ -16,17 +16,25 @@ menu:
     title: 主页
     url: /
     target: false
-  archive:
-    title: 全部
-    url: /archives
-    target: false
-  AI:
-    title: AI
-    url: /categories/AI/
-    target: false
   前端:
     title: 前端
     url: /categories/前端/
+    target: false
+  源码:
+    title: 源码
+    url: /categories/源码/
+    target: false
+  ML:
+    title: ML
+    url: /categories/ML/
+    target: false
+  CV:
+    title: CV
+    url: /categories/CV/
+    target: false
+  NLP:
+    title: NLP
+    url: /categories/NLP/
     target: false
   计算机:
     title: 计算机

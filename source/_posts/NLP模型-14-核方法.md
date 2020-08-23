@@ -1,7 +1,7 @@
 ---
 title: NLP模型-14-核方法
 date: 2020-07-22
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

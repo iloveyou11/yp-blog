@@ -1,7 +1,7 @@
 ---
 title: NLP系列1：NLP简介
 date: 2020-03-22
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

@@ -1,7 +1,7 @@
 ---
 title: NLP模型-03-GMM
 date: 2020-07-15
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

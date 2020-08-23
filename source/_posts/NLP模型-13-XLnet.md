@@ -1,7 +1,7 @@
 ---
 title: NLP模型-13-XLNet
 date: 2020-07-19
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

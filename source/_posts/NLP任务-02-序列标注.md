@@ -1,7 +1,7 @@
 ---
 title: NLP任务-02-序列标注
 date: 2020-06-12
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

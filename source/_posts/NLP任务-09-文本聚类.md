@@ -1,7 +1,7 @@
 ---
 title: NLP任务-09-文本聚类
 date: 2020-06-19
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

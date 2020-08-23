@@ -1,7 +1,7 @@
 ---
 title: NLP模型-11-seq2seq
 date: 2020-07-18
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

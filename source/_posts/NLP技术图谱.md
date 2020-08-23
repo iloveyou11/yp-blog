@@ -1,7 +1,7 @@
 ---
 title: NLP技术图谱
 date: 2020-08-06
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 top: 200

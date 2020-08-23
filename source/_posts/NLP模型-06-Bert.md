@@ -1,7 +1,7 @@
 ---
 title: NLP模型-06-Bert
 date: 2020-07-16
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

@@ -1,7 +1,7 @@
 ---
 title: NLP任务-10-自动补全
 date: 2020-06-20
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

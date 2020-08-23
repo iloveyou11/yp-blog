@@ -1,7 +1,7 @@
 ---
 title: NLP任务-05-命名实体识别
 date: 2020-06-15
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

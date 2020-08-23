@@ -1,7 +1,7 @@
 ---
 title: NLP任务-07-信息抽取
 date: 2020-06-17
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

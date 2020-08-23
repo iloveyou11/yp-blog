@@ -1,7 +1,7 @@
 ---
 title: NLP任务-06-依存语法分析
 date: 2020-06-16
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

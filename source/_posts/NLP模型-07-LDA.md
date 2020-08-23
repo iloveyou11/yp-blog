@@ -1,7 +1,7 @@
 ---
 title: NLP模型-07-LDA
 date: 2020-07-17
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

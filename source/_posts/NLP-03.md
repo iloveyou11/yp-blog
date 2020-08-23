@@ -1,7 +1,7 @@
 ---
 title: NLP系列3：语言系统与NLP基础
 date: 2020-04-21
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

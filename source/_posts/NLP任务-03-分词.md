@@ -1,7 +1,7 @@
 ---
 title: NLP任务-03-分词
 date: 2020-06-13
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

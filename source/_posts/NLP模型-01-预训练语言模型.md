@@ -1,7 +1,7 @@
 ---
 title: NLP模型-01-预训练语言模型
 date: 2020-07-14
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

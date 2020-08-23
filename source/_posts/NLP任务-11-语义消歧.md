@@ -1,7 +1,7 @@
 ---
 title: NLP任务-11-语义消歧
 date: 2020-06-21
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg

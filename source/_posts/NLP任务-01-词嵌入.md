@@ -1,7 +1,7 @@
 ---
 title: NLP任务-01-词嵌入
 date: 2020-6-11
-categories: AI
+categories: NLP
 author: yangpei
 comments: true
 cover_picture: /images/banner.jpg
