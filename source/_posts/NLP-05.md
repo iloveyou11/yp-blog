@@ -1,6 +1,6 @@
 ---
 title: NLP系列5：重要模型与算法
-date: 2020-05-10
+date: 2020-03-16
 categories: NLP
 author: yangpei
 comments: true
@@ -11,12 +11,6 @@ cover_picture: /images/banner.jpg
 
 <!-- more -->
 
-[NLP系列1：NLP简介](https://iloveyou11.github.io/2020/03/22/NLP-01/)
-[NLP系列2：分词与文本表示](https://iloveyou11.github.io/2020/04/02/NLP-02/
-[NLP系列3：语言系统与NLP基础](https://iloveyou11.github.io/2020/04/21/NLP-03/)
-[NLP系列4：NLP核心任务](https://iloveyou11.github.io/2020/05/02/NLP-04/)
-[NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/05/10/NLP-05/)
-[NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/05/20/NLP-06/)
 
 #### 隐马尔可夫模型（HMM）
 隐马尔可夫模型是关于时序的概率模型，描述由一个隐藏的马尔可夫链随机生成不可观测的状态随机序列，再由各个状态生成一个观测而产生观测随机序列的过程。隐藏的马尔可夫链随机生成的状态的序列，称为状态序列（state sequence);每个状态生成一个观测，而由此产生的观测的随机序列，称为观测序列（observation sequence)。序列的每一个位置又可以看作是一个时刻。

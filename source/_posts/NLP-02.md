@@ -1,6 +1,6 @@
 ---
 title: NLP系列2：分词与文本表示
-date: 2020-04-02
+date: 2020-02-19
 categories: NLP
 author: yangpei
 comments: true
@@ -11,12 +11,6 @@ cover_picture: /images/banner.jpg
 
 <!-- more -->
 
-[NLP系列1：NLP简介](https://iloveyou11.github.io/2020/03/22/NLP-01/)
-[NLP系列2：分词与文本表示](https://iloveyou11.github.io/2020/04/02/NLP-02/
-[NLP系列3：语言系统与NLP基础](https://iloveyou11.github.io/2020/04/21/NLP-03/)
-[NLP系列4：NLP核心任务](https://iloveyou11.github.io/2020/05/02/NLP-04/)
-[NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/05/10/NLP-05/)
-[NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/05/20/NLP-06/)
 
 以下是NLP相关模型的发展历程：
 

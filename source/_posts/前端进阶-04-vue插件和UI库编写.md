@@ -1,6 +1,6 @@
 ---
-title: 前端进阶-06-vue插件和UI库编写
-date: 2020-6-5
+title: 前端进阶-04-vue插件和UI库编写
+date: 2019-08-31
 categories: 前端
 author: yangpei
 comments: true

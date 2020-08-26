@@ -1,6 +1,6 @@
 ---
 title: NLP系列1：NLP简介
-date: 2020-03-22
+date: 2020-02-10
 categories: NLP
 author: yangpei
 comments: true
@@ -10,13 +10,6 @@ cover_picture: /images/banner.jpg
 核心内容：NLP简介、应用场景、关键技术、研究难点、NLP系统举例
 
 <!-- more -->
-
-[NLP系列1：NLP简介](https://iloveyou11.github.io/2020/03/22/NLP-01/)
-[NLP系列2：分词与文本表示](https://iloveyou11.github.io/2020/04/02/NLP-02/)
-[NLP系列3：语言系统与NLP基础](https://iloveyou11.github.io/2020/04/21/NLP-03/)
-[NLP系列4：NLP核心任务](https://iloveyou11.github.io/2020/05/02/NLP-04/)
-[NLP系列5：重要模型与算法](https://iloveyou11.github.io/2020/05/10/NLP-05/)
-[NLP系列6：词向量与文本生成](https://iloveyou11.github.io/2020/05/20/NLP-06/)
 
 #### NLP简介
 > **自然语言处理**是计算机科学领域与人工智能领域中的一个重要方向。它研究能实现人与计算机之间用自然语言进行有效通信的各种理论和方法。自然语言处理是一门融语言学、计算机科学、数学于一体的科学。因此，这一领域的研究将涉及自然语言，即人们日常使用的语言，所以它与语言学的研究有着密切的联系，但又有重要的区别。自然语言处理并不是一般地研究自然语言，而在于研制能有效地实现自然语言通信的计算机系统，特别是其中的软件系统。

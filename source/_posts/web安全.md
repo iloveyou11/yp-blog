@@ -7,8 +7,6 @@ cover_picture: /images/banner.jpg
 ---
 <!-- more -->
 
-
-
 ### xss
 
 XSS (Cross-Site Scripting)，跨站脚本攻击，因为缩写和 CSS 重叠，所以只能叫 XSS。跨站脚本攻击是指通过存在安全漏洞的 Web 网站注册用户的浏览器内运行非法的 HTML 标签或 JavaScript 进行的一种攻击。

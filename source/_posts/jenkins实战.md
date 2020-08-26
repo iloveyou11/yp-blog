@@ -1,13 +1,12 @@
 ---
 title: jenkins实战
-date: 2020-06-02
+date: 2020-02-01
 categories: 前端
 author: yangpei
 comments: true
 ---
 
 <!-- more -->
-
 
 
 ### 持续集成、持续交付、持续部署
@@ -72,7 +71,3 @@ windows下：1）从Jenkins官网下载最新war文件。2）运行java -jar jen
 2. 选择自由风格的软件项目，并起一个名字
 
 至此，基础准备工作已经完成，我们在服务器上安装了Jenkins并启动，然后进行了初始化配置，建立了一个新任务。
-
-#### 实现git钩子功能
-#### 实现自动化构建
-#### 实现自动化部署

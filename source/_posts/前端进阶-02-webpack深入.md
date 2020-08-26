@@ -1,6 +1,6 @@
 ---
-title: 前端进阶-04-webpack系列
-date: 2020-6-3
+title: 前端进阶-02-webpack深入
+date: 2019-07-20
 categories: 前端
 author: yangpei
 comments: true
