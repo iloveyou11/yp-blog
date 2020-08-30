@@ -122,7 +122,7 @@ google_analytics: false
 
 # Access statistics | “不蒜子”访问量统计
 access_counter:
-  on: true
+  on: false
   site_uv: 总访客数：
   site_pv: 总访问量：
 
