@@ -55,12 +55,20 @@ menu:
 
 social:
   home:
-    title: Blog
+    title: 个人主页
     url: https://iloveyou11.github.io/
     target: true
   github:
     title: Github
     url: https://github.com/iloveyou11
+    target: true
+  linkedin:
+    title: 掘金
+    url: https://juejin.im/user/254742428124055/posts
+    target: true
+  mail:
+    title: E-Mail
+    url: mailto:yp3235768@163.com
     target: true
 
 # Content
@@ -107,7 +115,7 @@ gitment:
   client_id: "" #client ID
   client_secret: "" #client secret
 livere:
-  on: false
+  on: true
   livere_uid: "MTAyMC81MDE5Mi8yNjY4Mg=="
 
 # Analytics | 分析

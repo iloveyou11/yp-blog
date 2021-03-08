@@ -8,8 +8,6 @@ cover_picture: /images/banner.jpg
 ---
 <!-- more -->
 
-
-
 ##### 基本配置（自动编译）
 
 **vscode 配置自动编译 ts 代码**
